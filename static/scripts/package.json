@@ -1,0 +1,22 @@
+{
+  "name": "an",
+  "version": "1.0.0",
+  "description": "<!-- 结构： 最后一次更新20181204 gongzixi@qq.com -->",
+  "main": "main.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "npm pack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "less-loader": "^4.1.0"
+  }
+}

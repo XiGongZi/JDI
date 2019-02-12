@@ -1,0 +1,23 @@
+/*
+关于实时颜色处理：
+  1.通过变量管理，使快速更替颜色。
+    这个可以在变量中方便修改，并且不需要对dom做过多的类名添加。但是可选余地较少，只能各种颜色共同使用
+  2.通过类名管理，如需要背景色的地方用一个类名。这种较为复杂，因为需要在html模版上添加很多相关的类名。但是可以通过js实时修改主题，即通过输入一个色值任意改变颜色。
+
+
+  建议主要使用2，页面的色彩属于设计中的一部分，需要做一个整体的把控。而1可以做一些私人定制，如聊天窗口字体的颜色，气泡的背景等对dom修改少的地方。
+*/
+
+.theme-mainBackgroundColor{
+  background:#26ad9c;
+}
+
+@mainColor: #333;
+@mainBGColor: #26ad9c;
+@mainBGColorHover: #58BCAA;
+
+@htmlMainBG:#f1f1f1;
+html {
+  color: @mainColor;
+  background:@htmlMainBG;
+}

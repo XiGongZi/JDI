@@ -1,0 +1,1724 @@
+﻿
+
+html{background:#f2f2f2}
+
+.officeList a:hover{color:#888}
+.officeList a:active{color:#888}
+.officeList a:link{color:#888}
+.officeList a:visited{color:#888}
+.MaxAn{
+	width:;
+	height:;
+	font-size:;
+}
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+.MaxAn>div{width:100%}
+/* *{box-sizing: border-box;border:1px solid red;} */
+.MaxAn[test="space"]{height:4px}
+.MaxAn[test="t"]{
+	position:fixed;
+	width:140px !important;
+	height:80px;
+	right:0px;
+	top:130px;
+	z-index:300;
+	cursor:pointer;
+	color:#26ad9c;
+	border-bottom:1px solid #26ad9c;
+	background:#B3E5DD;
+	border-radius:16px;
+}
+div[test="buttonGreenBg"]{
+	width:80%;
+	height:120px;
+	border-radius:32px;
+	background:#26AD9C;
+	cursor:pointer;
+	text-align:center;
+	font-size:36px;
+	line-height:80px;
+	color:#bde9e4;
+}
+.ceshi{
+	width:100%;
+	height:100%;
+	margin:0px auto;
+	
+}
+.ceshi>div{
+	width:100%;
+	height:100%;
+	font-size:16px;
+	line-height:;
+	text-align:center;
+}
+
+
+
+
+
+.fontNav{
+	/*border:1px solid red;*/
+	height:100px;
+	font-size:280%;
+	color:;
+	line-height:100px;
+	padding-left:40px;
+}
+
+
+
+
+/*warning Information start*/
+
+/*.MaxAn[warn='a']{
+	display:none;
+}*/
+
+#warningMax{
+	width:100%;
+	height:;
+	background:rgba(0,0,0,0.5);
+	z-index:;
+	position:absolute;
+	top:0px;
+}
+/* #warningMax *{border:1px solid red} */
+.warning{
+	width:750px;
+	height:500px;
+	background:#fff;
+	margin:0px auto;
+	line-height:;
+	border-radius:16px;
+
+}
+
+.warning>div{
+	width:100%;
+	/*border:1px solid red;*/
+	font-size:28px;
+}
+
+/*setLineHeight*/
+.warning .title,.warning .confirm .cancel,.warning .confirm .agrees{
+	text-align:center;
+	line-height:;	
+}
+
+.warning .title{
+	height:15%;
+	font-size:38px;
+	color:#26ad9c;
+	font-weight:bold;
+
+}
+.warning .text{
+	height:64%;
+	font-size:24px;
+	color:#26ad9c;
+}
+.warning .text div{
+	height:100%;
+	width:80%;
+	margin:0px auto;
+}
+.warning .text .load{
+	width:100px;
+	height:100px;
+	/* margin:0 auto; */
+}
+
+.warning .confirm{
+	height:21%;
+	cursor:pointer;
+	/*margin-bottom:0px;*/
+}
+.warning .confirm .cancel{
+	width:50%;
+	float:left;
+	height:100%;
+	color:#26ad9c;
+	background:#bde9e4;
+	border-radius:0px 0px 0px 16px;
+}
+.warning .confirm .agree{
+	float:right;
+	height:100%;
+	width:50%;
+	color:#fff;
+	text-align:center;
+	border-radius:0px 0px 16px 0px;
+	background:#26ad9c;
+}
+/*warning Information over*/
+
+/*.clearFloat{
+	clear:both;
+}
+*/
+
+
+
+
+
+
+
+/*banner*/
+
+.banner{
+	height:;
+	background: url("../image/bgbanner_3.jpg") repeat 0px 0px;
+}
+.banner div{
+	float:left;
+	width:100%;
+	height:100%;
+	color:#000;
+	font-size:240%;
+	line-height:132px;
+	text-align:center;
+}
+/*banner*/
+
+
+/*search*/
+
+
+.searchInputMax{
+	height:100px;
+	background:;
+	/*border:1px solid red;*/
+	/*text-align:center;*/
+	/*line-height:100px;*/
+	margin-top:40px;
+	margin-bottom:0px;
+}
+
+/*searchInput:包含图片，input，登陆按钮*/
+
+.searchInput{
+	/*border:1px solid red;*/
+	/*background:#fff;*/
+	margin:0px auto;
+	/*line-height:80px;*/
+	height:80px;
+	width:80%;
+	border-radius:0px;
+	/*color:#abc;*/
+	font-size:160%;
+	padding-left:10px;
+	border-radius:8px;
+
+}
+
+.searchInput >*{
+	/*border:1px solid red;*/
+	float:left;
+	/*position:absolute;*/
+}
+
+/*清除浮动*/
+.searchInput:after{
+	display:block;
+	clear:both;content:"";
+	visibility:hidden;
+	height:0;
+} 
+.searchInput{
+	zoom:1;
+}
+/*清除浮动*/
+
+
+.searchInput .search{
+	width:10%;
+	background:#fff;
+	border-radius:8px;
+	height:100%;
+}
+.searchInput .search img{
+	height:60%;
+	/*width:60%;*/
+	padding-top:20px;
+	padding-left:10px;
+
+}
+.searchInput input::placeholder{
+	color:#888;
+}
+.searchInput input{
+	padding-left:10px;
+	padding-top:0px;
+
+	/*border:1px solid red;*/
+	font-size:160%;
+	background:#fff;
+	width:70%;
+	height:100%;
+	color:#26ad9c;
+	/*line-height:10px;*/
+}
+.searchInput .button{
+	width:16%;
+	height:100%;
+	border-radius:0px 8px 8px 0px;
+	background:#bde9e4;
+	cursor:pointer;
+	text-align:center;
+	font-size:150%;
+	line-height:80px;
+	color:#26AD9C;
+}
+/*search*/
+
+
+
+/*hot search*/
+
+
+.hotSearch{
+	width:80%;
+	height:;
+	background:;
+	margin:0px auto;
+	/*border:1px solid red;*/
+
+}
+/*清除浮动*/
+.hotSearch:after{
+	display:block;
+	clear:both;content:"";
+	visibility:hidden;
+	height:0;
+} 
+.hotSearch{
+	zoom:1;
+}
+/*清除浮动*/
+
+
+
+.hotSearch>div{
+	/*border:1px solid red;*/
+	border-radius:8px;
+	background:;
+	width:250px;
+	height:80px;
+	float:left;
+
+	/*margin-right:80px;*/
+	/*margin-top:30px;*/
+}
+.hotSearch>div div{
+	/*border:1px solid red;*/
+	border-radius:8px;
+	background:#fff;
+	width:80%;
+	height:80%;
+	margin:0px auto;
+	text-align:center;
+	line-height:64px;
+	font-size:240%;
+	color:#888;
+	cursor:pointer;
+}
+
+/*hot search*/
+
+
+
+
+
+
+
+
+/*officeList*/
+
+
+
+.officeList{
+	height:1300px;
+	background:#fff;
+	/*overflow:hidden;*/
+
+}
+
+.officeList .fontNav{
+	background:#f2f2f2;
+} 
+
+
+
+.officeList .firstList{
+	background:#EFEFEF;
+	/*border:1px solid red;*/
+	height:100%!important;
+	width:30%;
+	float:left;
+}
+
+.officeList .secondList{
+	/*border:1px solid red;*/
+	/*margin-top:10px;*/
+	/*background:#fff;*/
+	overflow:hidden;
+	height:100%!important;
+	width:70%;
+	float:right;
+	/*background:#abc;*/
+}
+
+
+
+/*--------------------列表内容---------------*/
+
+
+/*------左-----*/
+
+.officeList .firstList>div{
+	width:100%;
+	height:88px;
+	/*border:1px solid red;*/
+	background:#f4f4f4;
+	text-align:center;
+	font-size:250%;
+	line-height:88px;
+	border-bottom:2px solid #E5E5E5;
+	color:#888;
+	cursor:pointer;
+}
+
+/*------右-----*/
+
+.officeList .secondList>div div{
+	width:100%;
+	height:88px;
+	/*border:1px solid red;*/
+	background:#fff;
+	text-align:center;
+	font-size:250%;
+	line-height:88px;
+	border-bottom:2px solid #E5E5E5;
+	cursor:pointer;
+
+}
+/*.officeList .secondList>div div{
+	width:;
+	height:100%;
+}*/
+
+
+
+.officeList .secondList>div{
+	overflow:auto;
+	width:102%;
+	height:100%;
+	/*border:1px solid red;*/
+	background:#fff;
+	position:;
+	display:none;
+	/*text-align:center;*/
+}
+
+
+/*officeList*/
+
+
+
+
+/*doctorCard*/
+
+.doctorCardMax{
+	height:;
+}
+
+.doctorCardMax >div{
+	width:100%;
+	height:;
+	/*border-radius:16px;*/
+	/*border:1px solid red;*/
+	background:#CCCCCC;
+	margin:0px auto;
+	margin-top:4px;
+
+}
+
+.doctorInformation{
+	width:100%;
+	height:148px;
+	background:#fff;
+	/*border-radius:16px;*/
+	/*border-bottom:1px solid #CCCCCC;*/
+}
+
+
+.doctorInformation .headImg{
+	width:12%;
+	height:100%;
+	/*border:1px solid red;*/
+	background:;
+	float:left;
+	border-radius:16px;
+
+}
+.headImg p{text-align:center;font-size:20px;color:#26ad9c;}
+.doctorCardMax[test="doctorCard"] .headImg{
+	border-radius:16px;
+}
+.doctorInformation .headImg>img{
+	width:60px;
+	height:60px;
+	margin:0px auto;
+	/*border:1px solid red;*/
+	border-radius:50%;
+	/*margin-top:20px;*/
+	/*margin-left:20px;*/
+	/*background:#000;*/
+	/*background:#888;*/
+	/*box-shadow:0px 1px 2px #000;*/
+}
+.doctorInformation .otherInformation{
+	width:87%;
+	height:100%;
+	background:;
+	/*border:1px solid red;*/
+	float:right;
+	border-radius:16px;
+} 
+.doctorInformation .otherInformation .nameAndPrice{
+	width:100%;
+	height:50%;
+	/*border:1px solid red;*/
+}
+.doctorInformation .otherInformation .nameAndPrice .name{
+	width:40%;
+	height:100%;
+	/*border:1px solid red;*/
+	float:left;
+}
+.doctorInformation .otherInformation .nameAndPrice .name>div{
+	float:left;
+	line-height:;
+}
+.doctorInformation .otherInformation .nameAndPrice .name>div:nth-child(1){
+	/*border:1px solid;*/
+	font-size:36px;
+	color:#666;
+}
+.doctorInformation .otherInformation .nameAndPrice .name>div:nth-child(2){
+	border:1px solid #26ad9c;
+	padding:4px;
+	margin-left:20px;
+	color:#333;
+	margin-top:10px;
+	font-size:30px;
+	border-radius:8px;
+}
+.MaxAn[test="patientIDCard"] .doctorInformation .otherInformation .nameAndPrice .name>div:nth-child(2){
+	border:none;
+	color:#888;
+}
+.MaxAn[test="addFamilyMember"] .doctorInformation .otherInformation .nameAndPrice .name div{
+	border:none;
+	color:#26ad9c;
+}
+.doctorInformation .otherInformation .nameAndPrice .price{
+	width:18%;
+	height:100%;
+	border:0 solid red;
+	float:right;
+
+}
+.doctorInformation .otherInformation .nameAndPrice .price img{
+	height:80%;
+	margin:0px auto;
+}
+.doctorInformation .otherInformation .details{
+	width:100%;
+	height:18%;
+	/*border:1px solid red;*/
+	color:#26ad9c;
+	font-size:20px;
+}
+.doctorTable{
+	width:100%;
+	height:200px;
+	background:#fff;
+	border-radius:0px 0px 16px 16px;
+	display:block;
+	overflow:hidden;
+	
+}
+.doctorTable>div{
+	width:33%;
+	height:49%;
+	/*border:1px solid red;*/
+	float:left;
+}
+.doctorTable>div{
+	font-size:22px;
+	text-align:center;
+	line-height:98px;
+	color:#bababa;
+}
+.doctorTable .doctorTableNewColor{
+	color:#000;
+}
+.doctorTable>div:nth-child(4){
+	border-radius:0px 0px 0px 16px;
+}
+.doctorTable>div:nth-child(6){
+	border-radius:0px 0px 16px 0px;
+}
+.doctorTable>div:nth-child(2),.doctorTable>div:nth-child(5){
+	border-left:1px solid #bababa;
+	border-right:1px solid #bababa;
+}
+.doctorTable>div:nth-child(4),.doctorTable>div:nth-child(5),.doctorTable>div:nth-child(6){
+	border-top:1px solid #bababa;
+}
+/*doctorCard*/
+
+
+
+/*doctorDetail*/
+#doctorDetailWidth{
+	/*border:1px solid red;*/
+	width:100%;
+	background:#fff;
+	cursor:auto;
+	/*border-radius:0px;*/
+}
+#doctorDetailWidth>div>div{
+	/*border-radius:0px;*/
+	border-bottom:0px solid #fff;
+}
+.MaxAn[AnIndex="date"]{
+	margin-top:4px;
+}
+.dateMax{
+	width:100%;
+	/*height:120px;*/
+	background:#fff;
+}
+.dateMax .today{
+	/*border:1px solid red;*/
+	width:100%;
+	height:100px;
+}
+.dateMax .today .todayDate{
+	width:50%;
+	height:30%;
+	/*border:1px solid red;*/
+	float:left;
+}
+.todayDate>div{
+	width:90%;
+	height:100%;
+	/*border:1px solid red;*/
+	float:right;
+	font-size:30px;
+	color:#26ad9c;
+	font-weight:bold;
+}
+.dateMax .today .todayMore{
+	width:30%;
+	height:100%;
+	/*border:1px solid red;*/
+	float:right;
+	cursor:pointer;
+}
+.todayMore>div{
+	width:60%;
+	/*height:30%;*/
+	/*border:1px solid red;*/
+	float:right;
+	font-size:24px;
+	color:#26ad9c;
+	font-weight:bold;
+}
+.todayMore>div img{
+	width:24px;
+	
+}
+.dateMax .moreDate{
+	/*border:1px solid red;*/
+	width:100%;
+	height:280px;
+	/*display:none;*/
+}
+.dateMax .moreDate>div{
+	/*border:1px solid red;*/
+	width:100%;
+
+}
+.moreDateWeek{
+	height:30%;
+}
+.moreDateDate{
+	height:69%;
+}
+.moreDateWeek>div{
+	width:14%;
+	height:100%;
+	float:left;
+	text-align:center;
+	color:#333;
+	font-size:36px;
+	/*border:1px solid red;*/
+}
+.moreDateDate>div{
+	width:14%;
+	height:50%;
+	float:left;
+	text-align:center;
+	color:#888;
+	font-size:36px;
+	cursor:pointer;
+	/*border:1px solid red;*/
+}
+.moreDateDate .dateFocus{
+	border-radius:16px;
+	background:#26ad9c;
+	color:#fff;
+}
+/*doctorDetail*/
+
+
+/*date and price*/
+.MaxAn[AnIndex="dateAndPrice"]{
+	margin-top:4px;
+}
+.DAPMax{
+	width:100%;
+	height:148px;
+	background:#fff;
+	margin-bottom:2px;
+	/*cursor:pointer;*/
+}
+.DAPMax>div{
+	width:49%;
+	height:50%;
+	color:#26ad9c;
+
+	/*border:1px solid red;*/
+}
+.DAPMax>div:nth-child(1){
+	float:left;
+}
+.DAPMax>div:nth-child(1) div{
+	float:right;
+	width:90%;
+	height:100%;
+	font-size:30px;
+	/*border:1px solid red;*/
+}
+.DAPMax>div:nth-child(2){
+	float:right;
+}
+.DAPMax>div:nth-child(2) div{
+	float:right;
+	width:36%;
+	height:100%;
+	font-size:30px;
+	/*border:1px solid red;*/
+}
+/*date and price*/
+
+.DAPMax[test="SetDisabled"] div{
+	color:#b1b1b1;
+}
+
+/*familyMember*/
+.MaxAn[test="addFamilyMember"]{
+	margin-top:20px;
+	
+}
+
+.MaxAn[test="addFamilyMemberInputsName"]{
+	background:#fff;
+	/*height:900px;*/
+}
+/*.familyMemberInputs:nth-child(1){
+	margin-top:4px;
+}*/
+.familyMemberInputs{
+	background:#fff;
+	/*border:1px solid red;*/
+	width:100%;
+	height:148px;
+	margin-bottom:2px;
+}
+.MaxAn[warn="kimiadd"] .familyMemberInputs:last-child{
+	height:88px;
+	border:0px solid #fff;
+	background:rgb(0,0,0,0.0);
+}
+.MaxAn[warn="familyMemberInputs"] .familyMemberInputs:last-child{
+	margin-bottom:80px;
+}
+.MaxAn[warn="kimiadd"] .familyMemberInputs:last-child>*{
+	font-size:34px;
+	padding-left:5%;
+	color:#26ad9c;
+}
+/*familyMember*/
+
+.familyMemberInputs .headImg{
+	width:12%;
+	height:100%;
+	/*border:1px solid red;*/
+	background:;
+	float:left;
+	border-radius:16px;
+
+}
+
+.familyMemberInputs .headImg>img{
+	width:60px;
+	height:60px;
+	margin:0px auto;
+	/*border:1px solid red;*/
+	/*border-radius:50%;*/
+	/*margin-top:20px;*/
+	/*margin-left:20px;*/
+	/*background:#000;*/
+	/*background:#888;*/
+	/*box-shadow:0px 1px 2px #000;*/
+}
+
+
+.familyMemberInputs .input{
+	width:87%;
+	height:100%;
+	/*border:1px solid red;*/
+	background:;
+	float:right;
+	/*border-radius:16px;*/
+}
+
+.familyMemberInputs .input input{
+	font-size:36px;
+	color:#333;
+	width:100%;
+}
+.familyMemberInputs .input input::placeholder{
+	color:#bababa;
+}
+.MaxAn[test="familyMemberInputsButton"]{
+	margin-top:0px;
+	height:148px;
+
+	/*border:1px solid red;*/
+}
+.MaxAn[test="familyMemberInputsButton"] .familyMemberInputs{
+	text-align:center;
+	width:80%;
+	height:80%;
+	font-size:36px;
+	border-radius:16px;
+	/*border:1px solid red;*/
+	/*height:90%;*/
+	background:#26ad9c;
+	color:#fff;
+	cursor:pointer;
+}
+
+
+
+
+/*绑定就诊卡详情*/
+
+.patientIDCardDetail{
+	height:148px;
+	background:#fff;
+	width:100%;
+	margin-bottom:2px;
+}
+.MaxAn[test="patientIDCardDetail"] .patientIDCardDetail:last-child{
+	margin-bottom:44px;
+}
+.patientIDCardDetail>div{
+	height:100%;
+	font-size:32px;
+}
+.patientIDCardDetailName{
+	float:left;
+	padding-left:5%;
+}
+.patientIDCardDetailValue{
+	float:right;
+	padding-right:5%;
+	color:#888;
+}
+.patientIDCardDetailInput{
+	border:0px solid red;
+	height:100%;
+	width:80%;
+	float:right;
+	font-size:34px;
+	color:#888;
+	text-align:right;
+	padding-right:5%;
+}
+
+
+/*绑定就诊卡详情*/
+
+/*绑定就诊卡tips*/
+.patientIDCardDetailTips>div{
+	/*padding-top:20px;
+	padding-bottom:20px;*/
+	width:80%;
+}
+.patientIDCardDetailTips .tipsList:last-child{padding-bottom:20px;}
+
+.MaxAn[test="patientIDCardDetailTips"]{
+	margin-bottom:4px;
+	background:#fff;
+	width:100%;
+}
+.patientIDCardDetailTips .tips{
+	font-size:28px;
+	padding-top:20px;
+	padding-bottom:20px;
+	color:#26ad9c;
+}
+.patientIDCardDetailTips .tipsList{
+	font-size:30px;
+	line-height:44px;
+	color:#26ad9c;
+	padding-left:20px;
+}
+/*绑定就诊卡tips*/
+/*选择*/
+.familyMemberInputs select{
+	appearance:none;
+    -moz-appearance:none;
+	-webkit-appearance:none;
+	border:0px solid red;
+	width:100%;
+	height:60%;
+	float:left;
+	border-radius:8px;
+	color:#555;
+
+	font-size:34px;
+	/*text-align:center;*/
+}
+.familyMemberInputs select option{
+	/*float:right;*/
+	outline:none;
+	/*border:1px solid red;*/
+	text-align:right;
+}
+
+.familyMemberInputs select:first-child{
+	margin-right:40px;
+}
+
+
+/*选择*/
+/*
+.familyMemberInputs[test="lastFamilyMemberInputs"]{
+	background:#EFEFEF;
+}
+.familyMemberInputs[test="lastFamilyMemberInputs"] .familyMemberInputsCheckAge{
+	height:88px;
+}*/
+
+.familyMemberInputs[addBorder="AddWarningBorder"]{
+	border-top:2px solid #26ad9c;
+	border-bottom:2px solid #26ad9c;
+	background:#FFFAFA;
+}
+.familyMemberInputs[addBorder="AddWarningBorder"] input{
+	background:#FFFAFA;
+}
+.familyMemberInputsCheckAge label{
+	width:20px;
+	height:20px;
+}
+
+.regular-checkbox {
+            display: none;
+        }
+            /*第二部定义现在复选框样式*/
+            /*+选择器了解一下*/
+            .regular-checkbox + label {
+                position: relative;
+                display: inline-block;
+                /*lable是内联元素所以需要加inline-block*/
+                padding: 7px;
+                /*设置复选框大小*/
+                background-color: #fafafa;
+                /*设置背景颜色*/
+                border-radius: 3px;
+                /*复选框border*/
+                border: 1px solid #CACACA;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                /*创建的阴影效果  这里需要了解box-shadow的属性，前三个值分别是 
+                    阴影离开横方向的距离   :offset-x
+                    阴影离开纵方向的距离   ：offset-y
+                    阴影的模糊半径： 
+                    阴影的颜色 ：   
+                */
+            }
+                /*第三部分做一个active的效果*/
+                .regular-checkbox + label:active, .regular-checkbox + label:checked + label:active {
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+                }
+            /*选中之后的样式*/
+            .regular-checkbox:checked + label {
+                background-color: #E9ECEE;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            }
+                /*选中后的效果*/
+                .regular-checkbox:checked + label:after {
+                    content: '\2714';
+                    /*这是一个对勾*/
+                    position: absolute;
+                    font-size: 37px;
+                    /*设置对勾的大小*/
+                    top: 0px;
+                    left: 2px;
+                    /*设置位置的偏向*/
+                    color: #26AD9C;
+                    /*设置颜色绿色*/
+                    font-weight: bold;
+                    /*设置对勾的粗细*/
+                }
+
+/*就诊卡卡片警告*/
+/*patientIDCardBG*/
+.MaxAn[warn="patientIDCard"]{
+	padding-top:250px;
+}
+.patientIDCardBG{
+	/*border:1px solid red;*/
+	width:100%;
+	height:400px;
+	margin:0 auto;
+}
+.patientIDCardIMG{
+	/*border:1px solid red;*/
+	width:400px;
+	height:200px;
+	margin:0 auto;
+}
+.patientIDCardIMG>div{
+	width:20%;
+	/*border:1px solid red;*/
+	margin:0 auto;
+}
+.patientIDCardIMG img{
+	width:100%;
+}
+.patientIDCardBG .title{
+	width:400px;
+	height:100px;
+	text-align:center;
+	/*border:1px solid red;*/
+	color:#26ad9c;
+	padding-top:50px;
+	font-size:32px;
+}
+.moreDateDate .forbidden{
+	background:#888;
+	color:#fff;
+	border-radius:8px;
+}
+.moreDateDate div[test="setCheck"]{
+	background:#EDEDED;
+	color:#AAA;
+	/*border-radius:8px;*/
+}
+.surviceName{
+	border:1px solid red;
+	width:100%;
+	height:90%;
+}
+.MaxAn[warn="kimi"] .input div{
+	text-align:right;
+	padding-right:5%;
+	font-size:34px;
+	color:#bababa;
+}
+.input[test="addMemberOption"] img{
+	/*padding-right:1%;*/
+	width:60px;
+	height:calc(width);
+	position:absolute;
+	z-index:1000;
+	/*float:right;*/
+	border:0px solid red;
+	right:20px;
+}
+/*.MaxAn[warn="kimi"]>div:nth-child(1),.MaxAn[warn="kimi"]>div:nth-child(4){
+	margin-bottom:8px;
+}*/
+.confirmOrder,.confirmOrderToPay{
+	margin-top:40px;
+}
+.MaxAn[warn="pay"] .input div{
+	text-align:right;
+	padding-right:5%;
+	font-size:34px;
+	color:#26ad9c;
+}
+.MaxAn[warn="kimi"] .input[child="radio"]{
+	font-size:34px;
+	color:#888;
+	/*border:1px solid red;*/
+}
+.Pay_TimeSelectHour{
+	width:30%;
+	height:100%;
+	/*border:1px solid red;*/
+	float:right;
+	margin-left:5%;
+}
+
+.MaxAn[test="selectTime"]{
+	position:absolute;
+	top:0;
+	z-index:1920;
+	height:1810px;
+	border:0px solid red;
+	background:rgba(0,0,0,0.8);
+	display:none;
+}
+.MaxAn[test="selectTime"] .selectTimeBG{
+	background:#fff;
+	width:80%;
+	height:390px;
+	border-radius:16px 16px 0 0;
+	margin:0 auto;
+}
+
+.selectTimeBG>div{
+	width:80%;
+	/*height:300px;*/
+	position:absolute;
+	
+	/*background:#808080;*/
+
+}
+.selectTimeBG_title>div{
+	/*border:1px solid red;*/
+	font-size:34px;
+	color:#26ad9c;
+	text-align:center;
+	margin-top:25px;	
+}
+.selectTimeBG_body{
+	height:290px;
+	/*border:1px solid red;*/
+	margin-top:98px;
+	/*background:#fff;*/
+}
+/*.selectTimeBG_body div{border:1px solid red;}*/
+.selectTimeBG_body>div{
+	font-size:34px;
+	color:#26ad9c;
+	text-align:center;
+}
+.selectTimeBG_body>div>div>div:active{opacity:0.4;}
+.selectTimeBG_body>div>div>div:visited{opacity:0.8;}
+
+.selectTimeBG_body img{
+	width:80%;
+	height:clac(width);
+	opacity:0.8;
+}
+.selectTimeBG_TimeSelectHour{
+	width:45%;
+	height:250px;
+	float:left;
+	margin-left:0%;
+	
+}
+.selectTimeBG_TimeSelectDivide{margin-top:80px;}
+/*.selectTimeBG_TimeSelectHourUp,.selectTimeBG_TimeSelectMinuteUp{border-bottom:#26ad9c 1px solid;}*/
+.selectTimeBG_TimeSelectHour input,.selectTimeBG_TimeSelectMinute input{
+	float:left;
+	width:70%;
+	height:100%;
+	/*border:1px solid red;*/
+	background:#fff;
+	text-align:center;
+	font-size:60px;
+	cursor:pointer;
+	border-radius:16px 0 0 16px;
+	color:#26ad9c;
+}
+.selectTimeBG_TimeSelectHour>div,.selectTimeBG_TimeSelectMinute>div{
+	float:right;
+	width:30%;
+	height:100%;
+	cursor:pointer;
+	background:#fff;
+	border-radius:0 16px 16px 0;
+
+	/*border:1px solid red;*/
+}
+.selectTimeBG_TimeSelectDivide{
+	width:40px;
+	height:100px;
+	position:absolute;
+	font-size:80px !important;
+	padding-bottom:20px;
+}
+.selectTimeBG_TimeSelectMinute{
+	width:45%;
+	height:250px;
+	float:right;
+	margin-right:0%;
+
+
+}
+.selectTimeBG_TimeSelectHour>div>div,.selectTimeBG_TimeSelectMinute>div>div{
+	/*background:#000;*/
+	height:50%;
+}
+.selectTimeBG_confirm>div{
+	width:80%;
+	height:128px;
+	background:#26ad9c;
+	border-radius:0 0 16px 16px;
+	text-align:center;
+	font-size:34px;
+	color:#fff;
+	cursor:pointer;
+	/*z-index:2000;*/
+}
+
+/*.price{opacity:0.5;}*/
+.MaxAn[warn2='patientRecordWarn']{
+	position:absolute;
+	display:none;
+}
+.MaxAn[test="PayPic"]{
+	position:absolute;
+	margin-top:0;
+	z-index:-1;
+	background:rgba(0,0,0,0.8);
+
+}
+.MaxAn[test="PayPic"] .PayPic{
+	width:400px;
+	height:402px;
+	margin:0 auto;
+	margin-top:150px;
+	background:#fff;
+	border-radius:8px 8px 0 0 !important;
+}
+.MaxAn[test="PayPic"] img{
+	width:380px;
+	margin-top:0px !important;
+	overflow:hidden;
+	/*height:calc(width);*/
+}
+.MaxAn[test="PayPic"] .PayPic2{
+	width:400px;
+	height:100px;
+	border-radius:0 0 8px 8px !important;
+	margin:0 auto;
+	border-top:2px solid #bababa;
+	background:#fff;
+}
+.sanxiang{
+	position:fixed;
+	top:100px;
+	right:0px;
+	z-index:101;
+}
+.MaxAn[test="DateOrDocNav"]{
+	height:128px;
+	margin-top:4px;
+	cursor:pointer;
+}
+.MaxAn[test="DateOrDocNav"]>div{
+	height:100%;
+	width:100%;
+	margin:0 auto;
+
+}
+.MaxAn[test="DateOrDocNav"]>div>div{
+	float:left;
+	width:50%;
+	height:100%;
+	background:#fff;
+	font-size:38px;
+	text-align:center;
+}
+.DocToDate{
+	border-bottom:4px solid #fbfbfb;
+	color:#26ad9c;
+}
+.DateToDoc{
+	color:#bababa;
+}
+ .MaxAn[navList="Date"]{display:none;}
+
+ .MaxAn[warn="NotFoundInformation"]{
+ 	/*background:#fff;*/
+ 	height:140px;
+ }
+  .MaxAn[warn="NotFoundInformation"]>div{
+  	background:#fff;
+  }
+
+
+
+#docInfor{
+	width:90%;
+	margin:0 auto;
+	background:#fff;
+	border-top:4px solid #f1f1f1;
+  }
+ .MaxAn[AnType="DocInformation"] .familyMemberInputs{
+   	font-size:34px;
+   	width:90%;
+   	height:40px;
+   	margin:0 auto;
+   	color:#ccc;
+   	line-height:44px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+   	/*text-align:right;*/
+   }
+    .MaxAn[AnType="DocInformation"] .introduce{
+    	   	font-size:28px;
+   	width:90%;
+   	margin:0 auto;
+   	line-height:40px;
+   	color:#ccc;
+    }
+  .MaxAn[AnType="DocInformation"] .familyMemberInputs .button{
+  	width:100%;
+  	height:100%;
+  	background:#fff;	
+  	color:#bde9e4;
+  	text-align:center;
+  	cursor:pointer;
+  }
+
+
+
+
+
+
+
+
+
+/* <!-- 下拉菜单（20180929GongZiXi）开始 --> */
+	/* default */
+	.pcCenter{width:90%;margin:0 auto;}
+	.floatLeft{float:left}
+	.floatRight{float:right}
+	.clearBoth{clear: both;}
+	.cursorPoint{cursor: pointer;}
+	.displayNone{display:none}
+
+	.paddingLeft80px{padding-left:40px}
+	.paddingRight80px{padding-right:40px}
+	.textAlignRight{text-align:right}
+	li {   
+		list-style:none;   
+	 } 
+	.space20pxHeight{height:20px;width:2px}
+	.space1pxHeight{height:1px;width:1px}
+	.space40pxHeight{height:40px;width:2px}
+	.space55pxHeight{height:55px;width:2px}
+	.space80pxWid{width:80px;height:1px}
+	/* default */
+
+
+  	.moreInfoBarClick{
+		cursor: pointer;
+	}
+	.moreInfoBar{
+		width:100%;
+		/* height:300px; */
+		font-size:20px;
+		background:#fff;
+		color:#AAA;
+		overflow:auto;
+		margin-bottom:1px;
+		/* border:1px solid red; */
+	}
+	.moreInfoBar li{
+		width:95%;
+		/* border:1px solid red; */
+		height:80px;
+		background:#fff;
+		border-bottom:1px solid #f1f1f1;
+		font-size:32px;
+	}
+	.moreInfoBar li>div{
+		height:100%;
+		line-height:80px;
+	}
+	.itemList{
+		background:#fff;
+		height:120px;
+		width:100%;
+		border-bottom:2px solid #f1f1f1;
+	}
+	.itemList>div{height:100%}
+	.itemList p{
+		line-height:120px;
+		font-size:36px;
+		color:#555;
+	}
+	.itemList .iconImg{
+		width:40px;
+		height:120px;
+		/* border:1px solid red; */
+	}
+	.itemList .iconImg img{
+		width:100%;
+		margin-top:40px;
+	}
+/* <!-- 下拉菜单（20180929GongZiXi）结束 --> */
+
+
+
+/* 20181018 GongZiXi  start*/
+
+.sex{
+    /* margin-left: 10%;
+	margin-top: 15%; */
+	color:#26ad9c;
+	font-size:24px;
+	margin-top:60px;
+	/* width:90%; */
+	/* margin-left:100px; */
+ }
+ .sex img{
+	 width:28px;
+ }
+ .radio_btn{
+	background: #fff;
+	border:1px solid #26ad9c;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    position: relative;
+	vertical-align: middle;
+	
+ }
+ .radio_btn input{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    opacity: 0;
+ }
+ .radio_btn span{
+    background: #fff;
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    top: 1px;
+    left: 1px;
+    border-radius: 50%;
+ }
+ .radio_btn input[type="radio"] + span{
+    opacity: 0;
+ }
+ .radio_btn input[type="radio"]:checked + span{
+    opacity: 1;
+ }
+/* 20181018 GongZiXi  over*/
+
+
+
+/* 20181023 Gongzixi */
+
+.importList .borderBottom{
+	background:#fff;
+	border-bottom:2px solie #000;
+}
+.importList>div>div{
+	width:95%;
+	font-size:20px;
+	line-height: 40px;
+	color:#888;
+}
+
+
+
+#loadingMax{
+	width:100%;
+	height:;
+	background:rgba(255,255,255,1);
+	z-index:;
+	position:absolute;
+	top:134px;
+}
+/* #loadingMax *{border:1px solid red} */
+.loading{
+	width:750px;
+	height:500px;
+	background:#fff;
+	margin:0px auto;
+	line-height:;
+	border-radius:16px;
+	margin-top:60px;
+}
+.loading div{
+	height:100%;
+	width:80%;
+	margin:0px auto;
+}
+.loading .load{
+	width:100px;
+	height:100px;
+	/* margin:0 auto; */
+}
+.new_checkTest_report_Max *{
+	border:1px solid red
+}
+.new_checkTest_report_Max{
+	width:100%;
+	height:148px;
+	background:#fff;
+}
+.new_checkTest_report{
+	width:95%;
+	height:100%;
+}
+.new_checkTest_report>div{
+	height:100%;
+}
+.checkTest_report_left{
+	line-height:148px;
+	font-size:36px;
+}
+.new_checkTest_report_Max *[status="0"]{
+	color:#000;
+}
+.new_checkTest_report_Max *[status="-1"]{
+	color:red;
+}
+.new_checkTest_report_Max *[status="1"]{
+	color:green;
+}
+.checkTest_report_right{
+	line-height:74px;
+	font-size:32px;
+	text-align:right;
+	color:#aaa
+}
+/* 20181108 gongzixi */
+.MaxAn[warn2='kimi'] .price{
+	font-size:34px;
+	border:1px solid red
+}
+/* 通过改变自定义属性的状态来改变css，而不是通过js强行改变css */
+.MaxAn[warn2='kimi'] a[status="0"]{
+	color:#26ad9c;
+}
+.MaxAn[warn2='kimi'] a[status="-1"]{
+	color:#bababa;
+}
+.MaxAn[warn2='kimi'] a[status="1"]{
+	color:red;
+}
+/* .MaxAn[warn2='kimi'] */
+
+.checkTestSmall_title{
+	width:100%;
+	height:200px;
+	background:#fff;
+}
+.checkTestSmall_title .title{
+	font-size:44px;
+	line-height:100px;
+	color:#111;
+}
+.checkTestSmall_title .time{
+	font-size:28px;
+	color:#aaa;
+	line-height:50px;
+}
+.checkTestSmall_listTitle{
+	height:150px;
+	width:100%;
+	font-size:38px;
+	line-height:150px;
+	background:#fff;
+	margin-top:4px;
+}
+.checkTestSmall_listTitle>div{
+	width:95%;
+}
+.checkTestSmall_listBody{
+	height:100px;
+	width:100%;
+	font-size:36px;
+	line-height:100px;
+	background:#fff;
+	margin-top:4px;
+}
+.checkTestSmall_listBody>div{
+	width:95%;
+	height:100%;
+}
+.checkTestSmall_listBody *{
+	/* border:1px solid blue; */
+}
+.checkTestSmall_listBody>div[status="0"]{
+	color:#26ad9c
+}
+.checkTestSmall_listBody>div[status="-1"]{
+	color:#111
+}
+.checkTestSmall_listBody>div[status="1"]{
+	color:red
+}
+.checkTestSmall_listBody .prpr>div{
+	/* border:1px solid red; */
+
+}
+.imageSmall_chart{
+	width:100%;
+	background:#fff;
+}
+.imageSmall_chart>div{
+	width:95%;
+}
+.imageSmall_chart_mainInfo{
+	color:#aaa;
+	height:90px;
+	font-size:28px;
+	line-height:40px	
+}
+.imageSmall_chart .imageSmall_chart_title{
+	color:#111;
+	height:150px;
+	font-size:36px;
+	padding-top:40px;
+	border-top:2px solid #eee;
+}
+.imageSmall_chart .imageSmall_chart_title .title{
+	font-size:44px;
+	line-height:40px;
+}
+.imageSmall_chart .imageSmall_chart_title .time{
+	font-size:38px;
+	line-height:40px;
+}
+.imageSmall_chart .imageSmall_chart_info{
+	color:#aaa;
+	height:60px;
+	font-size:30px;
+	line-height:40px;
+}
+.imageSmall_chart .imageSmall_chart_body{
+	color:#333;
+	font-size:36px;
+	/* height:300px; */
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.imageSmall_chart .imageSmall_chart_body:disabled{
+	opacity: 1;
+	background:#fff;
+}
+.imageSmall_chart .imageSmall_chart_foot{
+	color:#aaa;
+	height:180px;
+	font-size:30px;
+	line-height:40px;
+}
+/* 181120 GongZX */
+
+.hospitalSub_chart{
+	width:100%;
+	background:#fff;
+	border-bottom:1px solid #aaa;
+
+}
+.hospitalSub_chart>div{
+	width:95%;
+}
+.hospitalSub_chart_mainInfo{
+	color:#aaa;
+	height:90px;
+	font-size:30px;
+	line-height:40px	
+}
+.hospitalSub_chart .hospitalSub_chart_title{
+	color:#111;
+	height:80px;
+	font-size:36px;
+	padding-top:40px;
+	border-top:2px solid #eee;
+}
+.hospitalSub_chart .hospitalSub_chart_title .title{
+	font-size:36px;
+	line-height:40px;
+}
+.hospitalSub_chart .hospitalSub_chart_title .time{
+	font-size:38px;
+	line-height:40px;
+}
+.hospitalSub_chart .hospitalSub_chart_info{
+	color:#aaa;
+	height:140px;
+	background:#fff;
+	/* overflow: auto; */
+	font-size:30px;
+	line-height:40px;
+}
+.hospitalSub_chart .hospitalSub_chart_body{
+	color:#333;
+	font-size:30px;
+	/* height:300px; */
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.hospitalSub_chart .hospitalSub_chart_body:disabled{
+	opacity: 1;
+	background:#fff;
+}
+.hospitalSub_chart .hospitalSub_chart_foot{
+	color:#aaa;
+	height:180px;
+	font-size:30px;
+	line-height:40px;
+}
+/* gongzx 20181121 */
+.backBar{
+	width:80px;
+	height:130px;
+	/* border-radius:50%; */
+	background:rgba(0,0,0,0);
+	/* box-shadow: 1px 1px 2px 2px #aaa; */
+	position:absolute;
+	left:0;
+	top:0;
+	/* display:block; */
+	color:#bde9e4;
+	z-index:10000;
+}
+.backBar .icon{
+	width:80px;
+	height:130px;
+	/* color:#000 */
+}

@@ -1,0 +1,64 @@
+.tipsMax {
+	position: absolute;
+	top: 130px;
+	color: red;
+	/*width:800px;*/
+	/*height:800px;*/
+	/*border:0px solid red;*/
+	margin: 0 auto;
+}
+
+.tipsMax>div {
+	width: 500px;
+	padding-left: 180px;
+	height: 30px !important;
+	background: rgba(0, 0, 0, 0);
+	border-radius: 8px;
+	border: 0;
+	position: absolute;
+	top: 0px;
+	z-index: 100;
+	/*display:block;*/
+	font-size: 28px;
+	/* border:1px solid red; */
+}
+
+.tipsMax .tipsPhoneNumber {
+	top: -27px
+}
+
+.tipsMax .tipsPassword {
+	top: 88px
+	/* top: 152px */
+}
+
+.tipsMax .tipsRepassword {
+	top: 204px
+}
+
+.tipsMax .tipsIdName {
+	top: 329px
+}
+
+.tipsMax .tipsIdNumber {
+	top: 446px
+}
+/* .tipsMax .tipsPhoneNumber {
+	top: 4px
+}
+
+.tipsMax .tipsPassword {
+	top: 88px
+}
+
+.tipsMax .tipsRepassword {
+	top: 299px
+}
+
+.tipsMax .tipsIdName {
+	top: 446px
+}
+
+.tipsMax .tipsIdNumber {
+	top: 593px
+} */
