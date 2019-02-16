@@ -6,8 +6,6 @@ select{
     -webkit-appearance:none;
     border:none;
     }
-
-
 .MaxAn{
 	height:100%;	
 }
@@ -17,23 +15,19 @@ select{
 /*文档字色背景色*/
 html{
 	color:#000;
-
-
 }  
 body {  
  line-height: 1;  
  color: black;  
- 
 }  
-
 /*边距*/
 *{    
   margin:0;   
- padding:0;   
+  padding:0;   
 } 
 /*取消聚焦边框样式 */
-:focus {  
- outline: 0;  
+:focus {
+ 	outline: 0;  
 }  
 /*输入框*/
 input{
@@ -75,7 +69,7 @@ caption, th, td {
 }  
 
 /*清除列表前修饰物*/
-ol,ul {   
+ol,ul,li {   
    list-style:none;   
 }   
 

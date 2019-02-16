@@ -1,0 +1,34 @@
+@titleBar_eyeDepaHeight :88px;
+.pageTitle{
+    height: @titleBarHeight;
+    background-color: #fff;
+    border: none;
+    border-radius: 0px;
+    border-bottom:1px solid @borderLine;
+    /*主体*/
+    &-main{
+        display: flex;
+    }
+    & img{
+        height:@titleBarHeight;
+    }
+    & .title{
+        width:200px;
+        height:@titleBarHeight;
+        background:#fff;
+        & img{
+            height:@titleBarHeight * 0.6;
+            margin-top:@titleBarHeight * 0.2;
+            /* float:right;*/
+        }
+    }
+    & .contact{
+        flex:1;
+        height:@titleBarHeight;
+        & img{
+            height:@titleBar_eyeDepaHeight * 0.5;
+            margin-top:@titleBar_eyeDepaHeight * 0.25;
+            float:right;
+        }
+    }
+}

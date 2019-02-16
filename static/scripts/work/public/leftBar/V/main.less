@@ -1,0 +1,83 @@
+@titleBar_eyeDepaHeight :88px;
+.leftBarFrame{
+    width:100%;
+    height:auto;
+    background:#ffffff;
+    text-align: center;
+    &-li{
+        height:auto;
+    }
+    &-main{
+        cursor: pointer;
+        height:60px;
+        line-height:60px;
+        font-size:16px;
+        background:#fff;
+        border-bottom:2px solid #e1e1e1;
+        color:#333;
+        & .logo,& .arrow{
+            width:40px;
+            & svg{
+                width:20px;
+                height:20px;
+                margin-top:20px;
+            }
+        }
+        & .logo {
+            text-align: right;
+        }
+        & .arrow {
+            text-align: left;
+            & svg[rotate="rotateArr"]{
+                    /* Rotate div 旋转90度 */
+                    transform:rotate(90deg);
+                    -ms-transform:rotate(90deg); /* Internet Explorer */
+                    -moz-transform:rotate(90deg); /* Firefox */
+                    -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+                    -o-transform:rotate(90deg); /* Opera */
+                    transition:transform 300ms;
+            }
+            & svg[rotate="rotateArr2"]{
+                /* Rotate div 恢复原样*/
+                transform:rotate(-0deg);
+                -ms-transform:rotate(-0deg); /* Internet Explorer */
+                -moz-transform:rotate(-0deg); /* Firefox */
+                -webkit-transform:rotate(-0deg); /* Safari 和 Chrome */
+                -o-transform:rotate(-0deg); /* Opera */
+                transition:transform 300ms;
+        }
+        }  
+        &:hover{
+            background:#F2F4F9;
+            color:#333;
+            
+        }
+        &[rotateStatus="1"]{
+            color:#369762;
+        }
+    }
+    &-son{
+        display:block;
+        height:auto;
+        &>a{
+            display:inline-block;
+            height:50px;
+            line-height:50px;
+            width:100%;
+            background:#F2F4F9;
+            color:#333;
+            border-bottom:1px solid #eaeaea;
+            &:hover{
+                background:#c2e8dc;
+                border-left:4px solid #369762;
+                transition: 100ms;
+            }
+        }
+    }
+
+    .hideStatus{
+        display:none;
+        transition:display 1s;
+    }
+    
+}

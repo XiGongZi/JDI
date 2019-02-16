@@ -1,0 +1,180 @@
+@searchCaseDivHeight:50px;
+.bodyFrame{
+    width:100%;
+    height:auto;
+    &>.leftBar{
+        height:auto;
+        width:200px;
+        padding-top:2px;
+        & iframe{
+            height:calc(100vh - 74px);
+            min-height:600px;
+            width:100%;
+            border-right:2px solid @borderLine;
+        }
+    }
+    &-main{
+        height:auto;
+        &>div{
+            height:auto;
+            background:#fff;
+            border:1px solid @borderLine;
+        }
+        &>.title{
+            height:80px;
+            line-height:80px;
+            text-align: center;
+            font-size:28px;
+        }
+        &>.search{
+            &>div{
+                height:auto;
+                width:95%;
+                margin:0 auto;
+                background: @mainBGColor2;
+            }
+            &>.case{
+                &>div{
+                    float:left;
+                    width:95% * 0.33;
+                    min-width:367px;
+                    height:@searchCaseDivHeight;
+                    line-height: @searchCaseDivHeight;
+                    &>div{
+                        float:left;
+                    }
+                    & .case-name{
+                        text-align:right;
+                        padding-right:10px;
+                        width:120px;
+                        height:100%;
+                    }
+                    & .case-input{
+                        height:100%;
+                        & input{
+                            height:@searchCaseDivHeight * 0.6;
+                            line-height:@searchCaseDivHeight;
+                            padding-left:10px;
+                            padding-right:10px;
+                            background:#f1f1f1;
+                            border-radius: 4px 0 0 4px;
+                        }
+                    }
+                    & .case-icon{
+                        width:40px;
+                        // height::@searchCaseDivHeight * 0.6;
+                        cursor: pointer;
+                        & .icon{
+                            border-radius:0 4px 4px 0;
+                            margin-top:12px;
+                            padding:2px;
+                            width:26px;
+                            height:26px;
+                            color:#fff;
+                            &[status="0"]{
+                                background:#F75C2F;
+                                &:hover{
+                                    background:#E83015;
+                                    transition: 500ms;
+                                }
+                            }
+                            &[status="1"]{
+                                background:#FBE251;
+                                &:hover{
+                                    background:#FAD689 ;
+                                    transition: 500ms;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+            &>.button div{
+                width:88px;
+                height:40px;
+                line-height:40px;
+                background:@mainButtonBGColor;
+                color:@mainColor2;
+                text-align:center;
+                float:right;
+                border-radius: 8px;
+                margin-right:100px;
+                margin-top:10px;
+                margin-bottom:10px;
+                cursor: pointer;
+                &:hover{
+                    background:#369762;
+                    color:#fff;
+                }
+            }
+        }
+        &>.table{
+            &>.charts{
+                width:95%;
+                margin:0 auto;
+            }
+        }
+        
+    }
+}
+
+
+/* 分页CSS */
+#changePage{
+    font-size: 16px;
+    width:900px;
+    height:40px;
+    line-height:35px;
+    text-align:center;
+    color:#808080;
+    margin-bottom: 0;
+    position: absolute;
+    top:780px;
+    right:0px;
+    /* border:1px solid red; */
+}
+/* #changePage *{box-sizing: border-box;border:1px solid red} */
+ #changePage .turn{
+width:80px;
+height:40px;
+}
+#changePage .turn:hover{
+    color:#333;
+    cursor: pointer;
+}
+#changePage .title1{
+width:400px;
+}
+#changePage .pages{
+width:220px;
+}
+#changePage .pages li{
+cursor: pointer;
+/* color:#aaa; */
+width:40px;
+height:40px;
+margin-left:2px;
+box-sizing: border-box;
+border:1px solid #369762;
+}
+#changePage .input{
+width:40px;
+height:40px;
+}
+#changePage .input input{
+width:100%;
+height:40px;
+box-sizing: border-box;
+border:1px solid #369762;
+background:rgba(0,0,0,0);
+border-radius:4px;
+color:#369762;
+font-size: 16px;
+text-align: center;
+}
+#changePage .button{
+width:40px;
+height:40px;
+}
+#changePage .button:hover{color:#fff}

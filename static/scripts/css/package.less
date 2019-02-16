@@ -2,7 +2,7 @@
  package.css 是为了将重复率高的代码集中起来管理，类似于css的 “var”。但是“var”无法做到js的动态修改，所以迟早会被抛弃。而通过类名，将css功能代码语义化，将大大缩短开发时间。
 									公子熄  /20180905
  */
-
+body *::-webkit-scrollbar {display:none}
 .pcCenter{
 	width:1421px;
 	/*border:1px solid red!important;*/
@@ -135,4 +135,11 @@
 	font-weight: bold;
 }
 
-/*190108*/
+/*190214*/
+
+.icon {
+	width: 1em; height: 1em;
+	vertical-align: -0.15em;
+	fill: currentColor;
+	overflow: hidden;
+}
