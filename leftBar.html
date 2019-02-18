@@ -48,12 +48,11 @@
             </div>
             <div class="leftBarFrame-son " style="display:none">
                 <a href="javascript:void(0)">总包合同单</a>
-                <a href="javascript:void(0)">预算合同单</a>
+                <a href="javascript:void(0)">分包及劳务合同单</a>
+                <a href="javascript:void(0)">合同额追加单</a>
+                <a href="javascript:void(0)">项目计量单</a>
                 <a href="javascript:void(0)">成本确认单</a>
                 <a href="javascript:void(0)">支出确认单</a>
-                <a href="javascript:void(0)">分包及劳务合同单</a>
-                <a href="javascript:void(0)">项目计量单</a>
-                <a href="javascript:void(0)">合同额追加单</a>
             </div>
         </div>
         <!-- 第二条 -->
@@ -61,10 +60,10 @@
             <div class="leftBarFrame-main displayFlex"  rotateStatus="0">
                 <span class="logo">
                     <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-navicon-cgzb"></use>
+                        <use xlink:href="#icon-leicailiaojiagongx1"></use>
                     </svg>
                 </span>
-                <span class="flex1">采购部门</span>
+                <span class="flex1">材料部门</span>
                 <span class="arrow">
                     <svg class="icon " aria-hidden="true">
                         <use xlink:href="#icon-jiantouyou"></use>
@@ -73,7 +72,12 @@
             </div>
             <div class="leftBarFrame-son " style="display:none">
                 <a href="javascript:void(0)">采购合同单</a>
+                <a href="javascript:void(0)">预算合同单</a>
+                <a href="javascript:void(0)">成本确认单</a>
+                <a href="javascript:void(0)">支出确认单</a>
                 <a href="javascript:void(0)">报销单</a>
+                
+               
             </div>
         </div>
         <!-- 第三条 -->
@@ -92,8 +96,8 @@
                     </span>
                 </div>
                 <div class="leftBarFrame-son " style="display:none">
-                    <a href="javascript:void(0)">生产资料申请表</a>
-                    <a href="javascript:void(0)">项目数量确认表</a>
+                    <a href="javascript:void(0)">物资采购申请表</a>
+                    <a href="javascript:void(0)">数量确认单</a>
                 </div>
             </div>
             <!-- 第四条 -->
@@ -117,19 +121,38 @@
                     </div>
                 </div>
 
-
+                <!-- 第五条 -->
+                <div class="leftBarFrame-li">
+                    <div class="leftBarFrame-main displayFlex"  rotateStatus="0">
+                        <span class="logo">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-shuju"></use>
+                            </svg>
+                        </span>
+                        <span class="flex1">基础数据</span>
+                        <span class="arrow">
+                            <svg class="icon " aria-hidden="true">
+                                <use xlink:href="#icon-jiantouyou"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="leftBarFrame-son " style="display:none">
+                        <a href="javascript:void(0)">材料维护</a>
+                        <a href="javascript:void(0)">客商维护</a>
+                    </div>
+                </div>
 
     </div>
 </body>
 <!-- <script>var ctx = "${ctx}";</script> -->
 <!-- <script src="./static/scripts/config/app/index.js"></script>  -->
 <script type="text/javascript">
-//当前页面程序入口
 //当父级点击时
 $(".leftBarFrame-main").click(function(){
     /*获取点击的状态，0为被折叠，1为展开*/
     var zhi1 = $(this).attr("rotateStatus");
     /* 全部折叠开始*/
+    $(".leftBarFrame-main .arrow svg").attr("rotate","rotateArr2");
     $(".leftBarFrame-main").attr("rotateStatus","0");
     $(".leftBarFrame-son").slideUp(500);
     /* 全部折叠结束*/

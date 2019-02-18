@@ -21,19 +21,27 @@
             border:1px solid @borderLine;
         }
         &>.title{
-            height:80px;
-            line-height:80px;
-            text-align: center;
-            font-size:28px;
+            background:@mainBGColor;
+            color:#fff;
+            & div{
+                margin:0 auto;
+                height:80px;
+                width:95%;
+                line-height:80px;
+                text-align: left;
+                font-size:28px;
+            }
+            
         }
         &>.search{
             &>div{
-                height:auto;
                 width:95%;
                 margin:0 auto;
                 background: @mainBGColor2;
             }
             &>.case{
+                height:auto;
+                overflow: hidden;
                 &>div{
                     float:left;
                     width:95% * 0.33;
@@ -54,6 +62,16 @@
                         & input{
                             height:@searchCaseDivHeight * 0.6;
                             line-height:@searchCaseDivHeight;
+                            padding-left:10px;
+                            padding-right:10px;
+                            background:#f1f1f1;
+                            border-radius: 4px 0 0 4px;
+                        }
+                        & select{
+                            width:191px;
+                            height:@searchCaseDivHeight * 0.6;
+                            // line-height:@searchCaseDivHeight;
+                            margin-top:12px;
                             padding-left:10px;
                             padding-right:10px;
                             background:#f1f1f1;
@@ -85,28 +103,42 @@
                                     transition: 500ms;
                                 }
                             }
+                            &[status="2"]{
+                                background:#FFB11B;
+                                &:hover{
+                                    background:#CC8E16 ;
+                                    transition: 500ms;
+                                }
+                            }
                         }
                     }
                 }
                 
             }
-            &>.button div{
-                width:88px;
-                height:40px;
-                line-height:40px;
-                background:@mainButtonBGColor;
-                color:@mainColor2;
-                text-align:center;
-                float:right;
-                border-radius: 8px;
-                margin-right:100px;
-                margin-top:10px;
-                margin-bottom:10px;
-                cursor: pointer;
-                &:hover{
-                    background:#369762;
-                    color:#fff;
+            &>.button {
+                width:95%;
+                height:auto;
+                overflow: hidden;
+                &>div{
+                    width:88px;
+                    height:40px;
+                    line-height:40px;
+                    background:@mainButtonBGColor;
+                    color:@mainColor2;
+                    text-align:center;
+                    float:right;
+                    border-radius: 8px;
+                    margin-right:20px;
+                    margin-top:10px;
+                    margin-bottom:10px;
+                    cursor: pointer;
+                    &:hover{
+                        background:#369762;
+                        color:#fff;
+                        transition: .5s;
+                    }
                 }
+               
             }
         }
         &>.table{

@@ -151,7 +151,7 @@
 .jsgrid-invalid select,
 .jsgrid-invalid textarea {
     background: #ffe3e5;
-    border: 1px solid #ff808a;
+    border: 0px solid #ff808a;
 }
 
 .jsgrid-pager-current-page {

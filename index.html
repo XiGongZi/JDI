@@ -25,7 +25,7 @@
     <script src="./static/scripts/lib/less/dist/less.min.js" ></script>
     <script src="./static/scripts/app/iconfont.js" ></script>
       <style>
-        /* body *{box-sizing: border-box;border:1px solid blue} */
+        body *{box-sizing: border-box;border:1px solid blue}
         </style>
 </head>
 <body>
@@ -35,10 +35,13 @@
                             <div class="title">
                                 <img src="./static/image/test/logo2.jpg" alt="">
                             </div>
-                            <div class="contact">
-                                    <a href="#">
-                                            <img src="./static/image/test/logined.png" alt="">
-                                        </a>
+                            <div class="contact displayFlex">
+                                <div class="list flex1"></div>
+                                <div class="logined">
+                                    <img src="./static/image/test/logined.png" alt="">
+                                </div>
+                                    <!-- <a href="#">
+                                        </a> -->
                             </div>
                         </div>
                     </div>
@@ -49,10 +52,13 @@
     </div>
     <div class="bodyFrame-main flex1 ">
 
-        <div class="title">交通设计院总包合同表</div>
+        <div class="title">
+            <div>交通设计院总包合同表</div>    
+        </div>
         <div class="space10px"></div>
         <div class="search">
             <!-- 此处存放众搜索选项 -->
+            <div class="space40px"></div>
             <div class="case">
                 <!-- 每一个筛选条件组件 -->
                 <div class="">
@@ -103,11 +109,14 @@
           <div class="">
                 <div class="case-name">状态:</div>
                 <div class="case-input">
-                    <input type="text">
+                    <select name="" id="">
+                        <option value="">施工</option>
+                        <option value="">竣工</option>
+                    </select>
                 </div>
                 <div class="case-icon">
-                    <svg class="icon" aria-hidden="true" status="0">
-                        <use xlink:href="#icon-clear"></use>
+                    <svg class="icon" aria-hidden="true" status="2">
+                        <use xlink:href="#icon-xiala"></use>
                     </svg>
                 </div>
                 <span class="clear"></span>
@@ -130,6 +139,8 @@
             </div>
             <!-- 此处为搜索选项 -->
             <div class="button">
+                <div>确认</div>
+                <div>取消</div>
                 <div>提交</div>
             </div>
             <div class="clearBoth"></div>
