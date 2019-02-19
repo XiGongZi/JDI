@@ -443,6 +443,8 @@ function useTable_addInfo(json){
             { name: "税率", type: "text", width:30,  },
             { name: "项目负责人", type: "text", width:50,  },
             { name: "状态", type: "text", width:30,  },
+     
+
 
             // { type: "control" },
             {
