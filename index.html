@@ -25,7 +25,7 @@
     <script src="./static/scripts/lib/less/dist/less.min.js" ></script>
     <script src="./static/scripts/app/iconfont.js" ></script>
       <style>
-        body *{box-sizing: border-box;border:1px solid blue}
+        /* body *{box-sizing: border-box;border:1px solid blue} */
         </style>
 </head>
 <body>
@@ -35,11 +35,22 @@
                             <div class="title">
                                 <img src="./static/image/test/logo2.jpg" alt="">
                             </div>
-                            <div class="contact displayFlex">
-                                <div class="list flex1"></div>
-                                <div class="logined">
-                                    <img src="./static/image/test/logined.png" alt="">
+                            <div class="contact ">
+                                <div class="displayFlex">
+                                        <div class="list flex1" id="addInfo">
+                                                <svg class="icon" aria-hidden="true">
+                                                        <use xlink:href="#icon-dangqianchengshi"></use>
+                                                    </svg>
+                                                当前位置：>
+                                                <span class="first">综合部门</span>> 
+                                                <span class="seconed">总包合同</span>
+                                            </div>
+                                            <div class="logined">
+                                                请登录
+                                                <!-- <img src="./static/image/test/logined.png" alt=""> -->
+                                            </div>
                                 </div>
+                                
                                     <!-- <a href="#">
                                         </a> -->
                             </div>
@@ -48,152 +59,33 @@
 <!-- bodyFrame -->
 <div class="bodyFrame displayFlex">
     <div class="leftBar">
-        <iframe src="./leftBar.html" frameborder="0" scrolling="no"></iframe>
+        <iframe src="./leftBar.html" frameborder="0" name="leftBar1" scrolling="no"></iframe>
     </div>
     <div class="bodyFrame-main flex1 ">
+        <iframe src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
 
-        <div class="title">
-            <div>交通设计院总包合同表</div>    
-        </div>
-        <div class="space10px"></div>
-        <div class="search">
-            <!-- 此处存放众搜索选项 -->
-            <div class="space40px"></div>
-            <div class="case">
-                <!-- 每一个筛选条件组件 -->
-                <div class="">
-                    <div class="case-name">合同编号:</div>
-                    <div class="case-input">
-                        <input type="text">
-                    </div>
-                    <div class="case-icon">
-                        <svg class="icon" aria-hidden="true" status="0">
-                            <use xlink:href="#icon-clear"></use>
-                        </svg>
-                    </div>
-                    <span class="clear"></span>
-                </div>
-
-                <!-- 每一个筛选条件组件 -->
-                
-                <div class="">
-                        <div class="case-name">甲方名称:</div>
-                        <div class="case-input">
-                            <input type="text">
-                        </div>
-                        <div class="case-icon">
-                            <svg class="icon" aria-hidden="true" status="1">
-                                <use xlink:href="#icon-more"></use>
-                            </svg>
-                        </div>
-                        <span class="clear"></span>
-                    </div>
-
-          <!-- 每一个筛选条件组件 -->
-                
-          <div class="">
-                <div class="case-name">项目名称:</div>
-                <div class="case-input">
-                    <input type="text">
-                </div>
-                <div class="case-icon">
-                    <svg class="icon" aria-hidden="true" status="0">
-                        <use xlink:href="#icon-clear"></use>
-                    </svg>
-                </div>
-                <span class="clear"></span>
-            </div>   
-            
-          <!-- 每一个筛选条件组件 -->
-                
-          <div class="">
-                <div class="case-name">状态:</div>
-                <div class="case-input">
-                    <select name="" id="">
-                        <option value="">施工</option>
-                        <option value="">竣工</option>
-                    </select>
-                </div>
-                <div class="case-icon">
-                    <svg class="icon" aria-hidden="true" status="2">
-                        <use xlink:href="#icon-xiala"></use>
-                    </svg>
-                </div>
-                <span class="clear"></span>
-            </div>   
-                      <!-- 每一个筛选条件组件 -->
-                
-          <div class="">
-                <div class="case-name">项目负责人:</div>
-                <div class="case-input">
-                    <input type="text">
-                </div>
-                <div class="case-icon">
-                    <svg class="icon" aria-hidden="true" status="0">
-                        <use xlink:href="#icon-clear"></use>
-                    </svg>
-                </div>
-                <span class="clearBoth"></span>
-            </div>   
-                    
-            </div>
-            <!-- 此处为搜索选项 -->
-            <div class="button">
-                <div>确认</div>
-                <div>取消</div>
-                <div>提交</div>
-            </div>
-            <div class="clearBoth"></div>
-        </div>
-
-        <!-- 表格 -->
-        <div class="space10px"></div>
-        <div class="table">
-                <div class="space40px"></div>
-            <!-- 图表集合 开始-->
-			<div class="charts">
-                    <!-- 图表容器 -->
-                    <!-- <div class="space40px"></div> -->
-                    <div id="jsGrid" class="pcCenter"></div>
-                    <!-- 分页开始 注：分页内容，要和此div，main.css中相关样式，main.js相关js配合使用 20181029-->
-                    <div id="changePage" class="displayFlex">
-                        <div class="flex1"></div>
-                        <div class="title1" pages="1" allPage="1">
-                            共有 <b style="color: #A60427">0</b> 个记录 每页显示10条，本页0条 0/0页
-                        </div>
-                        <div class="turn Left cursoPoin thisMainBG thisMainBGColor">
-                            上一页</div>
-                        <div class="pages">
-                            <!-- checkedStau 为选中样式，点击时先取消所有此css，再给所点击的li加上此样式 -->
-                            <!-- <li pages="1" class="floatLeft checkedStau">1</li> -->
-                        </div>
-                        <div
-                            class="turn Right clearBoth cursoPoin thisMainBG thisMainBGColor">
-                            下一页</div>
-                        <div class="space10px"></div>
-                        <div class="input cursoPoin">
-                            <input type="text">
-                        </div>
-                        <div class="space10px"></div>
-                        <!-- 跳转按钮 -->
-                        <div class="jumpToPage button cursoPoin thisMainBG thisMainBGColor">跳转</div>
-                        <div class="space40px"></div>
-                    </div>
-                    <!-- 分页结束 -->
-                </div>
-                <!-- 图表集合 结束 -->
-        </div>
     </div>
 </div>
 
-<footer class="container-fluid FB">
-</footer>
+<div class="space40px"></div>
+                <div class="space40px"></div>
+                <div class="space40px"></div>
+                <div class="space40px"></div>
+                <div class="space40px"></div>
+                <div class="space40px"></div>
+                <div class="space40px"></div>
+                <div class="space40px"></div>
+
+
+
 </body>
 <!-- <script>var ctx = "${ctx}";</script> -->
 <script data-main="./static/scripts/main" src="./static/scripts/require.js"></script>
+<script src="./static/scripts/jquery.js"></script>
 <!-- <script src="./static/scripts/config/app/index.js"></script>  -->
 <script type="text/javascript">
 //当前页面程序入口
 require(['work/host/index/C/main'],function(a){});
+
 </script>
 </html>

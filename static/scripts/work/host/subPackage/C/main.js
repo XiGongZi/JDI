@@ -12,7 +12,11 @@ define([
         jsgrid,
     ) {
     'use strict';
-    
+    $(".showAddNew").click(function(){
+        if($(".addNew").css("display")=="none"){
+            $(".addNew").slideUp(500);
+        }
+    });
 });
 
 

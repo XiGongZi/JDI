@@ -47,12 +47,12 @@
                 </span>
             </div>
             <div class="leftBarFrame-son " style="display:none">
-                <a href="javascript:void(0)">总包合同单</a>
-                <a href="javascript:void(0)">分包及劳务合同单</a>
-                <a href="javascript:void(0)">合同额追加单</a>
-                <a href="javascript:void(0)">项目计量单</a>
-                <a href="javascript:void(0)">成本确认单</a>
-                <a href="javascript:void(0)">支出确认单</a>
+                <a href="./totalPackage.html"  target="mainFrame" hover1="1">总包合同单</a>
+                <a href="./subpackage.html" target="mainFrame">分包及劳务合同单</a>
+                <a href="./addContract.html" target="mainFrame">合同额追加单</a>
+                <a href="./itemMeasure.html" target="mainFrame">项目计量单</a>
+                <a href="./costConfirm.html" target="mainFrame">成本确认单</a>
+                <a href="./payConfirm.html" target="mainFrame">支出确认单</a>
             </div>
         </div>
         <!-- 第二条 -->
@@ -166,6 +166,40 @@ $(".leftBarFrame-main").click(function(){
         $(this).siblings(".leftBarFrame-son").slideUp(500);
     }
 });
+/* 一级菜单调整*/
+$(".leftBarFrame-son a").click(function(){
+    $(".leftBarFrame-son a").attr("hover1","0");
+    $(this).attr("hover1","1");
+    /*传值给父级index*/
+    var zhi2 = $(".leftBarFrame-li .leftBarFrame-main[rotatestatus='1'] .flex1").text();
+    var zhi1 = $(".leftBarFrame-son a[hover1='1']").text() ;
+    $("#addInfo .first",parent.document).html(zhi2);
+    $("#addInfo .seconed",parent.document).html(zhi1);
+});
+$(".leftBarFrame-son a").hover(function(){
+    $(".leftBarFrame-son a").attr("hover","0");
+    $(this).attr("hover","1");
+});
+$(".leftBarFrame-son a").mouseout(function(){
+    $(".leftBarFrame-son a").attr("hover","0");
+});
+
+window.onload=function(){
+    var zhi0 = $(".leftBarFrame-son a[hover1='1']").text() ;
+    var zhi1 = $(".leftBarFrame-li .leftBarFrame-main[rotatestatus='1'] .flex1").text();
+    zhi1 == ""?zhi1 = "综合部门":zhi1 = zhi1;
+    console.log(zhi1+"--"+ zhi0)
+    $(".bodyFrame .leftBar").click(function(e){
+        
+    });
+}
+
+
+
+
+
+
+
 
 </script>
 </html>

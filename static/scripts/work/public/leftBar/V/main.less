@@ -1,4 +1,5 @@
 @titleBar_eyeDepaHeight :88px;
+@leftBar_mainColor :#333;
 .leftBarFrame{
     width:100%;
     height:auto;
@@ -14,7 +15,7 @@
         font-size:16px;
         background:#fff;
         border-bottom:2px solid #e1e1e1;
-        color:#333;
+        color:@leftBar_mainColor;
         & .logo,& .arrow{
             width:40px;
             & svg{
@@ -45,15 +46,15 @@
                 -webkit-transform:rotate(-0deg); /* Safari 和 Chrome */
                 -o-transform:rotate(-0deg); /* Opera */
                 transition:transform 300ms;
-        }
+            }
         }  
         &:hover{
             background:#F2F4F9;
-            color:#333;
+            color:@leftBar_mainColor;
             
         }
         &[rotateStatus="1"]{
-            color:#369762;
+            color:@leftBarSen_mainColor;
         }
     }
     &-son{
@@ -65,16 +66,21 @@
             line-height:50px;
             width:100%;
             background:#F2F4F9;
-            color:#333;
+            color:@leftBar_mainColor;
             border-bottom:1px solid #eaeaea;
-            &:hover{
-                background:#c2e8dc;
-                border-left:4px solid #369762;
+            &[hover="1"]{
+                background:@leftBarSen_BG;
+                border-left:4px solid @leftBarSen_BorderLeft;
                 transition: 100ms;
             }
+            &[hover1="1"]{
+                background:@leftBarSen_BG;
+                border-left:4px solid @leftBarSen_BorderLeft;
+                transition: 100ms;
+            }
+            
         }
     }
-
     .hideStatus{
         display:none;
         transition:display 1s;

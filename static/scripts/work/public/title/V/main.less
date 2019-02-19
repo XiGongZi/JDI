@@ -23,16 +23,24 @@
         }
     }
     & .contact{
+        font-size:14px;
         flex:1;
         height:@titleBarHeight;
+        &>div{
+            width:95%;
+            margin:0 auto;
+        }
         & .list{
             height:100%;
+            line-height:@titleBarHeight;
+            
         }
         & .logined{
-            & img{
-                height:@titleBar_eyeDepaHeight * 0.5;
-                margin-top:@titleBar_eyeDepaHeight * 0.25;
-                float:right;
+            color:#aaa;
+            line-height:@titleBarHeight;
+            cursor: pointer;
+            &:hover{
+                color:@mainColor;
             }
         }
         
