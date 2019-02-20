@@ -46,8 +46,8 @@
                     </svg>
                 </span>
             </div>
-            <div class="leftBarFrame-son " style="display:none">
-                <a href="./totalPackage.html"  target="mainFrame" hover1="1">总包合同单</a>
+            <div class="leftBarFrame-son" style="display:none">
+                <a href="./SenPageDemo.html"  target="mainFrame" hover1="1">总包合同单</a>
                 <a href="./subpackage.html" target="mainFrame">分包及劳务合同单</a>
                 <a href="./addContract.html" target="mainFrame">合同额追加单</a>
                 <a href="./itemMeasure.html" target="mainFrame">项目计量单</a>
@@ -188,7 +188,6 @@ window.onload=function(){
     var zhi0 = $(".leftBarFrame-son a[hover1='1']").text() ;
     var zhi1 = $(".leftBarFrame-li .leftBarFrame-main[rotatestatus='1'] .flex1").text();
     zhi1 == ""?zhi1 = "综合部门":zhi1 = zhi1;
-    console.log(zhi1+"--"+ zhi0)
     $(".bodyFrame .leftBar").click(function(e){
         
     });

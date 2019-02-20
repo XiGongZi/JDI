@@ -1,8 +1,8 @@
 @searchCaseDivHeight:50px;
+/*index页*/
 .bodyFrame{
     width:100%;
     height:auto;
-    
     &>.leftBar{
         height:auto;
         width:200px;
@@ -17,15 +17,38 @@
     &-main{
         height:auto;
         width:100%;
+        & .tabs{
+            @tabsHeight:50px;
+            height:@tabsHeight;
+            width:100%;
+            background:#fff;
+            &>div{
+                width:95%;
+                height:@tabsHeight;
+                margin:0 auto;
+                /*下面是 页签样式*/
+                &>div{
+                    cursor: pointer;
+                    height:@tabsHeight;
+                    line-height:@tabsHeight;
+                    text-align:center;
+                    width:150px;
+                    float:left;
+                    &:hover{
+                        background:@mainBGColorHover;
+                    }
+                }
+            }
+        }
         & iframe{
             height:calc(100vh - 74px);
             min-height:1080px;
             width:100%;
             border-right:2px solid @borderLine;
         }
-        
     }
 }
+/*各个iframe页*/
 .bodyFrame1{
     width:100%;
     height:auto;

@@ -402,7 +402,6 @@ define('app/setPlc_0.0.1',["jquery"],function($){
                     $(Ele).css("margin-left", (zhi1 - zhi2) / 2 + "px")
                 },
                 resetLeftPlace:function(a, b) {
-                    console.log($(a).css("margin-left"));
                     $(b).css("margin-left", parseInt($(a).position().left) + "px");
                 }
 

@@ -194,7 +194,7 @@ function deleteInfoJSPost(json){
             url: ctx + '/managerDelete.html',
             data:{'managerId':json},
             success: function(data){
-                console.log(data)
+                // console.log(data)
                 if(data.success){
                     alert("已删除ID号为:"+json+"的数据");
                     changePageJSPost(1);

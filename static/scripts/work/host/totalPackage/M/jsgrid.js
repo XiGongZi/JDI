@@ -194,7 +194,7 @@ function deleteInfoJSPost(json){
             url: ctx + '/managerDelete.html',
             data:{'managerId':json},
             success: function(data){
-                console.log(data)
+                // console.log(data)
                 if(data.success){
                     alert("已删除ID号为:"+json+"的数据");
                     changePageJSPost(1);
@@ -497,7 +497,7 @@ function useTable_addInfo(json){
         var zhi1 = $("#jsGrid").offset().top;
         var zhi2 = $("#jsGrid").height();
         var zhi3 = zhi1 + zhi2 - 60;
-        console.log(zhi3);
+        // console.log(zhi3);
         $("#changePage").css("top",zhi3);
     }
 
