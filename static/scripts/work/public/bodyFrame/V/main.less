@@ -17,25 +17,50 @@
     &-main{
         height:auto;
         width:100%;
+        /*页签Max*/
         & .tabs{
             @tabsHeight:50px;
             height:@tabsHeight;
             width:100%;
             background:#fff;
+            
             &>div{
                 width:95%;
                 height:@tabsHeight;
                 margin:0 auto;
-                /*下面是 页签样式*/
+                background:#fff;
+                /*下面是 各个页签title 样式*/
                 &>div{
+                    margin-right:4px;
                     cursor: pointer;
                     height:@tabsHeight;
                     line-height:@tabsHeight;
+                    overflow: hidden;
+                    border-radius: 4px 4px 4px 4px;
                     text-align:center;
                     width:150px;
                     float:left;
+                    background:#f1f1f1;
                     &:hover{
                         background:@mainBGColorHover;
+                    }
+                    &[isFocus="yes"]{
+                        background:@mainBGColorHover;
+                    }
+                    & div{
+                        height:auto;
+                    }
+                    /*clear icon*/
+                    & svg{
+                        width:18px;
+                        height:18px;
+                        color:#333;
+                        position: relative;
+                        right:-65px;
+                        top:-65px ;
+                        &:hover{
+                            color:red;
+                        }
                     }
                 }
             }

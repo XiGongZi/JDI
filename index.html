@@ -3,16 +3,12 @@
 <head>
     <!-- <script src="./static/scripts/lib/babel-core/browser.min.js"></script> -->
     <script>
-        // const appTest = 1;
-        // alert(appTest);
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
     <!--[if lt IE 9]>
-        <script src="./static/scripts/lib/html5shiv/html5shiv.min.js"></script>
-        <script src="./static/scripts/lib/respond/respond.js"></script>
     <![endif]-->
     <!-- ie9及以下可见 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
@@ -23,10 +19,8 @@
     <link rel="shortcut icon " type="images/x-icon" href="./favicon.ico">
     <link rel="stylesheet/less" type="text/css" href="./static/scripts/work/host/index/V/main.less" />
     <script src="./static/scripts/lib/less/dist/less.min.js" ></script>
-    
     <!-- 开启less监视模式（无需刷新实时更新css效果） -->
     <script>less.watch();</script>
-    
     <!-- iconfont 图标js，项目在 阿里巴巴图标库里 -->
     <script src="./static/scripts/app/iconfont.js" ></script>
       <style>
@@ -34,6 +28,7 @@
         </style>
 </head>
 <body>
+    
     <!-- title -->
                 <div class="pageTitle">
                         <div class="pageTitle-main">
@@ -49,6 +44,7 @@
                                                 当前位置：>
                                                 <span class="first">综合部门</span>> 
                                                 <span class="seconed">总包合同</span>
+                                                <span class="third"></span>
                                             </div>
                                             <div class="logined">
                                                 请登录
@@ -66,18 +62,47 @@
 <div class="bodyFrame displayFlex">
     <div class="leftBar">
         <iframe src="./leftBar.html" frameborder="0" name="leftBar1" scrolling="no"></iframe>
+
+        <!-- -------------------------- -->
+        <input name="" id="Infor" val='{"a":"1"}'/>
+            
     </div>
     <div class="bodyFrame-main flex1 ">
         <!-- 标签页 -->
         <div class="tabs">
             <div>
-                <div url="./costConfirm.html">home</div>
-                <div url="./costConfirm.html">测试框架-成本确认</div>
-                <div url="./itemMeasure.html">测试框架-项目计量</div>
-                <div url="./payConfirm.html">测试框架-支出确认</div>
+                <div url="./costConfirm.html" class="tabs-main displayFlex" pages="0" isFocus="yes">
+                    <div class="flex1">
+                        总包合同单
+                    </div>
+                </div>
+                <div url="./costConfirm.html" pages="1" calss="displayFlex">
+                    <div class="flex1">
+                        测试-成本确认
+                    </div>
+                    <svg class="icon " aria-hidden="true">
+                        <use xlink:href="#icon-clear"></use>
+                    </svg>
+                </div>
+                <div url="./itemMeasure.html" pages="2" calss="displayFlex">
+                    <div class="flex1">
+                        测试-项目计量
+                    </div>
+                    <svg class="icon " aria-hidden="true">
+                        <use xlink:href="#icon-clear"></use>
+                    </svg>
+                </div>
+                <div url="./payConfirm.html" pages="3" calss="displayFlex">
+                    <div class="flex1">
+                        测试-支出确认
+                    </div>
+                    <svg class="icon " aria-hidden="true">
+                        <use xlink:href="#icon-clear"></use>
+                    </svg>
+                </div>
             </div>
         </div>
-        <iframe pages="0" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
+        <iframe pages="0" isHide="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
     </div>
 </div>
 

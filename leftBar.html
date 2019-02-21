@@ -144,8 +144,6 @@
 
     </div>
 </body>
-<!-- <script>var ctx = "${ctx}";</script> -->
-<!-- <script src="./static/scripts/config/app/index.js"></script>  -->
 <script type="text/javascript">
 //当父级点击时
 $(".leftBarFrame-main").click(function(){
@@ -175,6 +173,7 @@ $(".leftBarFrame-son a").click(function(){
     var zhi1 = $(".leftBarFrame-son a[hover1='1']").text() ;
     $("#addInfo .first",parent.document).html(zhi2);
     $("#addInfo .seconed",parent.document).html(zhi1);
+    $("#addInfo .third",parent.document).html("");
 });
 $(".leftBarFrame-son a").hover(function(){
     $(".leftBarFrame-son a").attr("hover","0");
