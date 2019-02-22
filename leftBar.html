@@ -184,6 +184,11 @@ $(".leftBarFrame-son a").click(function(){
     $(".leftBarPage",parent.document).attr("LBP",val1);
     $(".leftBarPage .tabs-main .flex1",parent.document).html(zhi1);
     /* 设置与leftBar页相关的 tabs 显示隐藏 */
+        /*第一种方法 直接删除*/
+        $(".leftBarPage .tabs-li",parent.document).remove();
+        $(".bodyFrame-main iframe:eq(0)",parent.document).siblings("iframe").remove();
+        $(".bodyFrame-main iframe:eq(0)",parent.document).attr("isHide","no");
+        /*第二种方法 隐藏*/
 });
 $(".leftBarFrame-son a").hover(function(){
     $(".leftBarFrame-son a").attr("hover","0");
