@@ -8,7 +8,7 @@ define([
     /**子标签页核心代码  */
             
         $(json.add+">div",parent.document).click(function(){
-            console.log("json.add is "+json.add);
+            // console.log("json.add is "+json.add);
             /**设置点击样式 */
             $(".bodyFrame-main>.tabs>div>div",parent.document).attr("isFocus","no");
             $(this).parent().attr("isFocus","yes");
@@ -43,11 +43,17 @@ define([
                 // console.log("iframs有这个元素");
             }
             /**设置框架显示隐藏 */
-                $(".bodyFrame-main iframe",parent.document).hide();
                 $(".bodyFrame-main iframe",parent.document).attr("isHide","yes");
-                $(`.bodyFrame-main iframe[pages="${val0_index}"]`,parent.document).show();
                 $(`.bodyFrame-main iframe[pages="${val0_index}"]`,parent.document).attr("isHide","no");
+
+                /** 设置当前 页签 与对应的 iframe 显示 */
+
+            
+                 
+
         });
+
+    
 
         /**为标签设置事件 */
             $(json.add+">svg",parent.document).click(function(){
@@ -114,10 +120,8 @@ define([
 
             });
 
-
-
-        /**iframe内点击事件影响到index事件*/
-        
+            
+            
 
 
 
