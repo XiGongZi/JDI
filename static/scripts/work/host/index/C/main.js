@@ -20,7 +20,7 @@ define([
         // let store = LS.store;
         // store.set("as","1");`
    
-        tabsFunctions.setTabsFun();
+        // tabsFunctions.setTabsFun();
 
 
 

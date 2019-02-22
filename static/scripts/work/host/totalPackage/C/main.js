@@ -5,6 +5,7 @@ define([
     "work/public/bodyFrame/c/main",
     "../M/jsgrid",
     "app/clearOrMore",
+    "app/tabsFunctions",
 ], function(
         require,
         PKG,
@@ -12,9 +13,13 @@ define([
         bodyFrame,
         jsgrid,
         COM,
+        tabFunctions,
     ) {
     'use strict';
-    
+    /**为默认页签绑定事件 */
+    let json = {};
+    json.add = `.tabs .leftBarPage>div:eq(0)`;
+    tabFunctions.setTabsFun(json);
     /* 显示隐藏添加合同*/ 
     $(".showAddNew").click(function(){
         if($(".addNew").css("display")=="none"){
