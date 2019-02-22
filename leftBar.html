@@ -71,11 +71,11 @@
                 </span>
             </div>
             <div class="leftBarFrame-son " style="display:none">
-                <a href="javascript:void(0)">采购合同单</a>
-                <a href="javascript:void(0)">预算合同单</a>
-                <a href="javascript:void(0)">成本确认单</a>
-                <a href="javascript:void(0)">支出确认单</a>
-                <a href="javascript:void(0)">报销单</a>
+                <a href="javascript:void(0)" target="mainFrame">采购合同单</a>
+                <a href="javascript:void(0)" target="mainFrame">预算合同单</a>
+                <a href="javascript:void(0)" target="mainFrame">成本确认单</a>
+                <a href="javascript:void(0)" target="mainFrame">支出确认单</a>
+                <a href="javascript:void(0)" target="mainFrame">报销单</a>
                 
                
             </div>
@@ -96,8 +96,8 @@
                     </span>
                 </div>
                 <div class="leftBarFrame-son " style="display:none">
-                    <a href="javascript:void(0)">物资采购申请表</a>
-                    <a href="javascript:void(0)">数量确认单</a>
+                    <a href="javascript:void(0)" target="mainFrame">物资采购申请表</a>
+                    <a href="javascript:void(0)" target="mainFrame">数量确认单</a>
                 </div>
             </div>
             <!-- 第四条 -->
@@ -116,8 +116,8 @@
                         </span>
                     </div>
                     <div class="leftBarFrame-son " style="display:none">
-                        <a href="javascript:void(0)">项目收支利润表</a>
-                        <a href="javascript:void(0)">客商付款情况表</a>
+                        <a href="javascript:void(0)" target="mainFrame">项目收支利润表</a>
+                        <a href="javascript:void(0)" target="mainFrame">客商付款情况表</a>
                     </div>
                 </div>
 
@@ -137,8 +137,8 @@
                         </span>
                     </div>
                     <div class="leftBarFrame-son " style="display:none">
-                        <a href="javascript:void(0)">材料维护</a>
-                        <a href="javascript:void(0)">客商维护</a>
+                        <a href="javascript:void(0)" target="mainFrame">材料维护</a>
+                        <a href="javascript:void(0)" target="mainFrame">客商维护</a>
                     </div>
                 </div>
 
@@ -166,14 +166,24 @@ $(".leftBarFrame-main").click(function(){
 });
 /* 一级菜单调整*/
 $(".leftBarFrame-son a").click(function(){
+    /**从url中获取中间的页面名称 */
+    let val0 = $(this).attr("href");
+    let val1 = val0.split("/");
+    val0 = val1[val1.length - 1].split(".");
+    val1 = val0[0];
+    console.log(val1);
     $(".leftBarFrame-son a").attr("hover1","0");
     $(this).attr("hover1","1");
-    /*传值给父级index*/
+    /*传值给父级index   zhi2 一级菜单  zhi1 二级菜单*/
     var zhi2 = $(".leftBarFrame-li .leftBarFrame-main[rotatestatus='1'] .flex1").text();
     var zhi1 = $(".leftBarFrame-son a[hover1='1']").text() ;
     $("#addInfo .first",parent.document).html(zhi2);
     $("#addInfo .seconed",parent.document).html(zhi1);
     $("#addInfo .third",parent.document).html("");
+    /*传值给 tabs 标签页 */
+    $(".leftBarPage",parent.document).attr("LBP",val1);
+    $(".leftBarPage .tabs-main .flex1",parent.document).html(zhi1);
+    /* 设置与leftBar页相关的 tabs 显示隐藏 */
 });
 $(".leftBarFrame-son a").hover(function(){
     $(".leftBarFrame-son a").attr("hover","0");
