@@ -47,8 +47,6 @@ define([
                 $(`.bodyFrame-main iframe[pages="${val0_index}"]`,parent.document).attr("isHide","no");
 
                 /** 设置当前 页签 与对应的 iframe 显示 */
-
-            
                  
 
         });
@@ -99,8 +97,8 @@ define([
                 if(val0 == val5  ){
                     /**所点击的x 对应的页签 pages 等于 当前 已展示的 iframes对应的pages */
                     console.log("bingo!");
-                    $(".bodyFrame-main iframe",parent.document).hide();
-                    $(`.bodyFrame-main iframe[pages="${val7}"]`,parent.document).show();
+                    // $(".bodyFrame-main iframe",parent.document).hide();
+                    // $(`.bodyFrame-main iframe[pages="${val7}"]`,parent.document).show();
                     $(".bodyFrame-main iframe").attr("isHide","yes");
                     $(`.bodyFrame-main iframe[pages="${val7}"]`,parent.document).attr("isHide","no");
                     $(`.bodyFrame-main>.tabs>div>div`,parent.document).attr("isFocus","no");

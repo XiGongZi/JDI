@@ -41,7 +41,7 @@ define([
                     let tabName_attr = "newTB";
                     let pages = $(".tabs .leftBarPage>div",parent.document).length
                     let status = $(`.tabs .leftBarPage>div[tabName="${tabName_attr}"]`,parent.document).length;
-                    
+                    console.log("status is "+status)
                     /**大于0个的时候就可以 */
                     if(status == 0){
                         let str0 = `
@@ -78,8 +78,10 @@ define([
                     }else{
                         /**若tabs里已经有 这个页签了，需要去通过那个页签的名字 以获得它的pages */
                         let statusIndex = $(`.tabs .leftBarPage>div[tabName="${tabName_attr}"]`,parent.document).attr("pages");
-                        let statusName = $(`.tabs .leftBarPage>div[tabName="${tabName_attr}"] div`,parent.document).html();
-                        let val0 = $(`.bodyFrame-main iframe[pages=${tabName_attr}]`,parent.document);
+                        let statusName = $(`.tabs .leftBarPage>div[tabName="${tabName_attr}"] div`,parent.document).html().replace(/^\s+|\s+$/g,'');;
+                        // let val0 = $(`.bodyFrame-main iframe[pages=${tabName_attr}]`,parent.document);
+                        console.log("statusIndex is "+statusIndex);
+                        console.log("statusName is "+statusName);
                         $(".leftBarPage>div",parent.document).attr("isFocus","no");
                         $(`.tabs .leftBarPage>div[tabName="${tabName_attr}"]`,parent.document).attr("isFocus","yes");
                         $(".bodyFrame-main iframe",parent.document).attr("isHide","yes");
