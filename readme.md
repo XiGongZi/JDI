@@ -50,3 +50,11 @@ tabsFunctions.js 绑定问题
 2.input小功能的事件封装
 
 3.debug
+
+
+整理下思路
+
+1.点击leftBar a标签时，检查是否含有 同名tabs 。无则添加，有则显示。iframe 同理
+        iframe 有则需要确定 tabName名。
+        
+2.刷新时需要默认第一页。

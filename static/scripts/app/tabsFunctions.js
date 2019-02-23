@@ -34,14 +34,14 @@ define([
                     val2.push(parseInt(val1));
             });
             /** */
-            if(val2.indexOf(val0_index) == -1){
-                // console.log("iframs中没有这个元素!!（已添加）");
-                $(".bodyFrame-main",parent.document).append(`
-                        <iframe src="${val0}" isHide="no" pages="${val0_index}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
-                `);
-            }else{
-                // console.log("iframs有这个元素");
-            }
+            // if(val2.indexOf(val0_index) == -1){
+            //     // console.log("iframs中没有这个元素!!（已添加）");
+            //     $(".bodyFrame-main",parent.document).append(`
+            //             <iframe src="${val0}" isHide="no" pages="${val0_index}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
+            //     `);
+            // }else{
+            //     // console.log("iframs有这个元素");
+            // }
             /**设置框架显示隐藏 */
                 $(".bodyFrame-main iframe",parent.document).attr("isHide","yes");
                 $(`.bodyFrame-main iframe[pages="${val0_index}"]`,parent.document).attr("isHide","no");
@@ -120,7 +120,7 @@ define([
 
             
             
-
+            
 
 
 
