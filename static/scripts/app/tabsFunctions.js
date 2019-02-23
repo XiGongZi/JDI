@@ -1,6 +1,6 @@
 define([
     'require',
-    "jquery"
+    "jquery",
 ], function (require,$) {
     'use strict';
     let fun={
