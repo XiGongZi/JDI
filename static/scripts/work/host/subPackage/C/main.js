@@ -36,20 +36,6 @@ define([
         COM.setPagesFun_inputIcon(json1);
         COM.setPagesFun_inputIcon(json2);
 
-
-
-        let data0 = {
-            url0:"./subPackage.html",
-            pages:"0",
-            LFID:"subPackage",
-            tabName_attr:"defaule",
-            tabsName:"分包合同表"
-        };
-
-        $(".leftBarPage>div",parent.document).attr("isFocus","no");
-        $(".bodyFrame-main iframe",parent.document).attr("isHide","yes");
-        ATF.addTabs(data0);
-        alert(111)
 });
 
 

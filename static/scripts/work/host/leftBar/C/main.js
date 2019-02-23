@@ -31,7 +31,7 @@ define([
     /* 一级菜单调整*/
     $(".leftBarFrame-son a").click(function(){
     /*原LBID*/
-    let str11 = $(".leftBarFrame-son a[hover1='1']").attr("href");
+    let str11 = $(".leftBarFrame-son a[hover1='1']").attr("url");
     let val12 = PKG.get.urlFromStr(str11);
 
     /*上一个页面的 页面 id*/
@@ -45,8 +45,9 @@ define([
 
 
     /**从url中获取中间的页面名称 */
-    let val0 = $(this).attr("href");
+    let val0 = $(this).attr("url");
     let val1 = PKG.get.urlFromStr(val0);
+
     // console.log(val1);
     $(".leftBarFrame-son a").attr("hover1","0");
     $(this).attr("hover1","1");
@@ -70,15 +71,16 @@ define([
             
         // <iframe pages="0" isHide="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
         
-        // let str00 = `
-        // <iframe class="iframes-li" tabName="${tabName_attr}" pages="${pages}" isHide="no" src="${url0}" leftBarID="${LFID}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
-        // `
+        let str00 = `
+            <iframe class="iframes-li" tabName="default" pages="0" isHide="no" src="${val0}" leftBarID="${val1}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
+        `
         
         /*先执行默认的，非我隐藏*/
-        console.log("val1 is "+val1)
+        console.log("val1 is "+val1);
         $(`.leftBarPage>div`,parent.document).attr("isFocus","no");
         $(`.leftBarPage .tabs-li[leftBarID!=${val1}]`,parent.document).hide();
-        $(`.bodyFrame-main .iframes-li[leftBarID!=${val1}]`,parent.document).attr("isHide","yes");
+        $(`.bodyFrame-main iframe`,parent.document).attr("isHide","yes");
+        $(`.bodyFrame-main`,parent.document).append(str00);
         /*取出所点击页的信息*/
         let info_thisHistory = $("body").attr(val1);
         console.log("info_thisHistory is "+info_thisHistory);
@@ -86,6 +88,8 @@ define([
             /*若未定义，则说明没有点击过，执行默认*/
             $(`.leftBarPage .tabs-main`,parent.document).attr("isFocus","yes");
             $(`.bodyFrame-main iframe[pages='0']`,parent.document).attr("isHide","no");
+
+
             $(`.bodyFrame-main iframe[pages='0']`,parent.document).attr("src",str11);
         }else{
             /*否则按存的信息 重置状态。*/
@@ -110,14 +114,14 @@ define([
     $(".leftBarFrame-son a").attr("hover","0");
     });
 
-    window.onload=function(){
-    var zhi0 = $(".leftBarFrame-son a[hover1='1']").text() ;
-    var zhi1 = $(".leftBarFrame-li .leftBarFrame-main[rotatestatus='1'] .flex1").text();
-    zhi1 == ""?zhi1 = "综合部门":zhi1 = zhi1;
-    $(".bodyFrame .leftBar").click(function(e){
+    // window.onload=function(){
+    // var zhi0 = $(".leftBarFrame-son a[hover1='1']").text() ;
+    // var zhi1 = $(".leftBarFrame-li .leftBarFrame-main[rotatestatus='1'] .flex1").text();
+    // zhi1 == ""?zhi1 = "综合部门":zhi1 = zhi1;
+    // $(".bodyFrame .leftBar").click(function(e){
         
-    });
-    }
+    // });
+    // }
 
 });
 

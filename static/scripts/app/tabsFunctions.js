@@ -50,9 +50,6 @@ define([
                  
 
         });
-
-    
-
         /**为标签设置事件 */
             $(json.add+">svg",parent.document).click(function(){
                 /**
@@ -81,15 +78,6 @@ define([
             /**所点击的页前一个  的 index（）值 和 pages 值 */
             let val2 = parseInt($(this).parent().index() - 1);
             let val7 = $(`.bodyFrame-main>.tabs>div>div:eq(${val2})`,parent.document).attr("pages");
-                
-                // console.log("val0 is "+val0)
-                // console.log("val2 is "+val2)
-                // console.log("val3 is "+val3)
-                // console.log("val4 is "+val4)
-                // console.log("val5 is "+val5)
-                // console.log("val7 is "+val7)
-
-
                     /**让相同信息的iframe显示 */
                 
                     /**设置留存的 当前显示页 或  最后一个 页签的选中样式 */

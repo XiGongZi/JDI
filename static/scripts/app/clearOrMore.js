@@ -27,8 +27,6 @@ define([
                 $(".showAddNew").html("添加合同");
             }
         });
-
-
         /**input旁边小功能封装函数 */
         let funs = {
                 setPagesFun_inputIcon:function(data){
@@ -42,32 +40,15 @@ define([
                             let pages = $(".tabs .leftBarPage>div",parent.document).length
                             let status = $(`.tabs .leftBarPage>div[tabName="${tabName_attr}"]`,parent.document).length;
                             /**获取当前leftBar页面ID */
-                            let thisLFAdd = $(`iframe[name="leftBar1"]`,parent.document).contents().find("a[hover1='1']").attr("href");
+                            let thisLFAdd = $(`iframe[name="leftBar1"]`,parent.document).contents().find("a[hover1='1']").attr("url");
                             let LFID = PKG.get.urlFromStr(thisLFAdd);
                             /**大于0个的时候就可以 */
                             if(status == 0){
-                                // let str0 = `
-                                //             <div url="${url0}" pages="${pages}" leftBarID="${LFID}" class="tabs-li" style="display:none" tabName="${tabName_attr}" isFocus="yes">
-                                //                 <div class="flex1">
-                                //                     ${tabsName}
-                                //                 </div>
-                                //                 <svg class="icon " aria-hidden="true">
-                                //                     <use xlink:href="#icon-clear"></use>
-                                //                 </svg>
-                                //             </div>
-                                //         `;
-                                // let str1 = `
-                                //         <iframe class="iframes-li" tabName="${tabName_attr}" pages="${pages}" isHide="no" src="${url0}" leftBarID="${LFID}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
-                                // `
                                 let data0 = {url0,pages,LFID,tabName_attr,tabsName};
                                 $(".leftBarPage>div",parent.document).attr("isFocus","no");
                                 $(".bodyFrame-main iframe",parent.document).attr("isHide","yes");
                                 ATF.addTabs(data0);
-                                // $(".leftBarPage",parent.document).append(str0);
-                                // $(".bodyFrame-main",parent.document).append(str1);
                                 $("#addInfo .third",parent.document).html(">"+tabsName);
-        
-        
                                 $(`.leftBarPage>div:eq(-1)`,parent.document).show(200,function(){
                                     /** 重置方法  目前是新添一个时，全都再绑定一个事件  
                                      *          需要 取消绑定 或 只绑定新添加的。
