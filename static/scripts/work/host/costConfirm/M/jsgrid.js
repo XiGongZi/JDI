@@ -56,102 +56,19 @@ function changePageJSPost(page){
         //     obj[a4] = n.a4,
         //     obj[a5] = n.a5,
         //     obj[a6] = n.a6;
-
-      
+  
         var exam = {
             "count":"10",
             "page":"1",
             "managerList":[{
                 "proNum":"x1223312",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },{
-                "proNum":"x1223313",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },{
-                "proNum":"x1223314",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },{
-                "proNum":"x1223315",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },{
-                "proNum":"x1223316",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },{
-                "proNum":"x1223317",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },{
-                "proNum":"x1223318",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },{
-                "proNum":"x1223319",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },{
-                "proNum":"x1223312",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },{
-                "proNum":"x1223313",
-                "proName":"xx桥梁建设总合同",
-                "proAdd":"沈阳市三好街",
-                "AName":"沈阳市交通设计院",
-                "a3":"10.000.000",
-                "a4":"10%",
-                "a5":"张三",
-                "a6":"竣工"
-            },]
+                "proName":"x22122",
+                "proAdd":"500.000",
+                "AName":"10%",
+                "a3":"",
+                "a4":"张三",
+                "a5":"2015-12-21",
+            }]
         } ;
         useTable_addInfo(exam);
 }
@@ -435,14 +352,13 @@ function useTable_addInfo(json){
         deleteConfirm: "确定删除吗？",
         required:true,
         fields: [
-            { name: "合同编号", type: "number", readOnly: true, width:50,  },
-            { name: "项目名称", type: "text", width:100,  },
-            { name: "项目地址", type: "text", width:100,  },
-            { name: "甲方名称", type: "text", width:100,  },
-            { name: "合同额", type: "text", width:60,  },
+            { name: "成本确认单号", type: "number", readOnly: true, width:100,  },
+            { name: "分包合同号", type: "text", width:100,  },
+            { name: "金额", type: "text", width:100,  },
             { name: "税率", type: "text", width:30,  },
-            { name: "项目负责人", type: "text", width:50,  },
-            { name: "状态", type: "text", width:30,  },
+            { name: "备注", type: "text", width:60,  },
+            { name: "制单人", type: "text", width:30,  },
+            { name: "制单时间", type: "text", width:50,  },
      
 
 
@@ -517,14 +433,13 @@ function returnObj(elem){
 //对后台传过来的数据进行转码（给jsgrid使用）
 function useTable_addInfo_changeForm(json){
     var arr = [];
-    var a = "合同编号",
-        b = "项目名称",
-        a1 = "项目地址",
-        a2 = "甲方名称",
-        a3 = "合同额",
-        a4 = "税率",
-        a5 = "项目负责人",
-        a6 = "状态";
+    var a = "成本确认单号",
+        b = "分包合同号",
+        a1 = "金额",
+        a2 = "税率",
+        a3 = "备注",
+        a4 = "制单人",
+        a5 = "制单时间";
     $.each(json,function(i,n){
         var obj ={};
         obj[a] = n.proNum;
@@ -534,13 +449,11 @@ function useTable_addInfo_changeForm(json){
         obj[a3] = n.a3,
         obj[a4] = n.a4,
         obj[a5] = n.a5,
-        obj[a6] = n.a6;
         arr.push(obj);
     });
     return arr;
 }
 
 });
-
 
 

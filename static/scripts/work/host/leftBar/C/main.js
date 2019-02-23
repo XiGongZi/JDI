@@ -70,11 +70,20 @@ define([
 
             
         // <iframe pages="0" isHide="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
-        
+        let thisName = $(this).html();
         let str00 = `
-            <iframe class="iframes-li" tabName="default" pages="0" isHide="no" src="${val0}" leftBarID="${val1}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
+            <iframe class="iframes-li" tabName="default"  isHide="no" src="${val0}" leftBarID="${val1}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
         `
-        
+        let str01 = `
+                <div url="${val0}"  leftBarID="${val1}" class="tabs-li" style="display:none" tabName="default" isFocus="yes">
+                    <div class="flex1">
+                        ${thisName}
+                    </div>
+                    <svg class="icon " aria-hidden="true">
+                        <use xlink:href="#icon-clear"></use>
+                    </svg>
+                </div>
+        `
         /*先执行默认的，非我隐藏*/
         console.log("val1 is "+val1);
         $(`.leftBarPage>div`,parent.document).attr("isFocus","no");
@@ -86,11 +95,10 @@ define([
         console.log("info_thisHistory is "+info_thisHistory);
         if( info_thisHistory == undefined || info_thisHistory == "default"){
             /*若未定义，则说明没有点击过，执行默认*/
-            $(`.leftBarPage .tabs-main`,parent.document).attr("isFocus","yes");
-            $(`.bodyFrame-main iframe[pages='0']`,parent.document).attr("isHide","no");
-
-
-            $(`.bodyFrame-main iframe[pages='0']`,parent.document).attr("src",str11);
+            // $(`.leftBarPage .tabs-main`,parent.document).attr("isFocus","yes");
+            // $(`.bodyFrame-main iframe`,parent.document).attr("isHide","yes");
+            
+            $(`.bodyFrame-main `,parent.document).append(str00);
         }else{
             /*否则按存的信息 重置状态。*/
             $(`.leftBarPage>div[leftBarID=${val1}]`,parent.document).show();
@@ -98,7 +106,7 @@ define([
             $(`.bodyFrame-main .iframes-li[leftBarID=${val1}][tabName=${info_thisHistory}]`,parent.document).attr("isHide","no");
         }
 
-        
+        console.log($(`.bodyFrame-main iframe`,parent.document).length)
         // $(`.leftBarPage .tabs-li[leftBarID=${val1}]`,parent.document).show();
         
         // $(`.bodyFrame-main .iframes-li[leftBarID=${val1}]`,parent.document).attr("isHide","no");

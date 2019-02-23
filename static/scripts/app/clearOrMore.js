@@ -30,7 +30,7 @@ define([
         /**input旁边小功能封装函数 */
         let funs = {
                 setPagesFun_inputIcon:function(data){
-                    $(data.add+" .case-icon svg[status='1']").click(function(){
+                    $(data.add).click(function(){
                             /**新框搜索  */
                             /**  190222 tabs标签过多问题：当页签过多时，一方面可以减小宽度，适度隐藏半条以增加容量，另一方面也可以增加一个省略号表示过多，但是目前先做判断，以限制个数。日后有机会再更新新效果。  */
                             // alert("制作中！");
