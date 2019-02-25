@@ -47,12 +47,12 @@
                 </span>
             </div>
             <div class="leftBarFrame-son" style="display:none">
-                <a href="./SenPageDemo.html"  target="mainFrame" hover1="1">总包合同单</a>
-                <a href="./subpackage.html" target="mainFrame">分包及劳务合同单</a>
-                <a href="./addContract.html" target="mainFrame">合同额追加单</a>
-                <a href="./itemMeasure.html" target="mainFrame">项目计量单</a>
-                <a href="./costConfirm.html" target="mainFrame">成本确认单</a>
-                <a href="./payConfirm.html" target="mainFrame">支出确认单</a>
+                <a url="./totalPackage.html" class="totalPackage" target="mainFrame" hover1="1">总包合同单</a>
+                <a url="./subpackage.html" class="subpackage" target="mainFrame">分包及劳务合同单</a>
+                <a url="./addContract.html" class="addContract" target="mainFrame">合同额追加单</a>
+                <a url="./itemMeasure.html" class="itemMeasure" target="mainFrame">项目计量单</a>
+                <a url="./costConfirm.html" class="costConfirm" target="mainFrame">成本确认单</a>
+                <a url="./payConfirm.html" class="payConfirm" target="mainFrame">支出确认单</a>
             </div>
         </div>
         <!-- 第二条 -->
@@ -71,11 +71,11 @@
                 </span>
             </div>
             <div class="leftBarFrame-son " style="display:none">
-                <a href="javascript:void(0)">采购合同单</a>
-                <a href="javascript:void(0)">预算合同单</a>
-                <a href="javascript:void(0)">成本确认单</a>
-                <a href="javascript:void(0)">支出确认单</a>
-                <a href="javascript:void(0)">报销单</a>
+                <a url="./purchaseContract.html" class="purchaseContract" target="mainFrame">采购合同单</a>
+                <a url="./budgetContract.html" class="budgetContract" target="mainFrame">预算合同单</a>
+                <a url="./costConfirm.html" class="costConfirm" target="mainFrame">成本确认单</a>
+                <a url="./payConfirm.html" class="payConfirm" target="mainFrame">支出确认单</a>
+                <a url="./expenseAccount.html" class="expenseAccount" target="mainFrame">报销单</a>
                 
                
             </div>
@@ -96,8 +96,8 @@
                     </span>
                 </div>
                 <div class="leftBarFrame-son " style="display:none">
-                    <a href="javascript:void(0)">物资采购申请表</a>
-                    <a href="javascript:void(0)">数量确认单</a>
+                    <a url="./applicationForm.html" class="applicationForm" target="mainFrame">物资采购申请表</a>
+                    <a url="./quantityConfirm.html" class="quantityConfirm" target="mainFrame">数量确认单</a>
                 </div>
             </div>
             <!-- 第四条 -->
@@ -116,8 +116,8 @@
                         </span>
                     </div>
                     <div class="leftBarFrame-son " style="display:none">
-                        <a href="javascript:void(0)">项目收支利润表</a>
-                        <a href="javascript:void(0)">客商付款情况表</a>
+                        <a url="./projectProfit.html" class="projectProfit" target="mainFrame">项目收支利润表</a>
+                        <a url="./travellingTraderPay.html" class="travellingTraderPay " target="mainFrame">客商付款情况表</a>
                     </div>
                 </div>
 
@@ -137,60 +137,17 @@
                         </span>
                     </div>
                     <div class="leftBarFrame-son " style="display:none">
-                        <a href="javascript:void(0)">材料维护</a>
-                        <a href="javascript:void(0)">客商维护</a>
+                        <a url="javascript:void(0)" class="" target="mainFrame">材料维护</a>
+                        <a url="javascript:void(0)" class="" target="mainFrame">客商维护</a>
                     </div>
                 </div>
 
     </div>
 </body>
+<script data-main="./static/scripts/main" src="./static/scripts/require.js"></script>
 <script type="text/javascript">
-//当父级点击时
-$(".leftBarFrame-main").click(function(){
-    /*获取点击的状态，0为被折叠，1为展开*/
-    var zhi1 = $(this).attr("rotateStatus");
-    /* 全部折叠开始*/
-    $(".leftBarFrame-main .arrow svg").attr("rotate","rotateArr2");
-    $(".leftBarFrame-main").attr("rotateStatus","0");
-    $(".leftBarFrame-son").slideUp(500);
-    /* 全部折叠结束*/
-    if(zhi1 == 0){
-        $(this).children(".arrow").children("svg").attr("rotate","rotateArr");
-        $(this).attr("rotateStatus","1");
-        $(this).siblings(".leftBarFrame-son").slideDown(500);
-    }else{
-        $(this).children(".arrow").children("svg").attr("rotate","rotateArr2");
-        $(this).attr("rotateStatus","0");
-        $(this).siblings(".leftBarFrame-son").slideUp(500);
-    }
-});
-/* 一级菜单调整*/
-$(".leftBarFrame-son a").click(function(){
-    $(".leftBarFrame-son a").attr("hover1","0");
-    $(this).attr("hover1","1");
-    /*传值给父级index*/
-    var zhi2 = $(".leftBarFrame-li .leftBarFrame-main[rotatestatus='1'] .flex1").text();
-    var zhi1 = $(".leftBarFrame-son a[hover1='1']").text() ;
-    $("#addInfo .first",parent.document).html(zhi2);
-    $("#addInfo .seconed",parent.document).html(zhi1);
-    $("#addInfo .third",parent.document).html("");
-});
-$(".leftBarFrame-son a").hover(function(){
-    $(".leftBarFrame-son a").attr("hover","0");
-    $(this).attr("hover","1");
-});
-$(".leftBarFrame-son a").mouseout(function(){
-    $(".leftBarFrame-son a").attr("hover","0");
-});
 
-window.onload=function(){
-    var zhi0 = $(".leftBarFrame-son a[hover1='1']").text() ;
-    var zhi1 = $(".leftBarFrame-li .leftBarFrame-main[rotatestatus='1'] .flex1").text();
-    zhi1 == ""?zhi1 = "综合部门":zhi1 = zhi1;
-    $(".bodyFrame .leftBar").click(function(e){
-        
-    });
-}
+require(['work/host/leftBar/C/main'],function(a){});
 
 
 

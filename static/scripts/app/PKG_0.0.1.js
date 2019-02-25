@@ -155,6 +155,14 @@ define([
             // 此处返回值  {"year":2018,"month":12,"day":"04","week":2,"hour":"11","minutes":"58","seconds":"03"}
             // 功能: 使用此函数需要传入一个数字整型的参数，
         },
+        urlFromStr:function (data){
+            /**从url中获取中间的页面名称 */
+            let val0 = data;
+            let val1 = val0.split("/");
+            val0 = val1[val1.length - 1].split(".");
+            val1 = val0[0];
+            return val1;
+        },
     }
     let ENV = {
         PEOS:function () {

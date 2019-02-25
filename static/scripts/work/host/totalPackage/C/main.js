@@ -4,47 +4,45 @@ define([
     "jquery",
     "work/public/bodyFrame/c/main",
     "../M/jsgrid",
+    "app/clearOrMore",
+    "app/tabsFunctions",
 ], function(
         require,
         PKG,
         $,
         bodyFrame,
         jsgrid,
+        COM,
+        tabFunctions,
     ) {
     'use strict';
-    /* 显示隐藏添加合同*/ 
-    $(".showAddNew").click(function(){
-        if($(".addNew").css("display")=="none"){
-            $(".addNew").slideDown(500);
-            $(".showAddNew").html("取消添加");
-        }else{
-            $(".addNew").slideUp(500);
-            $(".showAddNew").html("添加合同");
-        }
-    });
     
-    /* input旁边小功能*/ 
+        /* input旁边小功能*/ 
+        let json1 = {
+            "add":".contractN0  .case-icon svg[status='1']",
+            "url":"./test3.html",
+            "tabName":"合同编号",
+            "tabName_attr":"contractNoTotal"
+        };
+        let json2 = {
+            "add":".itemName  .case-icon svg[status='1']",
+            "url":"./test2.html",
+            "tabName":"项目名称",
+            "tabName_attr":"test2"
+        };
+        let json3 = {
+            "add":".showAddNewCon",
+            "url":"./TP-caseToSearch.html",
+            "tabName":"添加总合同",
+            "tabName_attr":"addContract"
+        };
+        COM.setPagesFun_inputIcon(json1);
+        COM.setPagesFun_inputIcon(json2);
+        COM.setPagesFun_inputIcon(json3);
 
-    $(".bodyFrame1 .bodyFrame1-main .case-icon").click(function(){
-
-        let zhi = $(this).children("svg").attr("status");
-        switch (zhi) {
-            case "0":
-                /**清除 */
-                $(this).parent().find("input").val("");
-                break;
-            case "1":
-                /**弹出新框搜索 */
-                // alert("制作中！");
-                break;
-            case "1":
-                /**下拉 */
-                $(this).parent().find("select").focus();
-                break;
-            default:
-                break;
-        }
-    })
+      
+    
+  
 });
 
 
