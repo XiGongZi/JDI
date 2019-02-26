@@ -34,9 +34,9 @@ define([
         };
         let json3 = {
             "add":".showAddNewCon",
-            "url":"./TP-caseToSearch.html",
-            "tabName":"添加总合同",
-            "tabName_attr":"addContract"
+            "url":"./addpurchaseContract.html",
+            "tabName":"添加采购合同",
+            "tabName_attr":"addpurchaseC"
         };
         // COM.setPagesFun_inputIcon(json1);
         COM.setPagesFun_inputIcon(json2);
@@ -91,7 +91,6 @@ define([
                     `
         }
         login.main.add(json4)
-    
   
 });
 

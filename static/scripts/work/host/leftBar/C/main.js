@@ -75,7 +75,7 @@ define([
             <iframe class="iframes-li" tabName="default"  isHide="no" src="${val0}" leftBarID="${val1}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
         `
         let str01 = `
-                <div url="${val0}"  leftBarID="${val1}" class="tabs-li" style="display:none" tabName="default" isFocus="yes">
+                <div  leftBarID="${val1}" class="tabs-li" style="display:none" tabName="default" isFocus="yes">
                     <div class="flex1">
                         ${thisName}
                     </div>
