@@ -13,7 +13,7 @@ define([
     let fun = {
         addTabs:function(data){
             let str0 = `
-                    <div url="${data.url0}" pages="${data.pages}" leftBarID="${data.LFID}" class="tabs-li" style="display:none" tabName="${data.tabName_attr}" isFocus="yes">
+                    <div  pages="${data.pages}" leftBarID="${data.LFID}" class="tabs-li" style="display:none" tabName="${data.tabName_attr}" isFocus="yes">
                             <div class="flex1">
                                 ${data.tabsName}
                             </div>

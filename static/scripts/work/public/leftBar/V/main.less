@@ -61,6 +61,7 @@
         display:block;
         height:auto;
         &>a{
+            cursor: pointer;
             display:inline-block;
             height:50px;
             line-height:50px;
@@ -86,4 +87,8 @@
         transition:display 1s;
     }
     
+}
+
+iframe[ishide="no"]:eq(1){
+    display: none;
 }

@@ -75,7 +75,7 @@ define([
             <iframe class="iframes-li" tabName="default"  isHide="no" src="${val0}" leftBarID="${val1}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
         `
         let str01 = `
-                <div url="${val0}"  leftBarID="${val1}" class="tabs-li" style="display:none" tabName="default" isFocus="yes">
+                <div  leftBarID="${val1}" class="tabs-li" style="display:none" tabName="default" isFocus="yes">
                     <div class="flex1">
                         ${thisName}
                     </div>
@@ -100,6 +100,7 @@ define([
             
             $(`.bodyFrame-main `,parent.document).append(str00);
         }else{
+            console.log(111);
             /*否则按存的信息 重置状态。*/
             $(`.leftBarPage>div[leftBarID=${val1}]`,parent.document).show();
             $(`.leftBarPage>div[leftBarID=${val1}][tabName=${info_thisHistory}]`,parent.document).attr("isFocus","yes");

@@ -186,7 +186,7 @@
                 height:auto;
                 overflow: hidden;
                 &>div{
-                    width:88px;
+                    width:95px;
                     height:40px;
                     line-height:40px;
                     background:@mainButtonBGColor;
@@ -392,3 +392,40 @@ width:40px;
 height:40px;
 }
 #changePage .button:hover{color:#fff}
+
+
+.loginMax{
+    position: absolute;
+    top:0;
+    z-index:1000000;
+    width:100vw;
+    height:100vh;
+    .blackBG{
+        cursor: pointer;
+        position: absolute;
+        z-index:1200000;
+        top:0;
+        width:100vw;
+        height:100vh;
+        background:rgba(0, 0, 0, 0.5);
+    }
+    /*主体*/
+    img {
+        position:absolute;
+        z-index:12000000;
+        top:100px;
+        width:400px;
+    }
+    .body{
+        position:absolute;
+        border-radius:8px;
+        z-index:12000000;
+        width:500px;
+        height:400px;
+        top:300px;
+        background:#fff;
+        & .addNew{
+            border-radius: 8px;
+        }
+    }
+}

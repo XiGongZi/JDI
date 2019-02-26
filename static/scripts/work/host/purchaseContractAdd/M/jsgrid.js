@@ -4,14 +4,12 @@ define([
     "jquery",
     "work/public/bodyFrame/c/main",
     "lib/jsgrid/jsgrid",
-    "app/clearOrMore",
 ], function(
         require,
         PKG,
         $,
         bodyFrame,
         jsGrid,
-        COM
     ) {
     'use strict';
 // 关于顶部选项卡
@@ -37,43 +35,31 @@ function changePageJSPost(page){
               
         //         // useTable_addInfo(JSON.parse(data));
         //     }
-        // });
+        // // });
 
-        // var arr = [];
-        // var a = "合同编号",
-        //     b = "项目名称",
-        //     a1 = "项目地址",
-        //     a2 = "甲方名称",
-        //     a3 = "合同额",
-        //     a4 = "税率",
-        //     a5 = "项目负责人",
-        //     a6 = "状态",;
-        // $.each(json,function(i,n){
-        //     var obj ={};
-        //     obj[a] = n.proNum;
-        //     obj[b] = n.proName;
-        //     obj[a1] = n.proAdd;
-        //     obj[a2] = n.AName,
-        //     obj[a3] = n.a3,
-        //     obj[a4] = n.a4,
-        //     obj[a5] = n.a5,
-        //     obj[a6] = n.a6;
-
+        // var a = "合同单号",
+        // b = "总包合同号",
+        // a1 = "申请单号",
+        // a2 = "申请单序号",
+        // a3 = "产品设备/产品名称",
+        // a4 = "申请数量",
+        // a5 = "单位",
+        // a6 = "单价",
+        // a7 = "金额";
 
         var exam = {
-            "count":"10",
+            "count":"1",
             "page":"1",
             "managerList":[{
                 "proNum":"x1223312",
-                "proName":"总包合同",
-                "proAdd":"XX公司",
-                "AName":"100.000",
-                "a3":"10%",
-                "a4":"竣工",
-                "a5":"张三",
-                "a6":"2015-12-21",
-                "a7":"李四",
-                "a8":"2015-12-21"
+                "proName":"z212344442",
+                "proAdd":"sq23123123",
+                "AName":"21",
+                "a3":"挖土机租赁",
+                "a4":"1",
+                "a5":"辆",
+                "a6":"500",
+                "a7":"500",
             }]
         } ;
         useTable_addInfo(exam);
@@ -359,15 +345,14 @@ function useTable_addInfo(json){
         required:true,
         fields: [
             { name: "合同单号", type: "number", readOnly: true, width:50,  },
-            { name: "合同类型", type: "text", width:100,  },
-            { name: "客商名称", type: "text", width:100,  },
-            { name: "金额", type: "text", width:100,  },
-            { name: "税率", type: "text", width:60,  },
-            { name: "状态", type: "text", width:30,  },
-            { name: "制单人", type: "text", width:50,  },
-            { name: "制单时间", type: "text", width:30,  },
-            { name: "审核人", type: "text", width:30,  },
-            { name: "审核时间", type: "text", width:30,  },
+            { name: "总包合同号", type: "text", width:100,  },
+            { name: "申请单号", type: "text", width:100,  },
+            { name: "申请单序号", type: "text", width:100,  },
+            { name: "产品设备/产品名称", type: "text", width:60,  },
+            { name: "申请数量", type: "text", width:30,  },
+            { name: "单位", type: "text", width:50,  },
+            { name: "单价", type: "text", width:30,  },
+            { name: "金额", type: "text", width:30,  },
 
             // { type: "control" },
             {
@@ -395,16 +380,6 @@ function useTable_addInfo(json){
     }
 
     $("#jsGrid").jsGrid(jsGridInfo);
-
-    let jsonp = {
-        "add":".jsgrid-row",
-        "url":"./purchaseContractDetails.html",
-        "tabName":"采购详情",
-        "tabName_attr":"purchaseDetails"
-    };
-    // COM.setPagesFun_inputIcon(json1);
-    COM.setPagesFun_inputIcon(jsonp);
-        
 
     $(".jsgrid-insert-button").off("click");
     //自定义 绑定事件(非原生)
@@ -453,15 +428,14 @@ function returnObj(elem){
 function useTable_addInfo_changeForm(json){
     var arr = [];
     var a = "合同单号",
-        b = "合同类型",
-        a1 = "客商名称",
-        a2 = "金额",
-        a3 = "税率",
-        a4 = "状态",
-        a5 = "制单人",
-        a6 = "制单时间",
-        a7 = "审核人",
-        a8 = "审核时间";
+        b = "总包合同号",
+        a1 = "申请单号",
+        a2 = "申请单序号",
+        a3 = "产品设备/产品名称",
+        a4 = "申请数量",
+        a5 = "单位",
+        a6 = "单价",
+        a7 = "金额";
     $.each(json,function(i,n){
         var obj ={};
         obj[a] = n.proNum;
@@ -472,11 +446,11 @@ function useTable_addInfo_changeForm(json){
         obj[a4] = n.a4,
         obj[a5] = n.a5,
         obj[a6] = n.a6,
-        obj[a7] = n.a7,
-        obj[a8] = n.a8;
+        obj[a7] = n.a7;
         arr.push(obj);
     });
     return arr;
 }
 
 });
+
