@@ -8,6 +8,9 @@ define([
     /**子标签页核心代码  */
             
         $(json.add+">div",parent.document).click(function(){
+
+            /* 获得这个页签pageName */
+            // let tabsName = $(this,window.document).parent().attr("")
             // console.log("json.add is "+json.add);
             /**设置点击样式 */
             $(".bodyFrame-main>.tabs>div>div",parent.document).attr("isFocus","no");

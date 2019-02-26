@@ -78,6 +78,10 @@ define([
                     `
         }
         login.main.add(json4);
+        $(".tabs-main",window.document).attr("url","./purchaseContract.html")
+        let kda = {};
+        kda.add = `.tabs-main`;
+        tabFunctions.setTabsFun(kda);
   
 });
 
