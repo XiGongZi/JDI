@@ -24,7 +24,7 @@ define([
             "pages":"0",
             "LFID":"subpackage",
             "url0":"./addNewSub.html",
-            "tabsName":"添加新分包",
+            "tabsName":"添加新分包合同",
             "tabName_attr":"addSubContract"
         };
         let json2 = {

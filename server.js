@@ -8,7 +8,7 @@ let personal_intro  = require('./static/server/personal_intro');//连接数据�
 let linkDrawShopUser  = require('./static/server/getReInfo');//连接数据库 查
 app.use(express.static(__dirname + ''));
 let server = require('http').createServer(app);
-server.listen(80, function () {
+server.listen(124, function () {
   console.log('Server listening at port %d', 80);
 });
 let io = require('socket.io')(server);

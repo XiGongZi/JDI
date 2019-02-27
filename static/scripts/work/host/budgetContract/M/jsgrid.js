@@ -4,12 +4,14 @@ define([
     "jquery",
     "work/public/bodyFrame/c/main",
     "lib/jsgrid/jsgrid",
+    "app/clearOrMore",
 ], function(
         require,
         PKG,
         $,
         bodyFrame,
         jsGrid,
+        COM
     ) {
     'use strict';
 // 关于顶部选项卡
@@ -363,6 +365,17 @@ function useTable_addInfo(json){
 
     $("#jsGrid").jsGrid(jsGridInfo);
     $(".jsgrid-insert-button").off("click");
+
+    let jsonp = {
+        "add":".jsgrid-row",
+        "url":"./addbudgetContract.html",
+        "tabName":"采购详情",
+        "tabName_attr":"purchaseDetails"
+    };
+    // COM.setPagesFun_inputIcon(json1);
+    COM.setPagesFun_inputIcon(jsonp);
+
+
     //自定义 绑定事件(非原生)
     // 删
     $(".jsgrid-delete-button").off("click");
