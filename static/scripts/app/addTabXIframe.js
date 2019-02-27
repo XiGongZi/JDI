@@ -13,7 +13,7 @@ define([
     let fun = {
         addTabs:function(data){
             let str0 = `
-                    <div  pages="${data.pages}" leftBarID="${data.LFID}" class="tabs-li" style="display:none" tabName="${data.tabName_attr}" isFocus="yes">
+                    <div  leftBarID="${data.LFID}" class="tabs-li" style="display:block" tabName="${data.tabName_attr}" isFocus="yes">
                             <div class="flex1">
                                 ${data.tabsName}
                             </div>
@@ -24,7 +24,7 @@ define([
             `;
             $(".leftBarPage",parent.document).append(str0);
             let str2 = `
-                <iframe class="iframes-li" tabName="${data.tabName_attr}" pages="${data.pages}" isHide="no" src="${data.url0}" leftBarID="${data.LFID}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
+                <iframe class="iframes-li" tabName="${data.tabName_attr}" isHide="no" src="${data.url0}" leftBarID="${data.LFID}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
             `;
             $(".bodyFrame-main",parent.document).append(str2);
         }

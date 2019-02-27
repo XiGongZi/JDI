@@ -157,8 +157,8 @@ define([
         },
         urlFromStr:function (data){
             /**从url中获取中间的页面名称 */
-            let val0 = data;
-            let val1 = val0.split("/");
+            let val0 ;
+            let val1 = data.split("/");
             val0 = val1[val1.length - 1].split(".");
             val1 = val0[0];
             return val1;

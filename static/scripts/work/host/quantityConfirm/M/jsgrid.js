@@ -49,10 +49,24 @@ function changePageJSPost(page){
         //     a6 = "制单时间",
         //     a7 = "审核人",
         //     a8 = "审核时间";
+
         var exam = {
             "count":"10",
             "page":"1",
-            "managerList":[]
+            "managerList":[
+                {
+                    "proNum":"x123123",
+                    "proName":"分包合同",
+                    "proAdd":"XXX服务商",
+                    "AName":"100.000",
+                    "a3":"10%",
+                    "a4":"施工",
+                    "a5":"李依依",
+                    "a6":"2015-12-21",
+                    "a7":"张XX",
+                    "a8":"2015-12-21",
+                }
+            ]
         } ;
         useTable_addInfo(exam);
 }

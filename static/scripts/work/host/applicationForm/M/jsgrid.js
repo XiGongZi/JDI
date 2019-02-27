@@ -49,10 +49,27 @@ function changePageJSPost(page){
         // a8 = "审核人",
         // a9 = "审核时间";
       
+
+        
+
         var exam = {
             "count":"10",
             "page":"1",
-            "managerList":[]
+            "managerList":[
+                {
+                    "proNum":"x123333",
+                    "proName":"项目部门",
+                    "proAdd":"项目部",
+                    "AName":"XXX项目",
+                    "a3":"",
+                    "a4":"",
+                    "a5":"施工",
+                    "a6":"张xx",
+                    "a7":"2015-12-21",
+                    "a8":"李11",
+                    "a9":"2015-12-21"
+                }
+            ]
         } ;
         useTable_addInfo(exam);
 }

@@ -37,16 +37,17 @@ function changePageJSPost(page){
         //     }
         // });
 
-        // a = "预算单号",
-        // b = "总包合同号",
-        // a1 = "制单人",
-        // a2 = "制单时间";
 
-      
+        
         var exam = {
             "count":"10",
             "page":"1",
-            "managerList":[]
+            "managerList":[{
+                "proNum":"YS123",
+                "proName":"zb2312",
+                "proAdd":"张XX",
+                "AName":"2015-12-21",
+            }]
         } ;
         useTable_addInfo(exam);
 }
@@ -334,7 +335,6 @@ function useTable_addInfo(json){
             { name: "总包合同号", type: "text", width:100,  },
             { name: "制单人", type: "text", width:100,  },
             { name: "制单时间", type: "text", width:100,  },
-            { name: "编辑", type: "text", width:60,  },
 
             // { type: "control" },
             {

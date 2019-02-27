@@ -23,7 +23,7 @@ define([
         let json1 = {
             "add":".contractN0 .case-icon svg[status='1']",
             "url":"./TP-caseToSearch.html",
-            "tabName":"添加合同",
+            "tabName":"添加",
             "tabName_attr":"addContract"
         };
         let json2 = {
@@ -33,7 +33,7 @@ define([
             "tabName_attr":"test2"
         };
 
-        COM.setPagesFun_inputIcon(json1);
+        // COM.setPagesFun_inputIcon(json1);
         COM.setPagesFun_inputIcon(json2);
 
 });
