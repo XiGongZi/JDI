@@ -17,16 +17,16 @@ define([
         json.add = `.tabs .leftBarPage>div:eq(0)`;
         tabFunctions.setTabsFun(json);
 
-            /* 显示隐藏添加合同*/ 
-        $(".showAddNew").click(function(){
-            if($(".addNew").css("display")=="none"){
-                $(".addNew").slideDown(500);
-                $(".showAddNew").html("取消添加");
-            }else{
-                $(".addNew").slideUp(500);
-                $(".showAddNew").html("添加合同");
-            }
-        });
+        //     /* 显示隐藏添加合同*/ 
+        // $(".showAddNew").click(function(){
+        //     if($(".addNew").css("display")=="none"){
+        //         $(".addNew").slideDown(500);
+        //         $(".showAddNew").html("取消添加");
+        //     }else{
+        //         $(".addNew").slideUp(500);
+        //         $(".showAddNew").html("添加合同");
+        //     }
+        // });
         /**input旁边小功能封装函数 */
         let funs = {
                 setPagesFun_inputIcon:function(data){

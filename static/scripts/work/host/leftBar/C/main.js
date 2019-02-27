@@ -30,10 +30,12 @@ define([
     });
     /* 一级菜单调整*/
     $(".leftBarFrame-son a").click(function(){
-    /*原LBID*/
-    let str11 = $(".leftBarFrame-son a[hover1='1']").attr("url");
-    let val12 = PKG.get.urlFromStr(str11);
-
+    
+        /*原LBID*/
+        let str11 = $(".leftBarFrame-son a[hover1='1']").attr("url");
+        let val12 = PKG.get.urlFromStr(str11);
+        
+        // $(".tabs-main",parent.document).attr("url",str11)
     /*上一个页面的 页面 id*/
     let info_beforePage = val12;
     /*上一个页面的 显示的页签 pages属性*/

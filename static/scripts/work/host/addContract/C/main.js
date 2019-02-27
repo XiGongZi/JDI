@@ -23,6 +23,16 @@ define([
         }
     });
     
+    $(".addNew .button").click(function(){
+        if($(".addNew").css("display")=="none"){
+            $(".addNew").slideDown(500);
+            $(".showAddNew").html("取消添加");
+        }else{
+            $(".addNew").slideUp(500);
+            $(".showAddNew").html("添加合同");
+        }
+    });
+
     /* input旁边小功能*/ 
 
     $(".bodyFrame1 .bodyFrame1-main .case-icon").click(function(){

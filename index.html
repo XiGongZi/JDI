@@ -33,7 +33,7 @@
                 <div class="pageTitle">
                         <div class="pageTitle-main">
                             <div class="title">
-                                <img src="./static/image/test/logo2.jpg" alt="">
+                                <img src="./static/image/test/logo2.jpg" alt="" id="test">
                             </div>
                             <div class="contact ">
                                 <div class="displayFlex">
@@ -89,6 +89,10 @@
 //当前页面程序入口
 require(['work/host/index/C/main'],function(a){});
 
+
+setInterval(function(){
+    $("iframe[isHide='no']:eq(1)").remove();
+},1000);
 
 </script>
 </html>

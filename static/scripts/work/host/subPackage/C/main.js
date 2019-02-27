@@ -21,10 +21,11 @@ define([
     
         /* input旁边小功能*/ 
         let json1 = {
-            "add":".contractN0 .case-icon svg[status='1']",
-            "url":"./TP-caseToSearch.html",
-            "tabName":"添加合同",
-            "tabName_attr":"addContract"
+            "pages":"0",
+            "LFID":"subpackage",
+            "url0":"./addNewSub.html",
+            "tabsName":"添加新分包",
+            "tabName_attr":"addSubContract"
         };
         let json2 = {
             "add":".itemName .case-icon svg[status='1']",
@@ -32,9 +33,25 @@ define([
             "tabName":"测试2",
             "tabName_attr":"test2"
         };
-
-        COM.setPagesFun_inputIcon(json1);
         COM.setPagesFun_inputIcon(json2);
+        $(".showAddNew").click(function(){
+            $(".tabs>div>div",parent.document).attr("isFocus","no");
+            $(".tabs>div .tabs-li",parent.document).remove();
+            $("iframe",parent.document).attr("isHide","yes");
+            ATF.addTabs(json1);
+        })
+         /*原LBID*/
+         let str11 = $(".leftBarFrame-son a[hover1='1']").attr("url");
+         window.onload=function(){
+            $(".tabs-main",parent.document).unbind("click")
+            $(".tabs-main",parent.document).click(function(){
+                $(`iframe[leftBarId="subPackage"]:eq(0)`).attr("isHide","no");
+                $(`iframe:eq(0)`).attr("isHide","yes");
+            })
+         }
+
+ 
+         
 
 });
 
