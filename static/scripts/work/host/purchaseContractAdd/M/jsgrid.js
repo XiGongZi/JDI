@@ -54,12 +54,11 @@ function changePageJSPost(page){
                 "proNum":"x1223312",
                 "proName":"z212344442",
                 "proAdd":"sq23123123",
-                "AName":"21",
-                "a3":"挖土机租赁",
-                "a4":"1",
-                "a5":"辆",
+                "AName":"挖土机租赁",
+                "a3":"1",
+                "a4":"辆",
+                "a5":"500",
                 "a6":"500",
-                "a7":"500",
             }]
         } ;
         useTable_addInfo(exam);
@@ -344,14 +343,15 @@ function useTable_addInfo(json){
         deleteConfirm: "确定删除吗？",
         required:true,
         fields: [
-            { name: "合同单号", type: "number", readOnly: true, width:50,  },
+
+
+            { name: "预算单号", type: "number", readOnly: true, width:50,  },
             { name: "总包合同号", type: "text", width:100,  },
-            { name: "申请单号", type: "text", width:100,  },
-            { name: "申请单序号", type: "text", width:100,  },
+            { name: "序号", type: "text", width:100,  },
             { name: "产品设备/产品名称", type: "text", width:60,  },
             { name: "申请数量", type: "text", width:30,  },
             { name: "单位", type: "text", width:50,  },
-            { name: "单价", type: "text", width:30,  },
+            { name: "预估单价", type: "text", width:30,  },
             { name: "金额", type: "text", width:30,  },
 
             // { type: "control" },
@@ -427,15 +427,14 @@ function returnObj(elem){
 //对后台传过来的数据进行转码（给jsgrid使用）
 function useTable_addInfo_changeForm(json){
     var arr = [];
-    var a = "合同单号",
+    var a = "预算单号",
         b = "总包合同号",
-        a1 = "申请单号",
-        a2 = "申请单序号",
-        a3 = "产品设备/产品名称",
-        a4 = "申请数量",
-        a5 = "单位",
-        a6 = "单价",
-        a7 = "金额";
+        a1 = "序号",
+        a2 = "产品设备/产品名称",
+        a3 = "申请数量",
+        a4 = "单位",
+        a5 = "预估单价",
+        a6 = "金额";
     $.each(json,function(i,n){
         var obj ={};
         obj[a] = n.proNum;
@@ -445,8 +444,7 @@ function useTable_addInfo_changeForm(json){
         obj[a3] = n.a3,
         obj[a4] = n.a4,
         obj[a5] = n.a5,
-        obj[a6] = n.a6,
-        obj[a7] = n.a7;
+        obj[a6] = n.a6;
         arr.push(obj);
     });
     return arr;
