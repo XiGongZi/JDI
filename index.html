@@ -35,7 +35,7 @@
                             <div class="title">
                                 <img src="./static/image/test/logo2.jpg" alt="" id="test">
                             </div>
-                            <div class="contact ">
+                            <div class="contact">
                                 <div class="displayFlex">
                                         <div class="list flex1" id="addInfo">
                                                 <svg class="icon" aria-hidden="true">
@@ -69,7 +69,7 @@
             <!-- 1 -->
             <div  LFID="totalPackage" isShow="yes">
                 <!-- a -->
-                <div  class="tabs-li displayFlex" isFocus="yes">
+                <div  class="tabs-li displayFlex" tabName="totalPackage" isFocus="yes">
                     <div class="flex1">
                         总包合同单1
                     </div>
@@ -78,7 +78,7 @@
                         </svg>
                 </div>
                 <!-- b -->
-                <div  class="tabs-li displayFlex" isFocus="no">
+                <div  class="tabs-li displayFlex" isFocus="no" tabName="totalPackage2">
                         <div class="flex1">
                             总包合同单2
                         </div>
@@ -88,7 +88,7 @@
                     </div>
             </div>
             <!-- 2 -->
-            <div  LFID="totalPackage" isShow="no">
+            <div  LFID="totalPackage2" isShow="no">
                 <div  class="tabs-li displayFlex" isFocus="yes">
                     <div class="flex1">
                         总包合同单3
@@ -102,14 +102,14 @@
         </div>
         <div class="iframes">
             <!-- 第一页 -->
-            <div LFID="" isShow="yes">
+            <div LFID="totalPackage" isShow="yes">
                 <!-- a -->
-                <iframe isShow="yes" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
+                <iframe tabName="totalPackage" isShow="yes" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
                 <!-- b -->
-                <iframe isShow="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
+                <iframe tabName="totalPackage2" isShow="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
             </div> 
             <!-- 第二页 -->
-            <div LFID="" isShow="no">
+            <div LFID="totalPackage2" isShow="no">
                 <iframe isShow="yes" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
             </div> 
         </div>

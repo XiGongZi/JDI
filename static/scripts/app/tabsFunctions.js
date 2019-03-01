@@ -135,7 +135,7 @@ define([
             let LFDep_CN = data.LFDep_CN;
             let LFID_CN = data.LFID_CN;
             let tabName_CN = data.tabName_CN;
-            let add = data.add;
+            let isParentDoc = data.isParentDoc;
             let str = `
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-dangqianchengshi"></use>
@@ -145,22 +145,33 @@ define([
             <span >${LFID_CN}</span>
             <span >${tabName_CN}</span>
             `;
-            $(add).html(str);            
+            if(isParentDoc === undefined){
+                $("#addInfo",parent.document).html(str);            
+            }else{
+                $("#addInfo").html(str);            
+            }
         },
         /* Fun_2  插入T1B1*/
         insertT1B1:function(data){
             let LFID = data.LFID;
+            let isParentDoc = data.isParentDoc;
             let str1 = `
             <div  LBP="${LFID}" isShow="yes"></div>
             `;
-            $(".bodyFrame-main .tabs").append(str1);
-            $(".bodyFrame-main .iframes").append(str1);
+            if(isParentDoc === undefined){
+                $("#tabs .tabs",parent.document).append(str1);
+                $("#tabs .iframes",parent.document).append(str1);          
+            }else{
+                $("#tabs .tabs").append(str1);
+                $("#tabs .iframes").append(str1);            
+            }
         },
         /* Fun_3  插入T2B2*/
         insertT2B2:function(data){
             let LFID = data.LFID;
             let tabName = data.tabName;
             let tabName_CN = data.tabName_CN;
+            let isParentDoc = data.isParentDoc;
             let url = data.url;
             let str1 = `
                 <div  leftBarID="${LFID}" class="tabs-li"  tabName="${tabName}" isFocus="yes">
@@ -175,34 +186,95 @@ define([
             let str2 = `
                 <iframe class="iframes-li" tabName="${tabName}" isShow="yes" src="${url}" leftBarID="${LFID}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
             `;
-            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]`).append(str1);
-            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]`).append(str2);
+            if(isParentDoc === undefined){
+                $(`#tabs .tabs>div[LFID="${LFID}"]`,parent.document).append(str1);
+                $(`#tabs .iframes>div[LFID="${LFID}"]`,parent.document).append(str2);            
+            }else{
+                $(`#tabs .tabs>div[LFID="${LFID}"]`).append(str1);
+                $(`#tabs .iframes>div[LFID="${LFID}"]`).append(str2);            
+            }
         },
         /** Fun_7 对 T1B1 设置显示隐藏 */
         showT1B1:function(data){
             let LFID = data.LFID;
             let tabName = data.tabName;
-            $(`.bodyFrame-main .tabs>div`).attr("isFocus","no");
-            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]`).attr("isFocus","yes");
-            $(`.bodyFrame-main .iframes>div`).attr("isFocus","no");
-            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]`).attr("isFocus","yes");
+            let isParentDoc = data.isParentDoc;
+            if(isParentDoc === undefined){
+                $(`#tabs .tabs>div`,parent.document).attr("isFocus","no");
+                $(`#tabs .tabs>div[LFID="${LFID}"]`,parent.document).attr("isFocus","yes");
+                $(`#tabs .iframes>div`,parent.document).attr("isFocus","no");
+                $(`#tabs .iframes>div[LFID="${LFID}"]`,parent.document).attr("isFocus","yes");           
+            }else{
+                $(`#tabs .tabs>div`).attr("isFocus","no");
+                $(`#tabs .tabs>div[LFID="${LFID}"]`).attr("isFocus","yes");
+                $(`#tabs .iframes>div`).attr("isFocus","no");
+                $(`#tabs .iframes>div[LFID="${LFID}"]`).attr("isFocus","yes");           
+            }
         },
         /** Fun_5 对T2B2 设置显示隐藏*/
         showT2B2:function(data){
             let LFID = data.LFID;
             let tabName = data.tabName;
-            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]>div`).attr("isFocus","no");
-            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`).attr("isFocus","yes");
-            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]>iframe`).attr("isFocus","no");
-            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`).attr("isFocus","yes");
+            let isParentDoc = data.isParentDoc;
+            if(isParentDoc === undefined){
+                $(`#tabs .tabs>div[LFID="${LFID}"]>div`,parent.document).attr("isFocus","no");
+                $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`,parent.document).attr("isFocus","yes");
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe`,parent.document).attr("isFocus","no");
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`,parent.document).attr("isFocus","yes");           
+            }else{
+                $(`#tabs .tabs>div[LFID="${LFID}"]>div`).attr("isFocus","no");
+                $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`).attr("isFocus","yes");
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe`).attr("isFocus","no");
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`).attr("isFocus","yes");            
+            }
         },
         /** Fun_6 清除T2B2*/
         removeT2B2:function(data){
             let LFID = data.LFID;
             let tabName = data.tabName;
-            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`).remove();
-            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`).remove();
-        } 
+            let isParentDoc = data.isParentDoc;
+            if(isParentDoc === undefined){
+                $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`,parent.document).remove();
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`,parent.document).remove();             
+            }else{
+                $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`).remove();
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`).remove();            
+            }
+        },
+        /** Fun_C 给 新T2 绑定事件*/
+        bindTabsFun:function(data){
+            let LFID = data.LFID;
+            let tabName = data.tabName;
+            let isFocusTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).attr("tabName");
+            $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"] svg`,parent.document).click(function(){
+                let isFocusTabName_index = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).index();
+                let beforeTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div:eq(${isFocusTabName_index - 1})]`,parent.document).attr("tabName");
+                //**1.获得当前选中状态的tabName*/
+                //**清除 */
+                let data0 = {
+                    LFID,
+                    tabName,
+                }
+                fun.removeT2B2();
+                //**清除后选中状态转移 （只有 当前选中的tabName和所点击的tabName相同时才涉及转移）*/
+                if(isFocusTabName == tabName){
+                    //**获得前一个tabName*/
+                    let data1 = {
+                        tabName:beforeTabName,
+                        LFID,
+                    }
+                    fun.showT2B2(data1);
+                }
+            });
+            $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"] div`,parent.document).click(function(){
+                let data1 = {
+                    tabName,
+                    LFID,
+                }
+                fun.showT2B2(data1);
+            });
+            
+        }
     }
     return fun;
 });
