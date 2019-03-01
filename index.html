@@ -24,7 +24,7 @@
     <!-- iconfont 图标js，项目在 阿里巴巴图标库里 -->
     <script src="./static/scripts/app/iconfont.js" ></script>
       <style>
-        /* body *{box-sizing: border-box;border:1px solid blue} */
+        body *{box-sizing: border-box;border:1px solid blue}
         </style>
 </head>
 <body>
@@ -66,16 +66,34 @@
     <div class="bodyFrame-main flex1 ">
         <!-- 标签页 -->
         <div class="tabs">
-            <div class="leftBarPage" LBP="totalPackage">
-                <div url="./costConfirm.html" class="tabs-main displayFlex" pages="0" isFocus="yes">
+            <!-- 1 -->
+            <div  LFID="totalPackage" isFocus="yes">
+                <div  class="tabs-main displayFlex" page="0" isFocus="yes">
                     <div class="flex1">
                         总包合同单
                     </div>
                 </div>
-               
             </div>
+            <!-- 2 -->
+            <div  LFID="totalPackage" isFocus="yes">
+                <div  class="tabs-main displayFlex" page="0" isFocus="yes">
+                    <div class="flex1">
+                        总包合同单
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <iframe pages="0" isHide="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
+        <div class="iframes">
+            <!-- 第一页 -->
+            <div LFID="" isFocus="yes">
+                <iframe pages="0" isHide="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
+            </div> 
+            <!-- 第二页 -->
+            <div LFID="" isFocus="yes">
+                <iframe pages="0" isHide="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
+            </div> 
+        </div>
     </div>
 </div>
 

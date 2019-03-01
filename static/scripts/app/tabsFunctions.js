@@ -129,7 +129,80 @@ define([
          *  点击第N个的 x,N 不为最后一个 且 N在选中样式 上
          *  点击第N个的 x,N 不为最后一个 且 N在选中样式 前
          */
-        }
+        },
+        /* Fun_1  修改index页当前定位*/
+        changePosition:function(data){
+            let LFDep_CN = data.LFDep_CN;
+            let LFID_CN = data.LFID_CN;
+            let tabName_CN = data.tabName_CN;
+            let add = data.add;
+            let str = `
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-dangqianchengshi"></use>
+                </svg>
+            当前位置：>
+            <span >${LFDep_CN}</span>> 
+            <span >${LFID_CN}</span>
+            <span >${tabName_CN}</span>
+            `;
+            $(add).html(str);            
+        },
+        /* Fun_2  插入T1B1*/
+        insertT1B1:function(data){
+            let LFID = data.LFID;
+            let str1 = `
+            <div  LBP="${LFID}" isFocus="yes"></div>
+            `;
+            $(".bodyFrame-main .tabs").append(str1);
+            $(".bodyFrame-main .iframes").append(str1);
+        },
+        /* Fun_3  插入T2B2*/
+        insertT2B2:function(data){
+            let LFID = data.LFID;
+            let tabName = data.tabName;
+            let tabName_CN = data.tabName_CN;
+            let url = data.url;
+            let str1 = `
+                <div  leftBarID="${LFID}" class="tabs-li"  tabName="${tabName}" isFocus="yes">
+                    <div class="flex1">
+                        ${tabName_CN}
+                    </div>
+                    <svg class="icon " aria-hidden="true">
+                        <use xlink:href="#icon-clear"></use>
+                    </svg>
+                </div>
+            `;
+            let str2 = `
+                <iframe class="iframes-li" tabName="${tabName}" isHide="no" src="${url}" leftBarID="${LFID}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
+            `;
+            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]`).append(str1);
+            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]`).append(str2);
+        },
+        /** Fun_7 对 T1B1 设置显示隐藏 */
+        showT1B1:function(data){
+            let LFID = data.LFID;
+            let tabName = data.tabName;
+            $(`.bodyFrame-main .tabs>div`).attr("isFocus","no");
+            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]`).attr("isFocus","yes");
+            $(`.bodyFrame-main .iframes>div`).attr("isFocus","no");
+            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]`).attr("isFocus","yes");
+        },
+        /** Fun_5 对T2B2 设置显示隐藏*/
+        showT2B2:function(data){
+            let LFID = data.LFID;
+            let tabName = data.tabName;
+            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]>div`).attr("isFocus","no");
+            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`).attr("isFocus","yes");
+            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]>iframe`).attr("isFocus","no");
+            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`).attr("isFocus","yes");
+        },
+        /** Fun_6 清除T2B2*/
+        removeT2B2:function(data){
+            let LFID = data.LFID;
+            let tabName = data.tabName;
+            $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`).remove();
+            $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`).remove();
+        } 
     }
     return fun;
 });
