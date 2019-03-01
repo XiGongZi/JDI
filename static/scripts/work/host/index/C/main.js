@@ -44,17 +44,7 @@ define([
             
     
         // }
-        /** 给新页签绑定点击事件 */
-        let data04 = {
-            LFID:"totalPackage",
-            tabName:"totalPackage",
-        }
-        TBF.bindTabsFun(data04);
-        let data05 = {
-            LFID:"totalPackage",
-            tabName:"totalPackage2",
-        }
-        TBF.bindTabsFun(data05);
+
 });
 
 

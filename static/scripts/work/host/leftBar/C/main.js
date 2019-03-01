@@ -11,6 +11,8 @@ define([
     ) {
     'use strict';
         
+
+
     //当父级点击时
     $(".leftBarFrame-main").click(function(){
     /*获取点击的状态，0为被折叠，1为展开*/
@@ -97,6 +99,20 @@ define([
         
     // });
     // }
+
+
+    
+            /** 给新页签绑定点击事件 测试 */
+            let data04 = {
+                LFID:"totalPackage",
+                tabName:"totalPackage",
+            }
+            TBF.bindTabsFun(data04);
+            let data05 = {
+                LFID:"totalPackage",
+                tabName:"totalPackage2",
+            }
+            TBF.bindTabsFun(data05);
 
 });
 

@@ -219,13 +219,13 @@ define([
             if(isParentDoc === undefined){
                 $(`#tabs .tabs>div[LFID="${LFID}"]>div`,parent.document).attr("isFocus","no");
                 $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`,parent.document).attr("isFocus","yes");
-                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe`,parent.document).attr("isFocus","no");
-                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`,parent.document).attr("isFocus","yes");           
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe`,parent.document).attr("isShow","no");
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`,parent.document).attr("isShow","yes");           
             }else{
                 $(`#tabs .tabs>div[LFID="${LFID}"]>div`).attr("isFocus","no");
                 $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`).attr("isFocus","yes");
-                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe`).attr("isFocus","no");
-                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`).attr("isFocus","yes");            
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe`).attr("isShow","no");
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${tabName}"]`).attr("isShow","yes");            
             }
         },
         /** Fun_6 清除T2B2*/
@@ -245,6 +245,7 @@ define([
         bindTabsFun:function(data){
             let LFID = data.LFID;
             let tabName = data.tabName;
+            let isParentDoc = data.isParentDoc;
             let isFocusTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).attr("tabName");
             $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"] svg`,parent.document).click(function(){
                 let isFocusTabName_index = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).index();
@@ -262,6 +263,7 @@ define([
                     let data1 = {
                         tabName:beforeTabName,
                         LFID,
+                        isParentDoc,
                     }
                     fun.showT2B2(data1);
                 }
@@ -270,6 +272,7 @@ define([
                 let data1 = {
                     tabName,
                     LFID,
+                    isParentDoc,
                 }
                 fun.showT2B2(data1);
             });
