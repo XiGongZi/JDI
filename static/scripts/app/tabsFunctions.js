@@ -151,7 +151,7 @@ define([
         insertT1B1:function(data){
             let LFID = data.LFID;
             let str1 = `
-            <div  LBP="${LFID}" isFocus="yes"></div>
+            <div  LBP="${LFID}" isShow="yes"></div>
             `;
             $(".bodyFrame-main .tabs").append(str1);
             $(".bodyFrame-main .iframes").append(str1);
@@ -173,7 +173,7 @@ define([
                 </div>
             `;
             let str2 = `
-                <iframe class="iframes-li" tabName="${tabName}" isHide="no" src="${url}" leftBarID="${LFID}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
+                <iframe class="iframes-li" tabName="${tabName}" isShow="yes" src="${url}" leftBarID="${LFID}"  name="mainFrame" frameborder="0" scrolling="no"></iframe>
             `;
             $(`.bodyFrame-main .tabs>div[LFID="${LFID}"]`).append(str1);
             $(`.bodyFrame-main .iframes>div[LFID="${LFID}"]`).append(str2);

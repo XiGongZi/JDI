@@ -17,19 +17,25 @@
     &-main{
         height:auto;
         width:100%;
+        
+    }
+    #tabs{
         /*页签Max*/
-        & .tabs{
+
+        .tabs{
             @tabsHeight:50px;
             height:@tabsHeight;
             width:100%;
             background:#fff;
             overflow: hidden;
+            /*T1*/ 
             &>div{
                 width:95%;
                 height:@tabsHeight;
                 margin:0 auto;
                 background:#fff;
                 /*下面是 各个页签title 样式*/
+                /*T2*/
                 &>div{
                     margin-right:4px;
                     cursor: pointer;
@@ -41,12 +47,9 @@
                     width:150px;
                     float:left;
                     background:#f1f1f1;
-                    &:hover{
-                        background:@mainBGColorHover;
-                    }
-                    &[isFocus="yes"]{
-                        background:@mainBGColorHover;
-                    }
+                    /*选中样式*/
+                    &:hover{background:@mainBGColorHover;}
+                    &[isFocus="yes"]{background:@mainBGColorHover;}
                     & div{
                         height:auto;
                     }
@@ -70,9 +73,13 @@
             min-height:1080px;
             width:100%;
             border-right:2px solid @borderLine;
-            &[isHide="yes"]{display:none}
-            &[isHide="no"]{display:block}
         }
+        /*设置默认 显示隐藏 与 特效*/
+        & div[isShow="yes"]{display:block}
+        & div[isShow="no"]{display:none}
+        & iframe[isShow="yes"]{display:block}
+        & iframe[isShow="no"]{display:none}
+        
     }
 }
 /*各个iframe页*/

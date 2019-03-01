@@ -63,35 +63,54 @@
     <div class="leftBar">
         <iframe src="./leftBar.html" frameborder="0" name="leftBar1" scrolling="no"></iframe>
     </div>
-    <div class="bodyFrame-main flex1 ">
+    <div class="bodyFrame-main flex1 " id="tabs">
         <!-- 标签页 -->
         <div class="tabs">
             <!-- 1 -->
-            <div  LFID="totalPackage" isFocus="yes">
-                <div  class="tabs-main displayFlex" page="0" isFocus="yes">
+            <div  LFID="totalPackage" isShow="yes">
+                <!-- a -->
+                <div  class="tabs-li displayFlex" isFocus="yes">
                     <div class="flex1">
-                        总包合同单
+                        总包合同单1
                     </div>
+                    <svg class="icon " aria-hidden="true">
+                            <use xlink:href="#icon-clear"></use>
+                        </svg>
                 </div>
+                <!-- b -->
+                <div  class="tabs-li displayFlex" isFocus="no">
+                        <div class="flex1">
+                            总包合同单2
+                        </div>
+                        <svg class="icon " aria-hidden="true">
+                                <use xlink:href="#icon-clear"></use>
+                            </svg>
+                    </div>
             </div>
             <!-- 2 -->
-            <div  LFID="totalPackage" isFocus="yes">
-                <div  class="tabs-main displayFlex" page="0" isFocus="yes">
+            <div  LFID="totalPackage" isShow="no">
+                <div  class="tabs-li displayFlex" isFocus="yes">
                     <div class="flex1">
-                        总包合同单
+                        总包合同单3
                     </div>
+                    <svg class="icon " aria-hidden="true">
+                            <use xlink:href="#icon-clear"></use>
+                        </svg>
                 </div>
             </div>
 
         </div>
         <div class="iframes">
             <!-- 第一页 -->
-            <div LFID="" isFocus="yes">
-                <iframe pages="0" isHide="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
+            <div LFID="" isShow="yes">
+                <!-- a -->
+                <iframe isShow="yes" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
+                <!-- b -->
+                <iframe isShow="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
             </div> 
             <!-- 第二页 -->
-            <div LFID="" isFocus="yes">
-                <iframe pages="0" isHide="no" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
+            <div LFID="" isShow="no">
+                <iframe isShow="yes" src="./totalPackage.html" name="mainFrame" frameborder="0" scrolling="no"></iframe>
             </div> 
         </div>
     </div>
@@ -106,11 +125,6 @@
 <script type="text/javascript">
 //当前页面程序入口
 require(['work/host/index/C/main'],function(a){});
-
-
-setInterval(function(){
-    $("iframe[isHide='no']:eq(1)").remove();
-},1000);
 
 </script>
 </html>
