@@ -6,23 +6,18 @@ define([
     "work/public/bodyFrame/c/main",
     "../M/jsgrid",
     "app/tabsFunctions",
+    "app/clearOrMore",
 ], function(
     require,
     PKG,
     $,
     bodyFrame,
     jsgrid,
-    tabsFunctions,
+    TBF,
+    COM
     ) {
         'use strict';
-        /**title导航管理 */
-     
-        // let store = LS.store;
-        // store.set("as","1");`
-   
-        // tabsFunctions.setTabsFun();
-
-
+        
 
 });
 
