@@ -44,7 +44,7 @@ define([
         let url = $(this).attr("url");
         let LFID = PKG.get.urlFromStr(url);
         /*传值给父级index 获取位置   LFDep_CN 一级菜单  LFID_CN 二级菜单*/
-        var LFDep_CN = $(".leftBarFrame-li .leftBarFrame-main[rotatestatus='1'] .flex1").text();
+        var LFDep_CN = $(this).parent().parent().find(".LFDep_CN").text();
         var LFID_CN = $(".leftBarFrame-son a[hover1='1']").text() ;
         let data01 = {
             LFID,

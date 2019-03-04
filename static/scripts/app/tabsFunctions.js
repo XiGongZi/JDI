@@ -137,6 +137,7 @@ define([
             let LFID_CN = data.LFID_CN;
             let tabName_CN = data.tabName_CN;
             let isParentDoc = data.isParentDoc;
+            tabName_CN == ""?tabName_CN = "":tabName_CN = " > "+tabName_CN;
             let str = `
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-dangqianchengshi"></use>
@@ -266,10 +267,12 @@ define([
                     let LFDep_CN = json1.LFDep_CN;
                     let LFID_CN = json1.LFID_CN;
                         LFID = json1.LFID;
+                        let tabName_CN = " > " + $(this,parent.document).text() ;
+                        beforeTabName == LFID ? tabName_CN = "":tabName_CN = tabName_CN ; 
                     let data2 = {
                         LFDep_CN,
                         LFID_CN,
-                        tabName_CN:beforeTabName_CN,
+                        tabName_CN:tabName_CN,
                         isParentDoc,
                     }
                     fun.changePosition(data2);
@@ -280,8 +283,6 @@ define([
                     tabName,
                 }
                 fun.removeT2B2(data0);
-                /**如果就剩一个tab 则清除第三个 */
-                
             });
             $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"] div`,parent.document).click(function(){
                 /**点击的时候显示此tab和iframe */
@@ -291,6 +292,20 @@ define([
                     isParentDoc,
                 }
                 fun.showT2B2(data1);
+                /**获取当前左导航状态 */
+                let json1 = fun.getLeftBarStatus();
+                let LFDep_CN = json1.LFDep_CN;
+                let LFID_CN = json1.LFID_CN;
+                    LFID = json1.LFID;
+                let tabName_CN = $(this,parent.document).text() ;
+                tabName == LFID ? tabName_CN = "":tabName_CN = tabName_CN ; 
+                let data2 = {
+                    LFDep_CN,
+                    LFID_CN,
+                    tabName_CN,
+                    isParentDoc,
+                }
+                fun.changePosition(data2);
             });
             
         },
@@ -318,19 +333,19 @@ define([
                     }
                     fun.insertT2B2(data);
                     fun.bindTabsFun(data);
-                }
+                };
                 let data = {
                     LFID,
                     tabName,
                     isParentDoc,
-                }
+                };
                 fun.showT2B2(data);
                 let data1 = {
                     LFDep_CN,
                     LFID_CN,
                     tabName_CN,
                     isParentDoc,
-                }
+                };
                 fun.changePosition(data1);
 
             });
