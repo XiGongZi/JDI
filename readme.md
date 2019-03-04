@@ -1,3 +1,25 @@
+20190304
+
+1.Fun_C 搭建完毕。
+
+    使用：
+
+    let data = {
+        LFID,tabName,isParentDoc
+    }
+    注：isParentDoc 是是否为iframe内，不填则是在iframe内页使用方法，否（不为空）则是在index页使用
+    bindTabsFun(data);
+
+2.Fun_A 搭建完毕
+
+点击左导航栏任意项，右边显示当前项定位、tab标签组、iframe组（保存状态）
+若是404页，则只修改定位及tab;
+
+
+3.开始制作 Fun_B
+
+
+
 20190219
 
 主体基本完成。

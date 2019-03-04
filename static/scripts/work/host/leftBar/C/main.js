@@ -56,6 +56,7 @@ define([
         /**------------------------------------- ------------------------------------- */
         /**判断T1是否存在此LFID 若不存在 */
         let case0 = $(`#tabs .tabs>div[LFID="${LFID}"]`,parent.document).length;
+        /** 插入T1B1 插入T2B2 给插入T2B2绑定事件*/
         if(case0 == 0){
             /**-------------------------------------*/
             /** 插入T1B1 */
@@ -78,9 +79,18 @@ define([
                 LFID,
                 tabName:LFID,
             }
-            TBF.bindTabsFun(data04)
+            TBF.bindTabsFun(data04);
+            /**插入默认的时候，需要把第一个的红叉去掉 */
+            $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${LFID}"] svg`,parent.document).remove();
         }
 
+        /**如果是 404 */
+        if(LFID == "NotFound" && case0 != 0){
+            $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${LFID}"] div`,parent.document).html(LFID_CN);
+        }
+        /**点击左导航 显示相应组 */
+        let data06 = {LFID};
+        TBF.showT1B1(data06);
 
     });
     $(".leftBarFrame-son a").hover(function(){
@@ -100,19 +110,8 @@ define([
     // });
     // }
 
-
-    
-            /** 给新页签绑定点击事件 测试 */
-            let data04 = {
-                LFID:"totalPackage",
-                tabName:"totalPackage",
-            }
-            TBF.bindTabsFun(data04);
-            let data05 = {
-                LFID:"totalPackage",
-                tabName:"totalPackage2",
-            }
-            TBF.bindTabsFun(data05);
+    /**模拟点击 第一个 */
+    $(".leftBarFrame-son a[hover1='1']").click();
 
 });
 

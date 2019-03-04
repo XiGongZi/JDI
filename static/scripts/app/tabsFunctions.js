@@ -156,9 +156,9 @@ define([
             let LFID = data.LFID;
             let isParentDoc = data.isParentDoc;
             let str1 = `
-            <div  LBP="${LFID}" isShow="yes"></div>
+            <div  LFID="${LFID}" isShow="yes"></div>
             `;
-            if(isParentDoc === undefined){
+            if(isParentDoc == undefined){
                 $("#tabs .tabs",parent.document).append(str1);
                 $("#tabs .iframes",parent.document).append(str1);          
             }else{
@@ -197,18 +197,17 @@ define([
         /** Fun_7 对 T1B1 设置显示隐藏 */
         showT1B1:function(data){
             let LFID = data.LFID;
-            let tabName = data.tabName;
             let isParentDoc = data.isParentDoc;
             if(isParentDoc === undefined){
-                $(`#tabs .tabs>div`,parent.document).attr("isFocus","no");
-                $(`#tabs .tabs>div[LFID="${LFID}"]`,parent.document).attr("isFocus","yes");
-                $(`#tabs .iframes>div`,parent.document).attr("isFocus","no");
-                $(`#tabs .iframes>div[LFID="${LFID}"]`,parent.document).attr("isFocus","yes");           
+                $(`#tabs .tabs>div`,parent.document).attr("isShow","no");
+                $(`#tabs .tabs>div[LFID="${LFID}"]`,parent.document).attr("isShow","yes");
+                $(`#tabs .iframes>div`,parent.document).attr("isShow","no");
+                $(`#tabs .iframes>div[LFID="${LFID}"]`,parent.document).attr("isShow","yes");           
             }else{
-                $(`#tabs .tabs>div`).attr("isFocus","no");
-                $(`#tabs .tabs>div[LFID="${LFID}"]`).attr("isFocus","yes");
-                $(`#tabs .iframes>div`).attr("isFocus","no");
-                $(`#tabs .iframes>div[LFID="${LFID}"]`).attr("isFocus","yes");           
+                $(`#tabs .tabs>div`).attr("isShow","no");
+                $(`#tabs .tabs>div[LFID="${LFID}"]`).attr("isShow","yes");
+                $(`#tabs .iframes>div`).attr("isShow","no");
+                $(`#tabs .iframes>div[LFID="${LFID}"]`).attr("isShow","yes");           
             }
         },
         /** Fun_5 对T2B2 设置显示隐藏*/
@@ -246,19 +245,19 @@ define([
             let LFID = data.LFID;
             let tabName = data.tabName;
             let isParentDoc = data.isParentDoc;
+            //**获得当前选中状态的tabName*/
             let isFocusTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).attr("tabName");
             $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"] svg`,parent.document).click(function(){
-                let isFocusTabName_index = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).index();
-                let beforeTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div:eq(${isFocusTabName_index - 1})]`,parent.document).attr("tabName");
-                //**1.获得当前选中状态的tabName*/
                 //**清除 */
                 let data0 = {
                     LFID,
                     tabName,
                 }
-                fun.removeT2B2();
+                fun.removeT2B2(data0);
                 //**清除后选中状态转移 （只有 当前选中的tabName和所点击的tabName相同时才涉及转移）*/
                 if(isFocusTabName == tabName){
+                    let isFocusTabName_index = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).index();
+                    let beforeTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div:eq(${isFocusTabName_index - 1})]`,parent.document).attr("tabName");
                     //**获得前一个tabName*/
                     let data1 = {
                         tabName:beforeTabName,
@@ -269,6 +268,7 @@ define([
                 }
             });
             $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"] div`,parent.document).click(function(){
+                /**点击的时候显示此tab和iframe */
                 let data1 = {
                     tabName,
                     LFID,
