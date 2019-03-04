@@ -33,6 +33,7 @@ define([
     }
     });
     /* 一级菜单调整*/
+    /** Fun_A */
     $(".leftBarFrame-son a").click(function(){
         /**设置选中样式 */
         $(".leftBarFrame-son a").attr("hover1","0");
@@ -83,7 +84,6 @@ define([
             /**插入默认的时候，需要把第一个的红叉去掉 */
             $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${LFID}"] svg`,parent.document).remove();
         }
-
         /**如果是 404 */
         if(LFID == "NotFound" && case0 != 0){
             $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${LFID}"] div`,parent.document).html(LFID_CN);
@@ -112,6 +112,8 @@ define([
 
     /**模拟点击 第一个 */
     $(".leftBarFrame-son a[hover1='1']").click();
+
+
 
 });
 

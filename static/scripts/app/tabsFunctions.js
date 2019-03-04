@@ -1,7 +1,8 @@
 define([
     'require',
     "jquery",
-], function (require,$) {
+    "app/PKG_0.0.1",
+], function (require,$,PKG) {
     'use strict';
     let fun={
         setTabsFun:function (json){
@@ -246,26 +247,41 @@ define([
             let tabName = data.tabName;
             let isParentDoc = data.isParentDoc;
             //**获得当前选中状态的tabName*/
-            let isFocusTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).attr("tabName");
             $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"] svg`,parent.document).click(function(){
+
+                let isFocusTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).attr("tabName");
+                //**状态转移 （只有 当前选中的tabName和所点击的tabName相同时才涉及转移）*/
+                if(tabName == isFocusTabName){
+                    let isFocusTabName_index = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).index();
+                    let beforeTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div:eq(${isFocusTabName_index - 1})`,parent.document).attr("tabName");
+                    let beforeTabName_CN = $(`#tabs .tabs>div[LFID="${LFID}"]>div:eq(${isFocusTabName_index - 1})`,parent.document).text();
+                    //**获得前一个tabName*/
+                    let data1 = {
+                        tabName:beforeTabName,
+                        LFID,
+                    }
+                    fun.showT2B2(data1);
+                    /**获取当前左导航状态 */
+                    let json1 = fun.getLeftBarStatus();
+                    let LFDep_CN = json1.LFDep_CN;
+                    let LFID_CN = json1.LFID_CN;
+                        LFID = json1.LFID;
+                    let data2 = {
+                        LFDep_CN,
+                        LFID_CN,
+                        tabName_CN:beforeTabName_CN,
+                        isParentDoc,
+                    }
+                    fun.changePosition(data2);
+                }
                 //**清除 */
                 let data0 = {
                     LFID,
                     tabName,
                 }
                 fun.removeT2B2(data0);
-                //**清除后选中状态转移 （只有 当前选中的tabName和所点击的tabName相同时才涉及转移）*/
-                if(isFocusTabName == tabName){
-                    let isFocusTabName_index = $(`#tabs .tabs>div[LFID="${LFID}"]>div[isFocus="yes"]`,parent.document).index();
-                    let beforeTabName = $(`#tabs .tabs>div[LFID="${LFID}"]>div:eq(${isFocusTabName_index - 1})]`,parent.document).attr("tabName");
-                    //**获得前一个tabName*/
-                    let data1 = {
-                        tabName:beforeTabName,
-                        LFID,
-                        isParentDoc,
-                    }
-                    fun.showT2B2(data1);
-                }
+                /**如果就剩一个tab 则清除第三个 */
+                
             });
             $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"] div`,parent.document).click(function(){
                 /**点击的时候显示此tab和iframe */
@@ -277,6 +293,61 @@ define([
                 fun.showT2B2(data1);
             });
             
+        },
+        bindAddNewTab:function(data){
+            let add = data.add;
+            let tabName = data.tabName;
+            let url = data.url;
+            let tabName_CN = data.tabName_CN;
+            let isParentDoc = data.isParentDoc;
+            $(add).click(function(){
+                /**获取当前左导航状态 */
+                let json1 = fun.getLeftBarStatus();
+                let LFDep_CN = json1.LFDep_CN;
+                let LFID_CN = json1.LFID_CN;
+                let LFID = json1.LFID;
+                /**判断T2是否存在此tabName */
+                let thisTabNum = $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`,parent.document).length;
+                if(thisTabNum == 0){
+                    let data = {
+                        LFID,
+                        tabName,
+                        tabName_CN,
+                        isParentDoc,
+                        url,
+                    }
+                    fun.insertT2B2(data);
+                    fun.bindTabsFun(data);
+                }
+                let data = {
+                    LFID,
+                    tabName,
+                    isParentDoc,
+                }
+                fun.showT2B2(data);
+                let data1 = {
+                    LFDep_CN,
+                    LFID_CN,
+                    tabName_CN,
+                    isParentDoc,
+                }
+                fun.changePosition(data1);
+
+            });
+
+        },
+        getLeftBarStatus:function(){
+            /**获取当前左导航状态 */
+            let LFDep_CN = $(`iframe[name="leftBar1"]`,parent.document).contents().find(".leftBarFrame a[hover1='1']").parent().parent().find(".LFDep_CN").text();
+            let LFID_CN = $(`iframe[name="leftBar1"]`,parent.document).contents().find(".leftBarFrame a[hover1='1']").text();
+            let LFID_url = $(`iframe[name="leftBar1"]`,parent.document).contents().find(".leftBarFrame a[hover1='1']").attr("url");
+            let LFID = PKG.get.urlFromStr(LFID_url);
+            let json = {
+                LFDep_CN,
+                LFID_CN,
+                LFID
+            }
+            return json;
         }
     }
     return fun;

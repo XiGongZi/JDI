@@ -14,7 +14,7 @@ define([
         bodyFrame,
         jsgrid,
         COM,
-        tabFunctions,
+        TBF,
         login
     ) {
     'use strict';
@@ -120,6 +120,28 @@ define([
         // }
 
 
+            // add :".需要绑定的节点",
+            // tabName :"页签ID(代码内标记)",
+            // url :"url地址，可带参数",
+            // tabName_CN :"页签名（展示出来的页签名）",
+
+        let data = {
+            add :".showAddNewCon",
+            tabName :"addNewContract",
+            url :"./addNewContract.html",
+            tabName_CN :"添加新合同",
+        }
+        /**添加新页签事件 */
+        TBF.bindAddNewTab(data);
+
+
+        let data1 = {
+            add :".showAddNewCon2",
+            tabName :"addNewContract2",
+            url :"./addNewContract.html",
+            tabName_CN :"添加新合同2",
+        }
+        TBF.bindAddNewTab(data1);
 });
 
 
