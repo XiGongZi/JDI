@@ -1,3 +1,42 @@
+置顶：
+
+tabSys 的一些 api  引用后使用模块内方法：
+
+
+define([
+    'require',
+    "app/tabsFunctions",
+], function(
+        require,
+        TBF,
+    ) {
+            'use strict';
+1.新增页签 
+            let data1 = {
+                add :".需要绑定的节点",
+                tabName :"页签ID(代码内标记)",
+                url :"url地址，可带参数",
+                tabName_CN :"页签名（展示出来的页签名）",
+            }
+
+            TBF.bindAddNewTab(data1);
+
+2.关闭页签 
+
+            TBF.closeTab();
+
+});
+
+
+
+
+
+
+
+
+
+
+
 20190304
 
 1.Fun_C 搭建完毕。
@@ -16,7 +55,11 @@
 若是404页，则只修改定位及tab;
 
 
-3.开始制作 Fun_B
+3.Fun_B  Done
+
+
+
+
 
 
 
