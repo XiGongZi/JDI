@@ -11,15 +11,17 @@ define([
         TBF,
     ) {
             'use strict';
+            
 1.新增页签 
-            let data1 = {
-                add :".需要绑定的节点",
-                tabName :"页签ID(代码内标记)",
-                url :"url地址，可带参数",
-                tabName_CN :"页签名（展示出来的页签名）",
-            }
 
-            TBF.bindAddNewTab(data1);
+let data1 = {
+    add :".需要绑定的节点",
+    tabName :"页签ID(代码内标记)",
+    url :"url地址，可带参数",
+    tabName_CN :"页签名（展示出来的页签名）",
+}
+
+TBF.bindAddNewTab(data1);
 
 2.关闭页签 
 

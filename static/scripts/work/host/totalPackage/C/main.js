@@ -3,7 +3,8 @@ define([
     "app/PKG_0.0.1",
     "jquery",
     "work/public/bodyFrame/c/main",
-    "../M/jsgrid",
+    // "../M/jsgrid",
+    "app/jsgridConfig",
     "app/clearOrMore",
     "app/tabsFunctions",
     "work/public/alert/c/main",
@@ -18,12 +19,10 @@ define([
         login
     ) {
     'use strict';
-    
            // add :".需要绑定的节点",
             // tabName :"页签ID(代码内标记)",
             // url :"url地址，可带参数",
             // tabName_CN :"页签名（展示出来的页签名）",
-
             let data = {
                 add :".showAddNewCon",
                 tabName :"addNewContract",
@@ -32,8 +31,6 @@ define([
             }
             /**添加新页签事件 */
             TBF.bindAddNewTab(data);
-    
-    
             let data1 = {
                 add :".showAddNewCon2",
                 tabName :"addNewContract2",
@@ -41,8 +38,6 @@ define([
                 tabName_CN :"添加新合同2",
             }
             TBF.bindAddNewTab(data1);
-
-
         let json4 = {
             "add":".contractN0",
             "str":`
@@ -92,12 +87,11 @@ define([
                     `
         }
         login.main.add(json4)
-
         $(".closeTabs").click(function(){
-            
             /**关闭当前页签 */
             TBF.closeTab();
         });
+        jsgrid("1");
      
 });
 
