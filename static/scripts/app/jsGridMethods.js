@@ -29,13 +29,11 @@ define([
             return arr;
         },
         changeForm2:function(data){
-            console.log(data)
             let value = null;
             let value2 = {};
             value2.fields = data.fields;
             value2.dataList= data.dataList;
             value = fun.changeForm(value2);
-            console.log(value)
             data.dataList= value;
             fun.useTable_addInfo(data);
         },
@@ -50,7 +48,6 @@ define([
                     if(data.resultFlag){
                         json.dataList = data.dataList 
                         fun.changeForm2(json);
-                        console.table(data.dataList);
                     }else{
                         console.log("0.0");
                     }
@@ -60,13 +57,11 @@ define([
                     try {
                         console.log("请求失败")
                     }catch(e){
-                        console.log("请求失败!!!!!!")
                     }
                 }
             });
         },
         deleteInfo:function(json){
-            
             $.ajax({
                 type: 'post',
                 url: json.url,
@@ -75,19 +70,38 @@ define([
                 dataType: "json",
                 success: function(data){
                     if(data.resultFlag){
-                        json.dataList = data.dataList 
-                        fun.changeForm2(json);
-                        console.table(data.dataList);
+                        console.table(data);
                     }else{
                         console.log("0.0");
                     }
-                    // useTable_addInfo(JSON.parse(data));
                 },
                 error:function(){
                     try {
                         console.log("请求失败")
                     }catch(e){
-                        console.log("请求失败!!!!!!")
+                    }
+                }
+            });
+            console.log("deleted");
+        },
+        addInfo:function(json){
+            $.ajax({
+                type: 'post',
+                url: json.url,
+                data: json.data,
+                cache: false,
+                dataType: "json",
+                success: function(data){
+                    if(data.resultFlag){
+                        console.table(data);
+                    }else{
+                        console.log("0.0");
+                    }
+                },
+                error:function(){
+                    try {
+                        console.log("请求失败")
+                    }catch(e){
                     }
                 }
             });
@@ -96,7 +110,6 @@ define([
         useTable_addInfo:function(json){
             // console.log(typeof(json));
             //表内容
-            console.log(json)
             let dataInfo = json.dataList;
             let fields = json.fields;
             // var dataInfo = useTable_addInfo_changeForm(json.managerList);

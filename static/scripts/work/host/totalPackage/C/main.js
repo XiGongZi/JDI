@@ -28,8 +28,8 @@ define([
             // tabName_CN :"页签名（展示出来的页签名）",
             let data = {
                 add :".showAddNewCon",
-                tabName :"addNewContract",
-                url :"./addNewContract.html",
+                tabName :"addNewContract_totalPackage",
+                url :"./addNewContract_totalPackage.html",
                 tabName_CN :"添加新合同",
             }
             /**添加新页签事件 */
@@ -98,13 +98,7 @@ define([
       
        
         
-        let dele = {}
-        dele.data= {FID:2};
-        dele.url = "http://192.168.1.100/stockWeb/spactDelete";
-        let isDelete = confirm("确定删除？");
-        if(isDelete){
-            JGM.deleteInfo(dele);
-        }
+
 
 
 
@@ -114,7 +108,7 @@ define([
         /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
         JGConfig.fields = [
             { name: "id",PreName:"fid", type: "number", readOnly: true, width:10,},
-            { name: "合同编号",PreName:"fno", type: "number", readOnly: true, width:50,  },
+            { name: "合同编号",PreName:"fno", type: "number", readOnly: true, width:70,  },
             { name: "项目名称",PreName:"fpeojectname", type: "text", width:100,  },
             { name: "项目地址",PreName:"faddress", type: "text", width:100,  },
             { name: "甲方名称",PreName:"funitname", type: "text", width:100,  },
@@ -130,19 +124,27 @@ define([
             // 删
             $(".jsgrid-delete-button").off("click");
             $(".jsgrid-delete-button").click(function(){
-                var sampleId = $(this).parents("tr").find("td").eq(0).text();
-                // JGM.deleteInfo(sampleId);
+                var Id = $(this).parents("tr").find("td").eq(0).text();
+                console.log(Id)
+                let dele = {}
+                dele.data= {fid:Id};
+                dele.url = "http://192.168.1.100/stockWeb/spactDelete";
+                let isDelete = confirm("确定删除？");
+                if(isDelete){
+                    JGM.deleteInfo(dele);
+                    window.location.reload();
+                }
             });
             //改
             $(".jsgrid-edit-button").click(function(){
                 // //获取id
                 var a =  $(this).parents("tr").find("td").eq(0).text();
-                window.location.href = ctx +"/managerSave.jsp?managerId="+a;
+                // window.location.href = ctx +"/managerSave.jsp?managerId="+a;
                 // managerSave.html
             });
             $(".jsgrid-insert-mode-button").off("click");
             $(".jsgrid-insert-mode-button").on("click",function(){
-                window.location.href = ctx +"/managerSave.jsp";
+                // window.location.href = ctx +"/managerSave.jsp";
             });
             if ( $("#jsGrid").html() != null ){
                 //调分页的高度
@@ -153,9 +155,5 @@ define([
                 $("#changePage").css("top",zhi3);
             }
         }
-        console.log(JGM.getInfo(JGConfig));
-
-
-
-
+        JGM.getInfo(JGConfig);
 });

@@ -199,7 +199,7 @@ define([
                     LFID_CN,
                     tabName_CN,
                     isParentDoc,
-                }
+                };
                 fun.changePosition(data2);
             });
             
@@ -242,7 +242,6 @@ define([
                     isParentDoc,
                 };
                 fun.changePosition(data1);
-
             });
 
         },
