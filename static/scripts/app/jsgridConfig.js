@@ -14,9 +14,7 @@ define([
         JGM
     ) {
     'use strict';
-    
     let jsgridConfig = function(data){
-        changePageJSPost(1);
         function changePageJSPost(page){
             // 如何处理请求？  参数：1、页数，2、数据类型
                 // 1.处理默认数据
@@ -456,7 +454,7 @@ define([
                 obj[a6] = n.a6;
                 arr.push(obj);
             });
-            console.log(arr)
+            // console.log(arr)
             return arr;
         }
     }

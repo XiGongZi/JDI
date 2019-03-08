@@ -1,0 +1,123 @@
+
+
+[{
+    "faddress": "辽宁省沈阳市于洪区",
+    "fdate": {
+        "date": 8,
+        "day": 5,
+        "hours": 9,
+        "minutes": 39,
+        "month": 2,
+        "seconds": 59,
+        "time": 1552009199000,
+        "timezoneOffset": -480,
+        "year": 119
+    },
+    "ffile": "",
+    "fid": 1,
+    "fmanager": "小明",
+    "fmoney": 1000000,
+    "fno": "20190308094416",
+    "fnote": "已完成",
+    "fpeojectname": "桥梁1",
+    "fphone": "15524349999",
+    "fstate": "竣工",
+    "ftax": 0,
+    "funitname": "111"
+}, {
+    "faddress": "辽宁省沈阳市和平区",
+    "fdate": {
+        "date": 8,
+        "day": 5,
+        "hours": 9,
+        "minutes": 40,
+        "month": 2,
+        "seconds": 4,
+        "time": 1552009204000,
+        "timezoneOffset": -480,
+        "year": 119
+    },
+    "ffile": "",
+    "fid": 2,
+    "fmanager": "小明",
+    "fmoney": 1000000,
+    "fno": "20190308094417",
+    "fnote": "已完成",
+    "fpeojectname": "桥梁2",
+    "fphone": "15524349999",
+    "fstate": "竣工",
+    "ftax": 0,
+    "funitname": "222"
+}, {
+    "faddress": "辽宁省沈阳市沈河区",
+    "fdate": {
+        "date": 8,
+        "day": 5,
+        "hours": 9,
+        "minutes": 40,
+        "month": 2,
+        "seconds": 7,
+        "time": 1552009207000,
+        "timezoneOffset": -480,
+        "year": 119
+    },
+    "ffile": "",
+    "fid": 3,
+    "fmanager": "小明",
+    "fmoney": 1000000,
+    "fno": "20190308094418",
+    "fnote": "已完成",
+    "fpeojectname": "桥梁3",
+    "fphone": "15524349999",
+    "fstate": "竣工",
+    "ftax": 0,
+    "funitname": "333"
+}, {
+    "faddress": "辽宁省沈阳市沈北新区",
+    "fdate": {
+        "date": 8,
+        "day": 5,
+        "hours": 9,
+        "minutes": 40,
+        "month": 2,
+        "seconds": 10,
+        "time": 1552009210000,
+        "timezoneOffset": -480,
+        "year": 119
+    },
+    "ffile": "",
+    "fid": 4,
+    "fmanager": "小明",
+    "fmoney": 1000000,
+    "fno": "20190308094419",
+    "fnote": "付款50%",
+    "fpeojectname": "桥梁4",
+    "fphone": "15524349999",
+    "fstate": "施工",
+    "ftax": 0,
+    "funitname": "444"
+}, {
+    "faddress": "辽宁省沈阳市大东区",
+    "fdate": {
+        "date": 8,
+        "day": 5,
+        "hours": 9,
+        "minutes": 40,
+        "month": 2,
+        "seconds": 12,
+        "time": 1552009212000,
+        "timezoneOffset": -480,
+        "year": 119
+    },
+    "ffile": "",
+    "fid": 5,
+    "fmanager": "张三",
+    "fmoney": 9999999,
+    "fno": "20190308094420",
+    "fnote": "还欠总款50%",
+    "fpeojectname": "桥梁5",
+    "fphone": "15524340000",
+    "fstate": "竣工",
+    "ftax": 0,
+    "funitname": "555"
+}]
