@@ -28,8 +28,8 @@ define([
             // tabName_CN :"页签名（展示出来的页签名）",
             let data = {
                 add :".showAddNewCon",
-                tabName :"addNewContract_totalPackage",
-                url :"./addNewContract_totalPackage.html",
+                tabName :"spact_addContract",
+                url :"./spact_addContract.html",
                 tabName_CN :"添加新合同",
             }
             /**添加新页签事件 */
@@ -91,16 +91,11 @@ define([
         login.main.add(json4)
         $(".closeTabs").click(function(){
             /**刷新父下另一个框架iframe */
-            $(`#tabs .iframes>div[LFID="totalPackage"]>iframe[tabName="totalPackage"]`,parent.document)[0].contentWindow.location.reload();
+            $(`#tabs .iframes>div[LFID="spact"]>iframe[tabName="spact"]`,parent.document)[0].contentWindow.location.reload();
             /**关闭当前页签 */
             TBF.closeTab();
         });
       
-       
-        
-
-
-
 
         let JGConfig = {};
         JGConfig.data = {page:1};
@@ -118,6 +113,7 @@ define([
             { name: "状态",PreName:"fstate", type: "text", width:30,  },
             {type: "control",width:70,}
         ];
+        
         //自定义 绑定事件(非原生)
         JGConfig.fun = function (){
             $(".jsgrid-insert-button").off("click");

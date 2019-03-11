@@ -25,7 +25,7 @@ define([
 
         // let json5 = {
         //     add:".closeTabs",
-        //     LBID:"totalPackage",
+        //     LBID:"spact",
         //     tabName:"addContract"
         // }
         
