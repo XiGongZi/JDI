@@ -3,22 +3,21 @@ define([
     "app/PKG_0.0.1",
     "jquery",
     "work/public/bodyFrame/c/main",
-    // "../M/jsgrid",
-    // "app/jsgridConfig",
     "app/clearOrMore",
     "app/tabsFunctions",
     "work/public/alert/c/main",
     "app/jsGridMethods",
+    "app/changePage"
 ], function( 
         require,
         PKG,
         $,
         bodyFrame,
-        // jsgrid,
         COM,
         TBF,
         login,
         JGM,
+        CP,
     ) {
     'use strict';
         // console.log(1);
@@ -26,6 +25,9 @@ define([
             // tabName :"页签ID(代码内标记)",
             // url :"url地址，可带参数",
             // tabName_CN :"页签名（展示出来的页签名）",
+        let LFID = "spact";
+        let tabName = "spact";
+        let LFIDAndTabName = LFID + tabName;
             let data = {
                 add :".showAddNewCon",
                 tabName :"spact_addContract",
@@ -98,7 +100,9 @@ define([
       
 
         let JGConfig = {};
-        JGConfig.data = {page:1};
+        JGConfig.data = {page:2};
+        JGConfig.LFID = LFID;
+        JGConfig.tabName = tabName;
         JGConfig.url = "http://192.168.1.100/stockWeb/spactList";
         /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
         JGConfig.fields = [
@@ -113,9 +117,12 @@ define([
             { name: "状态",PreName:"fstate", type: "text", width:30,  },
             {type: "control",width:70,}
         ];
-        
-        //自定义 绑定事件(非原生)
-        JGConfig.fun = function (){
+
+        let funName = parent.window.JGConfigFuns;
+        parent.window.JGConfigFuns = funName || {};
+        //将方法存入window对象中
+        let funsAttrName = LFID + tabName;
+        parent.window.JGConfigFuns[funsAttrName] = function (){
             $(".jsgrid-insert-button").off("click");
             // 删
             $(".jsgrid-delete-button").off("click");
@@ -151,5 +158,35 @@ define([
                 $("#changePage").css("top",zhi3);
             }
         }
+        // 直接按配置请求
         JGM.getInfo(JGConfig);
+        /**将当前表配置信息存入sessionStorage */
+        let seesionInfoName = LFIDAndTabName + "JGConfig";
+        sessionStorage.removeItem(seesionInfoName);
+        sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
+        
+        
+
+
+
+        // for(let a = 3;a <= 10;a ++){
+        //     let JGConfig = {};
+        //     JGConfig.data = {
+        //         "faddress": "辽宁省沈阳市于洪区",
+        //         "ffile": "",
+        //         "fmanager": "小明"+a,
+        //         "fmoney": 1000000,
+        //         "fno": "20190308094416",
+        //         "fnote": "已完成",
+        //         "fpeojectname": "桥梁3"+a,
+        //         "fphone": "15524349991",
+        //         "fstate": "竣工",
+        //         "ftax": 0,
+        //         "funitname": "测试"+a,
+        //     };
+        //     JGConfig.url = "http://192.168.1.100/stockWeb/spactSave";
+        //     JGM.addInfo(JGConfig);
+        // }
+
+
 });

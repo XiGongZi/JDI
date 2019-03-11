@@ -46,7 +46,11 @@ define([
                 dataType: "json",
                 success: function(data){
                     if(data.resultFlag){
+                        console.log(data)
                         json.dataList = data.dataList 
+                        // json.count = data.totalPage;
+                        json.count = "6";
+                        json.page = "1";
                         fun.changeForm2(json);
                     }else{
                         console.log("0.0");
@@ -108,16 +112,21 @@ define([
             console.log("deleted");
         },
         useTable_addInfo:function(json){
-            // console.log(typeof(json));
             //表内容
             let dataInfo = json.dataList;
             let fields = json.fields;
+            let LFID = json.LFID;
+            let tabName = json.tabName;
+            let funName = LFID + tabName;
             // var dataInfo = useTable_addInfo_changeForm(json.managerList);
             // 填入页数信息   json.pagesInfo 为页数信息
             let pagesInfo = {
                 "count":json.count,
                 "page":json.page,
             }
+            let CP = require("app/changePage");
+            CP.show(pagesInfo);
+            console.log(pagesInfo)
             //填入表内容、表相关配置、相关元素事件
             var jsGridInfo = {
                 heading:true,
@@ -139,9 +148,8 @@ define([
                 fields,
             }
             $("#jsGrid").jsGrid(jsGridInfo);
-            json.fun();
+            parent.window.JGConfigFuns[funName]();
         },
-
    }
    return fun;
 });

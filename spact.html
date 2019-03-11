@@ -23,9 +23,10 @@
     <link rel="shortcut icon " type="images/x-icon" href="./favicon.ico">
     <link rel="stylesheet/less" type="text/css" href="./static/scripts/work/host/index/V/main.less" />
     <script src="./static/scripts/lib/less/dist/less.min.js" ></script>
+     <!-- <script>less.watch();</script> -->
     <script src="./static/scripts/app/iconfont.js" ></script>
       <style>
-        /* body *{box-sizing: border-box;border:1px solid blue} */
+        body *{box-sizing: border-box;border:1px solid blue}
         </style>
         <script>
             var ctx = "";
@@ -91,25 +92,25 @@
                 <!-- 分页开始 注：分页内容，要和此div，main.css中相关样式，main.js相关js配合使用 20181029-->
                 <div id="changePage" class="displayFlex">
                         <div class="flex1"></div>
-                        <div class="title1" pages="1" allPage="1">
-                            共有 <b style="color: #A60427">10</b> 个记录 每页显示10条，本页0条 0/0页
+                        <div class="title1" pages="1" allPage="6">
+                            
                         </div>
-                        <div class="turn Left cursoPoin thisMainBG thisMainBGColor">
+                        <div class="turnLeft hasHand thisMainBGColor">
                             上一页</div>
                         <div class="pages">
                             <!-- checkedStau 为选中样式，点击时先取消所有此css，再给所点击的li加上此样式 -->
                             <!-- <li pages="1" class="floatLeft checkedStau">1</li> -->
                         </div>
                         <div
-                            class="turn Right clearBoth cursoPoin thisMainBG thisMainBGColor">
+                            class="turnRight clearBoth hasHand thisMainBGColor">
                             下一页</div>
                         <div class="space10px"></div>
-                        <div class="input cursoPoin">
+                        <div class="input hasHand">
                             <input type="text">
                         </div>
                         <div class="space10px"></div>
                         <!-- 跳转按钮 -->
-                        <div class="jumpToPage button cursoPoin thisMainBG thisMainBGColor">跳转</div>
+                        <div class="jumpToPage button hasHand thisMainBGColor">跳转</div>
                         <div class="space40px"></div>
                     </div>
                     <!-- 分页结束 -->

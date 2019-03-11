@@ -77,15 +77,15 @@ define([
             JGConfig.data = {
                 "faddress": "辽宁省沈阳市于洪区",
                 "ffile": "",
-                "fmanager": "小明",
+                "fmanager": "小明3",
                 "fmoney": 1000000,
                 "fno": "20190308094416",
                 "fnote": "已完成",
-                "fpeojectname": "桥梁1",
-                "fphone": "15524349999",
+                "fpeojectname": "桥梁3",
+                "fphone": "15524349991",
                 "fstate": "竣工",
                 "ftax": 0,
-                "funitname": "测试名称3",
+                "funitname": "测试名称4",
             };
             JGConfig.url = "http://192.168.1.100/stockWeb/spactSave";
             JGM.addInfo(JGConfig);
@@ -95,6 +95,8 @@ define([
             TBF.closeTab();
         });
       
-
+        // var data2 = sessionStorage.getItem('spactJGConfig');
+        // console.log(JSON.parse(data2))
+        // console.log("111")
 
 });
