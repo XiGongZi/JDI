@@ -124,6 +124,7 @@ define([
             let pagesInfo = {
                 "count":json.count,
                 "page":json.page,
+                "urlGet":json.urlGet,
             }
             let CP = require("app/changePage");
             CP.show(pagesInfo);

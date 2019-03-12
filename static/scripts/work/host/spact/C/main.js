@@ -28,7 +28,7 @@ define([
         let LFID = "spact";
         let tabName = "spact";
         let LFIDAndTabName = LFID + tabName;
-        var urlAdd = "http://192.168.1.100:8080/stockWeb/spactList";
+        var urlGet = "http://192.168.1.100:8080/stockWeb/spactList";
         var urlDelete = "http://192.168.1.100:8080/stockWeb/spactDelete";
             let data = {
                 add :".showAddNewCon",
@@ -105,7 +105,7 @@ define([
         JGConfig.data = {page:1};
         JGConfig.LFID = LFID;
         JGConfig.tabName = tabName;
-        JGConfig.url = urlAdd ;
+        JGConfig.url = urlGet ;
         /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
         JGConfig.fields = [
             { name: "id",PreName:"fid", type: "number", readOnly: true, width:10,},
@@ -161,24 +161,23 @@ define([
         }
 
         /**将当前表配置信息存入sessionStorage */
-
         let funName = parent.window.JGConfig;
         parent.window.JGConfig = funName || {};
-
-
-        let funsAttrName = LFID + tabName;
-        parent.window.JGConfig[funsAttrName] = JGConfig;
-
+        parent.window.JGConfig[LFIDAndTabName] = JGConfig;
 
         // 直接按配置请求
         JGM.getInfo(JGConfig);
         // let seesionInfoName = LFIDAndTabName + "JGConfig";
         // sessionStorage.removeItem(seesionInfoName);
         // sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
-        
-        
-
-
+        setTimeout(function(){
+            let data = {
+                page:"1",
+                count:"6",
+                urlGet,
+            }
+            CP.show(data);
+        },5000);
 
         // for(let a = 3;a <= 10;a ++){
         //     let JGConfig = {};
