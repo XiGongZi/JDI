@@ -26,6 +26,7 @@ define([
                 });
                     arr.push(obj)
             });
+            console.log(arr)
             return arr;
         },
         changeForm2:function(data){
@@ -104,7 +105,7 @@ define([
                 },
                 error:function(){
                     try {
-                        console.log("请求失败")
+                        console.log("请求失败");
                     }catch(e){
                     }
                 }
@@ -148,7 +149,8 @@ define([
                 fields,
             }
             $("#jsGrid").jsGrid(jsGridInfo);
-            parent.window.JGConfigFuns[funName]();
+            console.log(parent.window.JGConfig)
+            parent.window.JGConfig[funName].funs();
         },
    }
    return fun;

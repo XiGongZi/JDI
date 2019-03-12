@@ -28,6 +28,8 @@ define([
         let LFID = "spact";
         let tabName = "spact";
         let LFIDAndTabName = LFID + tabName;
+        var urlAdd = "http://192.168.1.100:8080/stockWeb/spactList";
+        var urlDelete = "http://192.168.1.100:8080/stockWeb/spactDelete";
             let data = {
                 add :".showAddNewCon",
                 tabName :"spact_addContract",
@@ -100,10 +102,10 @@ define([
       
 
         let JGConfig = {};
-        JGConfig.data = {page:2};
+        JGConfig.data = {page:1};
         JGConfig.LFID = LFID;
         JGConfig.tabName = tabName;
-        JGConfig.url = "http://192.168.1.100/stockWeb/spactList";
+        JGConfig.url = urlAdd ;
         /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
         JGConfig.fields = [
             { name: "id",PreName:"fid", type: "number", readOnly: true, width:10,},
@@ -118,11 +120,10 @@ define([
             {type: "control",width:70,}
         ];
 
-        let funName = parent.window.JGConfigFuns;
-        parent.window.JGConfigFuns = funName || {};
+        // let funName = parent.window.JGConfigFuns;
+        // parent.window.JGConfigFuns = funName || {};
         //将方法存入window对象中
-        let funsAttrName = LFID + tabName;
-        parent.window.JGConfigFuns[funsAttrName] = function (){
+        JGConfig.funs = function (){
             $(".jsgrid-insert-button").off("click");
             // 删
             $(".jsgrid-delete-button").off("click");
@@ -131,14 +132,14 @@ define([
                 console.log(Id)
                 let dele = {}
                 dele.data= {fid:Id};
-                dele.url = "http://192.168.1.100/stockWeb/spactDelete";
+                dele.url = urlDelete;
                 let isDelete = confirm("确定删除？");
                 if(isDelete){
                     JGM.deleteInfo(dele);
                     window.location.reload();
                 }
             });
-            //改
+            // 改
             $(".jsgrid-edit-button").click(function(){
                 // //获取id
                 var a =  $(this).parents("tr").find("td").eq(0).text();
@@ -158,12 +159,22 @@ define([
                 $("#changePage").css("top",zhi3);
             }
         }
+
+        /**将当前表配置信息存入sessionStorage */
+
+        let funName = parent.window.JGConfig;
+        parent.window.JGConfig = funName || {};
+
+
+        let funsAttrName = LFID + tabName;
+        parent.window.JGConfig[funsAttrName] = JGConfig;
+
+
         // 直接按配置请求
         JGM.getInfo(JGConfig);
-        /**将当前表配置信息存入sessionStorage */
-        let seesionInfoName = LFIDAndTabName + "JGConfig";
-        sessionStorage.removeItem(seesionInfoName);
-        sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
+        // let seesionInfoName = LFIDAndTabName + "JGConfig";
+        // sessionStorage.removeItem(seesionInfoName);
+        // sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
         
         
 
@@ -184,7 +195,7 @@ define([
         //         "ftax": 0,
         //         "funitname": "测试"+a,
         //     };
-        //     JGConfig.url = "http://192.168.1.100/stockWeb/spactSave";
+        //     JGConfig.url = "http://192.168.1.100:8080/stockWeb/spactSave";
         //     JGM.addInfo(JGConfig);
         // }
 

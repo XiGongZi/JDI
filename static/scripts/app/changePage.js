@@ -23,6 +23,7 @@ define([
                 let jgg = require("app/jsGridMethods");
                 jgg.getInfo(body);
             },
+            /** 输入 page 、 count       根据page请求相应界面，同时控制动画效果。 目前需要检测css不显示的问题 */
             show:function(data){
                 let page = Number(data.page);
                 let count = Number(data.count);
@@ -42,8 +43,6 @@ define([
                     $("#changePage .pages").html(str);
                     $(`#changePage .pages li[pages="${page}"]`).attr("isFocus","yes");
                 }
-
-                
             },
             
    }

@@ -1,4 +1,7 @@
       
+    body *{
+        box-sizing: border-box;border:1px solid blue;
+    }
     /* 分页CSS */
     #changePage{
         font-size: 16px;
@@ -12,8 +15,6 @@
         margin-bottom:10px;
         // position: absolute;
         // top:780px;
-        /* border:1px solid red; */
-
         & .turn{
             width:80px;
             height:40px;
@@ -34,7 +35,7 @@
             height:40px;
             box-sizing: border-box;
             border:1px solid #369762;
-            background:rgba(0,0,0,0);
+            background:#fff;
             border-radius:4px;
             color:#369762;
             font-size: 16px;
@@ -46,7 +47,7 @@
             }
         & .button:hover{color:#fff}
         & .pages{
-            background:#000;
+            background:#fff;
             width:240px;
             overflow: hidden;
             & li{
@@ -56,16 +57,13 @@
                 height:40px;
                 margin-left:2px;
                 box-sizing: border-box;
-                background:#000;
+                background:#fff;
                 border:1px solid #369762;
-                &:hover{
-                    background:#000;
+                &:hover,&[isFocus="yes"]{
+                    background:#369762;
                     color:#fff;
                 }
-            }
-            & li[pages="1"]{
-                background:#000;
-                color:#fff;
+                
             }
         }
 

@@ -87,14 +87,13 @@ define([
                 "ftax": 0,
                 "funitname": "测试名称4",
             };
-            JGConfig.url = "http://192.168.1.100/stockWeb/spactSave";
+            JGConfig.url = "http://192.168.1.100:8080/stockWeb/spactSave";
             JGM.addInfo(JGConfig);
-
             $(`#tabs .iframes>div[LFID="spact"]>iframe[tabName="spact"]`,parent.document)[0].contentWindow.location.reload();
             /**关闭当前页签 */
             TBF.closeTab();
         });
-      
+        
         // var data2 = sessionStorage.getItem('spactJGConfig');
         // console.log(JSON.parse(data2))
         // console.log("111")
