@@ -93,8 +93,6 @@ define([
                                 
                                 </div>
                             </div>
-            
-            
                     </div>
             </div>
                     `
