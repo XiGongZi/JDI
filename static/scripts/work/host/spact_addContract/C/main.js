@@ -21,55 +21,6 @@ define([
         JGM,
     ) {
     'use strict';
-        // let json4 = {
-        //     "add":".contractN0",
-        //     "str":`
-        //     <div class="loginMax" style="display:none;">
-        //         <div class="blackBG">
-        //         </div>
-        //             <div class="body">
-        //                     <div class="bodyFrame1 displayFlex">
-        //                         <div class="bodyFrame1-main flex1 ">
-        //                                 <!-- 此处存放众搜索选项 -->
-        //                             <!-- 添加  ---------------------------------------------------------------------->
-        //                             <!-- 添加 -->
-        //                             <div class="addNew" style="display:block">
-        //                                     <!-- 此处存放众搜索选项 -->
-        //                                     <div class="space40px"></div>
-        //                                     <div class="case">
-        //                                         <!-- 每一个筛选条件组件 -->
-        //                                         <div class="">
-        //                                             <div class="case-name">合同编号:</div>
-        //                                             <div class="case-input">
-        //                                                 <input type="text">
-        //                                             </div>
-        //                                             <div class="case-icon">
-        //                                                 <svg class="icon" aria-hidden="true" status="0">
-        //                                                     <use xlink:href="#icon-clear"></use>
-        //                                                 </svg>
-        //                                             </div>
-        //                                             <span class="clear"></span>
-        //                                         </div>
-        //                                     </div>
-        //                                     <!-- 此处为搜索选项 -->
-        //                                     <div class="button">
-        //                                         <div>确认</div>
-        //                                     </div>
-        //                                     <div class="clearBoth"></div>
-        //                                 </div>
-        //                             <!-- 表格 -->
-        //                             <div class="space10px"></div>
-                                
-        //                         </div>
-        //                     </div>
-            
-            
-        //             </div>
-        //     </div>
-        //             `
-        // }
-        // login.main.add(json4)
-
         $(".closeTabs").click(function(){
             /**刷新父下另一个框架iframe */
                     /**存 */
@@ -88,14 +39,22 @@ define([
                 "funitname": "测试名称4",
             };
             JGConfig.url = "http://192.168.1.100:8080/stockWeb/spactSave";
-            JGM.addInfo(JGConfig);
+
+            // 获得数据
+            let data3 = {add:".bodyFrame1-main"}
+            let dd = PKG.judge.pickNull(TBF.getCase(data3));
+            data3.body = dd;
+            TBF.searchTips(data3);
+
+            // JGM.addInfo(JGConfig);
             $(`#tabs .iframes>div[LFID="spact"]>iframe[tabName="spact"]`,parent.document)[0].contentWindow.location.reload();
             /**关闭当前页签 */
-            TBF.closeTab();
+            // TBF.closeTab();
         });
         
         // var data2 = sessionStorage.getItem('spactJGConfig');
         // console.log(JSON.parse(data2))
         // console.log("111")
 
+        
 });

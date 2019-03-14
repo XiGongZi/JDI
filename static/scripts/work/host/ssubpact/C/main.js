@@ -45,13 +45,6 @@ define([
         }
         /**添加新页签事件 */
         TBF.bindAddNewTab(data);
-        // let data1 = {
-        //     add :".showAddNewCon2",
-        //     tabName :"addNewContract2",
-        //     url :"./addNewContract.html",
-        //     tabName_CN :"添加新合同2",
-        // }
-        // TBF.bindAddNewTab(data1);
         let json4 = {
             "add":".contractN0",
             "str":`
@@ -99,7 +92,15 @@ define([
             </div>
                     `
         }
-        // login.main.add(json4)
+        login.main.add(json4)
+        $(".closeTabs").click(function(){
+            /**刷新父下另一个框架iframe */
+            $(`#tabs .iframes>div[LFID="spact"]>iframe[tabName="spact"]`,parent.document)[0].contentWindow.location.reload();
+            /**关闭当前页签 */
+            TBF.closeTab();
+        });
+      
+
         let JGConfig = {};
         JGConfig.data = {page:1};
         JGConfig.LFID = LFID;
@@ -163,20 +164,9 @@ define([
         let funName = parent.window.JGConfig;
         parent.window.JGConfig = funName || {};
         parent.window.JGConfig[LFIDAndTabName] = JGConfig;
-
         // 直接按配置请求
         JGM.getInfo(JGConfig);
-        // let seesionInfoName = LFIDAndTabName + "JGConfig";
-        // sessionStorage.removeItem(seesionInfoName);
-        // sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
-        // setTimeout(function(){
-        //     let data = {
-        //         page:"1",
-        //         count:"6",
-        //         urlGet,
-        //     }
-        //     CP.show(data);
-        // },5000);
+
         /**给查询绑定事件 */
         TBF.getInfoInCase(searchJson);
 });

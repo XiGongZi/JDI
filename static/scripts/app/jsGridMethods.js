@@ -49,9 +49,9 @@ define([
                     if(data.resultFlag){
                         console.log(data)
                         json.dataList = data.dataList 
-                        // json.count = data.totalPage;
-                        json.count = "6";
-                        json.page = "1";
+                        json.count = data.totalPage;
+                        // json.count = "6";
+                        json.page = data.page;
                         fun.changeForm2(json);
                     }else{
                         console.log("0.0");
@@ -121,14 +121,14 @@ define([
             let funName = LFID + tabName;
             // var dataInfo = useTable_addInfo_changeForm(json.managerList);
             // 填入页数信息   json.pagesInfo 为页数信息
-            let pagesInfo = {
-                "count":json.count,
-                "page":json.page,
-                "urlGet":json.urlGet,
-            }
-            let CP = require("app/changePage");
-            CP.show(pagesInfo);
-            console.log(pagesInfo)
+            // let pagesInfo = {
+            //     "count":json.count,
+            //     "page":json.page,
+            //     "urlGet":json.url,
+            // }
+            // let CP = require("app/changePage");
+            // CP.addChangePageMore(pagesInfo);
+            // console.log(pagesInfo)
             //填入表内容、表相关配置、相关元素事件
             var jsGridInfo = {
                 heading:true,
@@ -153,6 +153,7 @@ define([
             console.log(parent.window.JGConfig)
             parent.window.JGConfig[funName].funs();
         },
+
    }
    return fun;
 });

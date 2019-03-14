@@ -236,11 +236,23 @@ define([
                 return false;
             }
         },
+    };
+    let judge = {
+        pickNull:function(data){
+            let arr = [];
+            for(let a in data){
+                if(data[a] == ""){
+                    arr.push(a);
+                }
+            }
+            return arr;
+        }
     }
     return {
         "load":load,
         "get":get,
         "ENV":ENV,
-        "ajax":Ajax
+        "ajax":Ajax,
+        judge,
     };
 });

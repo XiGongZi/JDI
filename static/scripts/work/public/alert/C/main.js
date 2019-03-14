@@ -22,6 +22,11 @@ define([
                         </div>
                     `;
         },
+        str3:function(add){
+            return `
+                
+            `;
+        },
         // 为当前组件添加事件。
         fun:function(add){
             $(add).click(function(){
@@ -73,7 +78,6 @@ define([
                 // $("body").css("overflow","auto");
                 $("body",parent.document).css({"position":"initial","height":"auto"});      
             });
-
             $(".loginMax .button>div",parent.document).click(function(){
                 $(".loginMax",parent.document).hide();
                 //取消 禁止滑动事件
@@ -81,8 +85,6 @@ define([
                 // $("body").css("overflow","auto");
                 $("body",parent.document).css({"position":"initial","height":"auto"});      
             });
-
-
             //居中
             let zhi1 = $(".loginMax .body",parent.document).parent().width();
             let zhi2 = $(".loginMax .body",parent.document).width();

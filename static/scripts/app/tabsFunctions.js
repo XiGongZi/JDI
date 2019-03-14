@@ -2,7 +2,8 @@ define([
     'require',
     "jquery",
     "app/PKG_0.0.1",
-], function (require,$,PKG) {
+    "work/public/alert/c/main",
+], function (require,$,PKG,alert) {
     'use strict';
     let fun={
         /* Fun_1  修改index页当前定位*/
@@ -257,6 +258,54 @@ define([
                 LFID
             }
             return json;
+        },
+        getCase:function(data){
+            data == undefined?data = "":data = data;
+            /**返回带有字段的input和select的状态 */
+            let json = {};
+            $(data.add+" input[field]").each(function(){
+                let field = $(this).attr("field");
+                let val = $(this).val();
+                $(this).attr("null","false");
+                json[field] = val;
+            });
+            $(data.add+" select[field]").each(function(){
+                let field = $(this).attr("field");
+                let val = $(this).find("option:selected").text();
+                $(this).attr("null","false");
+                json[field] = val;
+            });
+            console.log(json)
+            return json;
+        },
+        getInfoInCase:function(data){
+            let JGM = require("app/jsGridMethods");
+            let da = fun.getCase(data);
+            let LFID = data.LFID;
+            let tabName = data.tabName;
+            let to = LFID + tabName;
+            let JSGridConfig = parent.window.JGConfig[to];
+            $(data.button).click(function(){
+                JSGridConfig.data = da;
+                JSGridConfig.data.page = 1;
+                JGM.getInfo(JSGridConfig);
+            });
+        },
+        searchTips:function(data){
+            console.log(data);
+            $.each(data.body,function(i,e){
+                $(data.add).find(`input[field="${e}"]`).attr("null","true");
+            });
+            if(data.body.length > 0){
+                let json4 = {
+                    "add":".contractN0",
+                    "str":`
+
+                            `
+                    
+                }
+                alert.main.add(json4)
+            }
         }
     }
     return fun;

@@ -10,7 +10,7 @@ require.config({
     //define each js frame path, not need to add .js suffix name  
     //定义各个JS框架路径名,不用加后缀 .js  
     ,paths:{   
-        "jquery":"./lib/jquery/jquery-1.8.3.min" //把对应的 jquery 这里写对即可  
+        "jquery":"jquery" //把对应的 jquery 这里写对即可  
         ,"app":"./app"  //个人插件
         ,"lib":"./lib"  //第三方插件库
         ,"host":"./work/host"  //页面组件

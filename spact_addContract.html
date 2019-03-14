@@ -21,11 +21,10 @@
     <link rel="stylesheet" href="./static/scripts/css/default.css">
     <!-- <link rel="stylesheet" href="./static/scripts/work/host/index/V/Final.css"> -->
     <link rel="shortcut icon " type="images/x-icon" href="./favicon.ico">
-    <link rel="stylesheet/less" type="text/css" href="./static/scripts/work/host/index/V/main.less" />
+    <link rel="stylesheet/less" type="text/css" href="./static/scripts/work/host/spact/V/main.less" />
     <script src="./static/scripts/lib/less/dist/less.min.js" ></script>
     <script src="./static/scripts/app/iconfont.js" ></script>
       <style>
-        /* body *{box-sizing: border-box;border:1px solid blue} */
         </style>
 </head>
 <body>
@@ -47,7 +46,7 @@
                     <div class="">
                         <div class="case-name">合同编号:</div>
                         <div class="case-input">
-                            <input type="text">
+                            <input type="text" field="fno">
                         </div>
                         <div class="case-icon">
                             <svg class="icon" aria-hidden="true" status="0">
@@ -61,7 +60,7 @@
     <div class="">
             <div class="case-name">项目名称:</div>
             <div class="case-input">
-                <input type="text">
+                <input type="text" field="fpeojectname">
             </div>
             <div class="case-icon">
                 <svg class="icon" aria-hidden="true" status="0">
@@ -76,7 +75,7 @@
     <div class="">
             <div class="case-name">项目地址:</div>
             <div class="case-input">
-                <input type="text">
+                <input type="text" field="faddress">
             </div>
             <div class="case-icon">
                 <svg class="icon" aria-hidden="true" status="0">
@@ -91,7 +90,7 @@
                     <div class="">
                             <div class="case-name">甲方名称:</div>
                             <div class="case-input">
-                                <input type="text">
+                                <input type="text" field="funitname">
                             </div>
                             <div class="case-icon">
                                 <svg class="icon" aria-hidden="true" status="0">
@@ -106,7 +105,7 @@
               <div class="">
                     <div class="case-name">合同额:</div>
                     <div class="case-input">
-                        <input type="text">
+                        <input type="text" field="fmoney">
                     </div>
                     <div class="case-icon">
                         <svg class="icon" aria-hidden="true" status="0">
@@ -121,11 +120,15 @@
               <div class="">
                     <div class="case-name">税率:</div>
                     <div class="case-input">
-                        <input type="text">
+                        <select name="" id=""  field="ftax">
+                            <option value="">3%</option>
+                            <option value="">10%</option>
+                            <option value="">16%</option>
+                        </select>
                     </div>
                     <div class="case-icon">
-                        <svg class="icon" aria-hidden="true" status="0">
-                            <use xlink:href="#icon-clear"></use>
+                        <svg class="icon" aria-hidden="true" status="2">
+                            <use xlink:href="#icon-xiala"></use>
                         </svg>
                     </div>
                     <span class="clear"></span>
@@ -136,7 +139,7 @@
               <div class="">
                     <div class="case-name">项目负责人:</div>
                     <div class="case-input">
-                        <input type="text">
+                        <input type="text" field="fmanager">
                     </div>
                     <div class="case-icon">
                         <svg class="icon" aria-hidden="true" status="0">
@@ -147,10 +150,23 @@
                 </div>   
                     <!-- 每一个筛选条件组件 -->
                     
+                    <div class="">
+                        <div class="case-name">负责人电话:</div>
+                        <div class="case-input">
+                            <input type="text" field="Fphone">
+                        </div>
+                        <div class="case-icon">
+                            <svg class="icon" aria-hidden="true" status="0">
+                                <use xlink:href="#icon-clear"></use>
+                            </svg>
+                        </div>
+                        <span class="clearBoth"></span>
+                    </div>   
+                        <!-- 每一个筛选条件组件 -->
               <div class="">
                     <div class="case-name">状态:</div>
                     <div class="case-input">
-                        <select name="" id="">
+                        <select name="" id="" field="fstate">
                             <option value="">施工</option>
                             <option value="">竣工</option>
                         </select>
