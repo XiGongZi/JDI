@@ -9,9 +9,7 @@ select{
 .MaxAn{
 	height:100%;	
 }
-
 /*clear*/
-
 /*文档字色背景色*/
 html{
 	color:#000;
@@ -54,7 +52,6 @@ address,caption,cite,code,dfn,em,strong,th,var {
     font-style:normal;   
     font-weight:normal;   
 }   
-
 /* tables still need 'cellspacing="0"' in the markup */  
 /*表格边框属性（是否设置为单边框）*/
 
@@ -67,23 +64,16 @@ caption, th, td {
  text-align: left;  
  font-weight: normal;  
 }  
-
 /*清除列表前修饰物*/
 ol,ul,li {   
    list-style:none;   
 }   
-
-
 h1,h2,h3,h4,h5,h6 {   
   font-size:100%;   
    font-weight:normal;   
 }   
-
-   
 abbr,acronym { border:0;   
 }
-
-
 html, body, div, span, applet, object, iframe,  
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,  
 a, abbr, acronym, address, big, cite, code,  
@@ -104,12 +94,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
  vertical-align: baseline;  
 }  
 /* remember to define focus styles!  
-
-
-
-
- 
-
 /*清除引用两边的引号*/
 blockquote:before, blockquote:after,  
 q:before, q:after {  
@@ -118,35 +102,6 @@ q:before, q:after {
 /*清除引号样式*/
 blockquote, q {  
  quotes: "" "";  
-}
-
-/*对错号*/
-
-.symbol_GreenRight:before{
-	content: '\2714' ;
-	color:#26AD9C;
-	font-size:16px;
-}
-.symbol_RedWrong:before{
-	content: '\2716' ;
-	color:red;
-	font-size:16px;
-}
-
-
-/*临时使用submit样式*/
-#submit{
-	background:#26AD9C;
-}
-/*提示信息*/
-
-.redColorTips{
-	color:red;
-}
-
-
-.greenColorTips{
-	color:green;
 }
 body *{	font-family:"Source Han Serif SC"!important,"PingFangSC-Regular";}
 

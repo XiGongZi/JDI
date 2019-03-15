@@ -1,6 +1,14 @@
-/**从url中获取中间的页面名称 */
-// let a = "http://192.168.1.11/SenPageDemo.html";
-// let b = a.split("/");
-//     a = b[b.length - 1].split(".");
-//     b = a[0];
+var b =10;
+(function b(){
+    b=20;
+    console.log(b)
+})();
+
+var b;
+(function b(){
+    b=20;
+    console.log(b)
+})();
+b = 10;
+
 
