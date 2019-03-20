@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <script src="./static/scripts/lib/babel-core/browser.min.js"></script> -->
+    <script>
+        // const appTest = 1;
+        // alert(appTest);
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <!--[if lt IE 9]>
+        <script src="./static/scripts/lib/html5shiv/html5shiv.min.js"></script>
+        <script src="./static/scripts/lib/respond/respond.js"></script>
+    <![endif]-->
+    <!-- ie9及以下可见 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <!-- IE=edge表示强制使用IE最新内核，chrome=1表示如果安装了针对IE6/7/8等版本的浏览器插件Google Chrome Frame（可以让用户的浏览器外观依然是IE的菜单和界面，但用户在浏览网页时，实际上使用的是Chrome浏览器内核），那么就用Chrome内核来渲染。 -->
+    <title>交通设计院-登陆</title>
+    <link rel="stylesheet" href="./static/scripts/css/default.css">
+    <!-- <link rel="stylesheet" href="./static/scripts/work/host/index/V/Final.css"> -->
+    <link rel="shortcut icon " type="images/x-icon" href="./favicon.ico">
+    <link rel="stylesheet/less" type="text/css" href="./static/scripts/work/host/spact/V/main.less" />
+    <script src="./static/scripts/lib/less/dist/less.min.js" ></script>
+    <!-- 开启less监视模式（无需刷新实时更新css效果） -->
+    <script>less.watch();</script>
+    <script src="./static/scripts/app/iconfont.js" ></script>
+        <script>
+            var ctx = "";
+            var TPN = "Login";
+        </script>
+</head>
+<body class="loginMax">
+    <div class="yan">
+        <img src="./static/image/login/form2.png" alt="">
+    </div>
+
+    <div class="loginBox">
+        <div class="title">
+            <!-- logo -->
+            <span class="img_logo">
+                <img src="./static/image/login/logo.png" alt="">
+            </span>
+            <!-- text -->
+            <span class="title">
+                <p>辽宁大通公路工程有限公司</p>
+                <p>项目管控系统</p>
+            </span>
+        </div>
+        <div class="input">
+            <div class="input_icon">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-user"></use>
+                </svg>
+            </div>
+            <input type="text" placeholder="用户名">
+        </div>
+        <div class="input">
+            <div class="input_icon">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-password"></use>
+                </svg>
+            </div>
+            <input type="password" placeholder="密码">
+        </div>
+        <div class="checkBox" id="checkBox">
+            <div class="check_icon" checked="false">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-duihao"></use>
+                </svg>
+            </div>
+            <div class="check"></div>
+            <span>
+                记住用户名和密码
+            </span>
+        </div>
+        <div class="button">
+            <div>登录</div>
+        </div>
+    </div>
+</body>
+<!-- <script>var ctx = "${ctx}";</script> -->
+<script data-main="./static/scripts/main" src="./static/scripts/require.js"></script>
+<!-- <script src="./static/scripts/config/app/index.js"></script>  -->
+<script type="text/javascript">
+//当前页面程序入口
+require(['work/host/testSelectAll/C/main'],function(a){});
+
+
+var check = document.querySelector("#checkBox .check");
+var check2 = document.querySelector("#checkBox .check_icon");
+
+check.onclick = function(){
+        var status = document.querySelector("#checkBox .check_icon");
+        status.setAttribute("checked","true");
+};
+check2.onclick = function(){
+        var status = document.querySelector("#checkBox .check_icon");
+        status.setAttribute("checked","false");
+};
+
+// $("#checkBox .check").click(function(){
+//     /*1.获得当前状态*/
+//     var value = $("#checkBox .check_icon").attr("checked");
+//     value == false?value = true:value = value;
+//     $("#checkBox .check_icon").attr("checked",value);
+// });
+</script>
+<script>
+</script>
+</html>

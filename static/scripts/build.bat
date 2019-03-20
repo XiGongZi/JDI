@@ -1,0 +1,1 @@
+start cmd /c node ./config/r.js -o ./config/index.js

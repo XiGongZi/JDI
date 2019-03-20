@@ -20,14 +20,6 @@ define([
     'use strict';
     
       
-        let json3 = {
-            "add":".showAddNew",
-            "url":"./addItemMeasure.html",
-            "tabName":"添加计量单",
-            "tabName_attr":"addItemMeasure"
-        };
-        
-        COM.setPagesFun_inputIcon(json3);
 
         let json4 = {
             "add":".contractN0",
@@ -74,14 +66,12 @@ define([
             
                     </div>
             </div>
-            
-                    `
+                `
         }
         login.main.add(json4);
         $(".tabs-main",window.document).attr("url","./itemMeasure.html")
         let kda = {};
         kda.add = `.tabs-main`;
-        tabFunctions.setTabsFun(kda);
   
 });
 

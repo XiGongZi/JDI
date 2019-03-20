@@ -19,15 +19,7 @@ define([
     ) {
     'use strict';
     
-      
-        let json3 = {
-            "add":".showAddNewCon",
-            "url":"./addpurchaseContract.html",
-            "tabName":"添加",
-            "tabName_attr":"addpurchaseC"
-        };
-        
-        COM.setPagesFun_inputIcon(json3);
+  
 
         let json4 = {
             "add":".contractN0",
@@ -81,7 +73,6 @@ define([
         $(".tabs-main",window.document).attr("url","./purchaseContract.html")
         let kda = {};
         kda.add = `.tabs-main`;
-        tabFunctions.setTabsFun(kda);
   
 });
 

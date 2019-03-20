@@ -37,6 +37,7 @@ define([
             LFID,
             tabName,
         };
+        
         let data = {
             add :".showAddNewCon",
             tabName :"spact_addContract",
@@ -177,4 +178,9 @@ define([
         // },5000);
         /**给查询绑定事件 */
         TBF.getInfoInCase(searchJson);
+
+
+
+
+
 });

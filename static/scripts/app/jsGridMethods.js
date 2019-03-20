@@ -26,7 +26,6 @@ define([
                 });
                     arr.push(obj)
             });
-            console.log(arr)
             return arr;
         },
         changeForm2:function(data){
@@ -47,20 +46,42 @@ define([
                 dataType: "json",
                 success: function(data){
                     if(data.resultFlag){
-                        console.log(data)
                         json.dataList = data.dataList 
                         json.count = data.totalPage;
                         // json.count = "6";
                         json.page = data.page;
                         fun.changeForm2(json);
                     }else{
-                        console.log("0.0");
                     }
                     // useTable_addInfo(JSON.parse(data));
                 },
                 error:function(){
                     try {
-                        console.log("请求失败")
+                    }catch(e){
+                    }
+                }
+            });
+        },
+        getInfo_return:function(json){
+            $.ajax({
+                type: 'post',
+                url: json.url,
+                data: json.data,
+                cache: false,
+                dataType: "json",
+                success: function(data){
+                    if(data.resultFlag){
+                        json.fun(data.dataList);
+                        // json.dataList = data.dataList 
+                        // json.count = data.totalPage;
+                        // // json.count = "6";
+                        // json.page = data.page;
+                    }else{
+                    }
+                    // useTable_addInfo(JSON.parse(data));
+                },
+                error:function(){
+                    try {
                     }catch(e){
                     }
                 }
@@ -87,7 +108,6 @@ define([
                     }
                 }
             });
-            console.log("deleted");
         },
         addInfo:function(json){
             $.ajax({
@@ -110,7 +130,6 @@ define([
                     }
                 }
             });
-            console.log("deleted");
         },
         useTable_addInfo:function(json){
             //表内容
@@ -150,7 +169,6 @@ define([
                 fields,
             }
             $("#jsGrid").jsGrid(jsGridInfo);
-            console.log(parent.window.JGConfig)
             parent.window.JGConfig[funName].funs();
         },
 

@@ -19,28 +19,7 @@ define([
     ) {
     'use strict';
     
-        /* input旁边小功能*/ 
-        let json1 = {
-            "add":".contractN0  .case-icon svg[status='1']",
-            "url":"./test3.html",
-            "tabName":"合同编号",
-            "tabName_attr":"contractNoTotal"
-        };
-        let json2 = {
-            "add":".itemName  .case-icon svg[status='1']",
-            "url":"./test2.html",
-            "tabName":"项目名称",
-            "tabName_attr":"test2"
-        };
-        let json3 = {
-            "add":".showAddNewCon",
-            "url":"./addpurchaseContract.html",
-            "tabName":"添加采购合同",
-            "tabName_attr":"addpurchaseC"
-        };
-        // COM.setPagesFun_inputIcon(json1);
-        COM.setPagesFun_inputIcon(json2);
-        COM.setPagesFun_inputIcon(json3);
+
 
         let json4 = {
             "add":".contractN0",

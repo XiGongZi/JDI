@@ -3,7 +3,7 @@ define([
     "jquery",
     "app/PKG_0.0.1",
     "work/public/alert/c/main",
-], function (require,$,PKG,alert) {
+], function (require,$,PKG,Alert) {
     'use strict';
     let fun={
         /* Fun_1  修改index页当前定位*/
@@ -266,16 +266,13 @@ define([
             $(data.add+" input[field]").each(function(){
                 let field = $(this).attr("field");
                 let val = $(this).val();
-                $(this).attr("null","false");
                 json[field] = val;
             });
             $(data.add+" select[field]").each(function(){
                 let field = $(this).attr("field");
                 let val = $(this).find("option:selected").text();
-                $(this).attr("null","false");
                 json[field] = val;
             });
-            console.log(json)
             return json;
         },
         getInfoInCase:function(data){
@@ -292,19 +289,14 @@ define([
             });
         },
         searchTips:function(data){
-            console.log(data);
+            $(data.add).find(`input[field]`).attr("null","false");
             $.each(data.body,function(i,e){
                 $(data.add).find(`input[field="${e}"]`).attr("null","true");
             });
             if(data.body.length > 0){
-                let json4 = {
-                    "add":".contractN0",
-                    "str":`
-
-                            `
-                    
-                }
-                alert.main.add(json4)
+                return false;
+            }else{
+                return true;
             }
         }
     }

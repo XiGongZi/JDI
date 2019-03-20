@@ -397,14 +397,6 @@ function useTable_addInfo(json){
 
     $("#jsGrid").jsGrid(jsGridInfo);
 
-    let jsonp = {
-        "add":".jsgrid-row",
-        "url":"./purchaseContractDetails.html",
-        "tabName":"采购详情",
-        "tabName_attr":"purchaseDetails"
-    };
-    // COM.setPagesFun_inputIcon(json1);
-    COM.setPagesFun_inputIcon(jsonp);
         
 
     $(".jsgrid-insert-button").off("click");
