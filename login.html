@@ -32,8 +32,11 @@
         </script>
 </head>
 <body class="loginMax">
+    <!-- 这里有两个背景没加 -->
+    <div class="leftBG"></div>
+    <div class="rightBG"></div>
     <div class="yan">
-        <img src="./static/image/login/form2.png" alt="">
+        <img src="./static/image/login/bg1080.jpg" alt="">
     </div>
 
     <div class="loginBox">
@@ -54,7 +57,7 @@
                     <use xlink:href="#icon-user"></use>
                 </svg>
             </div>
-            <input type="text" placeholder="用户名">
+            <input type="text" placeholder="用户名" field="loginId">
         </div>
         <div class="input">
             <div class="input_icon">
@@ -62,10 +65,19 @@
                     <use xlink:href="#icon-password"></use>
                 </svg>
             </div>
-            <input type="password" placeholder="密码">
+            <input type="password" placeholder="密码" field="loginPwd">
         </div>
-        <div class="checkBox" id="checkBox">
-            <div class="check_icon" checked="false">
+        <div class="input" name="loginCode">
+            <div class="input_icon">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-yanzhengma2"></use>
+                </svg>
+            </div>
+            <input type="text" placeholder="验证码" field="loginCode">
+            <img id="imgCode" title="点击图片刷新" src="" style="cursor: pointer; margin-left: 10px;"/>
+        </div>
+        <!-- <div class="checkBox" id="checkBox">
+            <div class="check_icon" id="check_icon" checked="false">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-duihao"></use>
                 </svg>
@@ -74,8 +86,8 @@
             <span>
                 记住用户名和密码
             </span>
-        </div>
-        <div class="button">
+        </div> -->
+        <div class="button submit">
             <div>登录</div>
         </div>
     </div>
@@ -86,26 +98,6 @@
 <script type="text/javascript">
 //当前页面程序入口
 require(['work/host/testSelectAll/C/main'],function(a){});
-
-
-var check = document.querySelector("#checkBox .check");
-var check2 = document.querySelector("#checkBox .check_icon");
-
-check.onclick = function(){
-        var status = document.querySelector("#checkBox .check_icon");
-        status.setAttribute("checked","true");
-};
-check2.onclick = function(){
-        var status = document.querySelector("#checkBox .check_icon");
-        status.setAttribute("checked","false");
-};
-
-// $("#checkBox .check").click(function(){
-//     /*1.获得当前状态*/
-//     var value = $("#checkBox .check_icon").attr("checked");
-//     value == false?value = true:value = value;
-//     $("#checkBox .check_icon").attr("checked",value);
-// });
 </script>
 <script>
 </script>

@@ -24,14 +24,86 @@ define([
     $(".bodyFrame1-main>.title").click(function(){
         window.location.reload();
     });
-        
+    var originAdd = `http://192.168.1.100:8080`;
+    var originEnd = ``;
     // 获得页面名称
     switch (TPN) {
         case "Login":
             /** login */
             (function(){
+                /*
+                var check = document.querySelector("#checkBox .check");
+                var check2 = document.querySelector("#checkBox .check_icon");
+                var status = document.querySelector("#checkBox .check_icon");
+                status.setAttribute("checked","false");
 
+                check.onclick = function(){
+                        var status = document.querySelector("#checkBox .check_icon");
+                        status.setAttribute("checked","true");
+                };
+                check2.onclick = function(){
+                        var status = document.querySelector("#checkBox .check_icon");
+                        status.setAttribute("checked","false");
+                };
+                */
+               $("#imgCode").attr("src",`${originAdd}/stockWeb/getLoginCode${originEnd}`);
+                $(".submit").click(function(){
+                    let data3 = {add:".loginBox"}
+                    let json = TBF.getCase(data3);
+                    let dd = PKG.judge.pickNull(json);
+                    data3.body = dd;
+                    if(TBF.searchTips(data3)){
+                        // JGM.addInfo(JGConfig);
+                        console.log(json)
+                        $.ajax({
+                            type : 'POST',
+                            url :  `${originAdd}/stockWeb/login${originEnd}`,
+                            data : json,
+                            dataType : 'json',
+                            success : function(result) {
+                                if(result.resultFlag){
+                                    alert("登录成功");
+                                    window.location.href="index.html";
+                                }else{
+                                    $("#errorMsg").text(result.errorMsg);
+                                }
+                            }
+                        });
+                        /**这里获得填好的用户名和密码 */
+
+                    }else{
+                        alert("有未填字段！");
+                    };
+
+                });
+
+                 // 获取验证码
+                 $("#imgCode").click(function() {
+                    $("#imgCode").attr('src', changeUrl($("#imgCode").attr("src")));
+                });
             })();
+
+            
+            //为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳   
+            function changeUrl(url) {
+                var timestamp = PKG.get.randomNum(1,30) + PKG.get.randomNum(30,60) + PKG.get.randomNum(15,45);
+                // var timestamp = (new Date()).valueOf();
+                // alert(url);
+                var name = `getLoginCode`;
+                url = url.split(name);
+                console.log(url);
+                var kd = url[0]+name;
+                
+                
+                if ((url[1].indexOf("&") >= 0)) {
+                    kd = kd + "×tamp=" + timestamp;   
+                } else {
+                    kd = kd + "?timestamp=" + timestamp;   
+                }
+                console.log(kd)
+                return kd;
+            }
+            
         break;
         case "T_pacttype":
         /**合同类型 */
@@ -39,8 +111,8 @@ define([
                     let LFID = "T_pacttype";
                     let tabName = "T_pacttype";
                     let LFIDAndTabName = LFID + tabName;
-                    let urlGet =   `http://192.168.1.100:8080/stockWeb/pacttypeList`;
-                    let urlDelete = "http://192.168.1.100:8080/stockWeb/pacttypeDelete";
+                    let urlGet =   `${originAdd}/stockWeb/pacttypeList${originEnd}`;
+                    let urlDelete = `${originAdd}/stockWeb/pacttypeDelete${originEnd}`;
                     /**search事件 */
                     let searchJson = {
                         add:".bodyFrame1-main .search",
@@ -144,7 +216,7 @@ define([
                         /**刷新父下另一个框架iframe */
                                 /**存 */
                         let JGConfig = {};
-                        JGConfig.url = "http://192.168.1.100:8080/stockWeb/pacttypeAdd";
+                        JGConfig.url = `${originAdd}/stockWeb/pacttypeAdd${originEnd}`;
                         // 去判断是否留空，留空则提醒，否则提交
                             // 获得数据
                             let LFID = "T_pacttype";
@@ -173,8 +245,8 @@ define([
                     let LFID = "T_supplyer";
                     let tabName = "T_supplyer";
                     let LFIDAndTabName = LFID + tabName;
-                    let urlGet =   `http://192.168.1.100:8080/stockWeb/supplyerList`;
-                    let urlDelete = "http://192.168.1.100:8080/stockWeb/supplyerDelete";
+                    let urlGet =   `${originAdd}/stockWeb/supplyerList${originEnd}`;
+                    let urlDelete = `${originAdd}/stockWeb/supplyerDelete${originEnd}`;
                     /**search事件 */
                     let searchJson = {
                         add:".bodyFrame1-main .search",
@@ -260,8 +332,8 @@ define([
                     let LFID = "T_department";
                     let tabName = "T_department";
                     let LFIDAndTabName = LFID + tabName;
-                    let urlGet =   `http://192.168.1.100:8080/stockWeb/departmentList`;
-                    let urlDelete = "http://192.168.1.100:8080/stockWeb/departmentDelete";
+                    let urlGet =   `${originAdd}/stockWeb/departmentList${originEnd}`;
+                    let urlDelete = `${originAdd}/stockWeb/departmentDelete${originEnd}`;
                     /**search事件 */
                     let searchJson = {
                         add:".bodyFrame1-main .search",
@@ -359,7 +431,7 @@ case "T_department_addDept":
                 /**刷新父下另一个框架iframe */
                         /**存 */
                 let JGConfig = {};
-                JGConfig.url = "http://192.168.1.100:8080/stockWeb/departmentAdd";
+                JGConfig.url = `${originAdd}/stockWeb/departmentAdd${originEnd}`;
                 // 去判断是否留空，留空则提醒，否则提交
                     // 获得数据
                     let LFID = "T_department";
@@ -389,8 +461,8 @@ case "T_item":
                 let LFID = "T_item";
                 let tabName = "T_item";
                 let LFIDAndTabName = LFID + tabName;
-                let urlGet =   `http://192.168.1.100:8080/stockWeb/itemList`;
-                let urlDelete = "http://192.168.1.100:8080/stockWeb/itemDelete";
+                let urlGet =   `${originAdd}/stockWeb/itemList${originEnd}`;
+                let urlDelete = `${originAdd}/stockWeb/itemDelete${originEnd}`;
                 /**search事件 */
                 let searchJson = {
                     add:".bodyFrame1-main .search",
@@ -477,8 +549,8 @@ case "T_projectteam":
                 let LFID = "T_projectteam";
                 let tabName = "T_projectteam";
                 let LFIDAndTabName = LFID + tabName;
-                let urlGet =   `http://192.168.1.100:8080/stockWeb/projectteamList`;
-                let urlDelete = "http://192.168.1.100:8080/stockWeb/projectteamDelete";
+                let urlGet =   `${originAdd}/stockWeb/projectteamList${originEnd}`;
+                let urlDelete = `${originAdd}/stockWeb/projectteamDelete${originEnd}`;
                 /**search事件 */
                 let searchJson = {
                     add:".bodyFrame1-main .search",
@@ -574,7 +646,7 @@ case "T_projectteam_addNew":
             /**刷新父下另一个框架iframe */
                     /**存 */
             let JGConfig = {};
-            JGConfig.url = "http://192.168.1.100:8080/stockWeb/projectteamAdd";
+            JGConfig.url = `${originAdd}/stockWeb/projectteamAdd${originEnd}`;
             // 去判断是否留空，留空则提醒，否则提交
                 // 获得数据
                 let LFID = "T_projectteam";
@@ -598,7 +670,7 @@ case "T_projectteam_addNew":
         });
         /**请求部门 */
         let json31 = {
-            url:`http://192.168.1.100:8080/stockWeb/departmentList`,
+            url:`${originAdd}/stockWeb/departmentList${originEnd}`,
             fun:function(value){
                 let str = "";
                 $.each(value,function(i,n){
@@ -617,7 +689,7 @@ case "T_supplyer_addNew":
             /**刷新父下另一个框架iframe */
                     /**存 */
             let JGConfig = {};
-            JGConfig.url = "http://192.168.1.100:8080/stockWeb/supplyerAdd";
+            JGConfig.url = `${originAdd}/stockWeb/supplyerAdd${originEnd}`;
             // 去判断是否留空，留空则提醒，否则提交
                 // 获得数据
                 let LFID = "T_supplyer";
@@ -649,7 +721,7 @@ case "T_item_addNew":
         /**刷新父下另一个框架iframe */
                 /**存 */
         let JGConfig = {};
-        JGConfig.url = "http://192.168.1.100:8080/stockWeb/itemAdd";
+        JGConfig.url = `${originAdd}/stockWeb/itemAdd${originEnd}`;
         // 去判断是否留空，留空则提醒，否则提交
             // 获得数据
             let LFID = "T_item";
