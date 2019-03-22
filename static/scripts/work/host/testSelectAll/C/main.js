@@ -26,7 +26,7 @@ define([
     // $(".bodyFrame1-main>.title").click(function(){
     //     window.location.reload();
     // });
-    var originAdd = `http://192.168.1.100:8080`;
+    var originAdd = `http://192.168.1.100:80`;
     var originEnd = `.do`;
     // 获得页面名称
     switch (TPN) {
@@ -102,7 +102,6 @@ define([
                 console.log(kd)
                 return kd;
             }
-            
         break;
         case "T_pacttype":
         /**合同类型 */
@@ -712,6 +711,7 @@ case "T_projectteam_addNew":
             /**关闭当前页签 */
             // TBF.closeTab();
         });
+
         /**请求部门 */
         let json31 = {
             url:`${originAdd}/stockWeb/departmentList${originEnd}`,
@@ -800,30 +800,9 @@ case "spact":
             let hasFYP = true;
             /**修改时需要的关键词 */
             let change_key = `fid`;
-            let LFIDAndTabName = LFID + tabName;
-            var urlGet = `${originAdd}/stockWeb/${LFID}List${originEnd}`;
-            var urlDelete = `${originAdd}/stockWeb/${LFID}Delete${originEnd}`;
-            /**search事件 */
-            let searchJson = {
-                add:".bodyFrame1-main .search",
-                button:".showAddNewCon2",
-                LFID,
-                tabName,
-            };
-            let data = {
-                add :".showAddNewCon",
-                tabName :`${LFID}_addNew`,
-                url :`./${LFID}_addNew.html`,
-                tabName_CN :"添加",
-            }
-            /**添加新页签事件 */
-            TBF.bindAddNewTab(data);
+            /**修改时需要的关键词所在的index */
+            let change_keyIdex = `0`;
             let JGConfig = {};
-            JGConfig.data = {page:1};
-            JGConfig.LFID = LFID;
-            JGConfig.tabName = tabName;
-            JGConfig.url = urlGet ;
-            /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
             JGConfig.fields = [
                 { name: "id",PreName:"fid", type: "number", readOnly: true, width:10,},
                 { name: "合同编号",PreName:"fno", type: "number", readOnly: true, width:70,  },
@@ -836,99 +815,15 @@ case "spact":
                 { name: "状态",PreName:"fstate", type: "text", width:30,  },
                 {type: "control",width:70,}
             ];
-            JGConfig.funs = function (){
-                $(".jsgrid-insert-button").off("click");
-                // 删
-                $(".jsgrid-delete-button").off("click");
-                $(".jsgrid-delete-button").click(function(){
-                    var Id = $(this).parents("tr").find("td").eq(0).text();
-                    let dele = {}
-                    //**!!!!!!!!!!!!         这里很重要，需要修改删除的时候传的值 位数,如fid为0         !!!!!!!!!!!!!!!! */
-                    dele.data= {};
-                    dele.data[change_key] = Id;
-                    dele.url = urlDelete;
-                    let isDelete = confirm("确定删除？");
-                    if(isDelete){
-                        JGM.deleteInfo(dele);
-                        window.location.reload();
-                    }
-                });
-                if ( $("#jsGrid").html() != null ){
-                    //调分页的高度
-                    var zhi1 = $("#jsGrid").offset().top;
-                    var zhi2 = $("#jsGrid").height();
-                    var zhi3 = zhi1 + zhi2 - 60;
-                    // console.log(zhi3);
-                    $(`#changePage`).css(`top`,zhi3);
-                }
-                let data = {
-                    add :`.jsgrid-insert-mode-button`,
-                    tabName :`${LFID}_addNew`,
-                    url :`./${LFID}_addNew.html`,
-                    tabName_CN :`添加`,
-                }
-                /**添加新页签事件 */
-                TBF.bindAddNewTab(data);
-                let data1 = {
-                    add :`.jsgrid-edit-button`,
-                    tabName :`${LFID}_changeNew`,
-                    LFID,
-                    getUrl :`${originAdd}/stockWeb/${LFID}${originEnd}`,
-                    tabName_CN :`修改`,
-                    url :`./${LFID}_changeNew.html`,
-                    field:change_key,
-                }
-                /**添加新页签事件 */
-                let changeInfoList = parent.window.changeInfo;
-                parent.window.changeInfo = changeInfoList || {};
-                parent.window.changeInfo[LFIDAndTabName] = data1;
-                // 将方法存入window对象中
-                TBF.bindAddNewTabChange(data1);
-            }
-            /**将当前表配置信息存入sessionStorage */
-            let funName = parent.window.JGConfig;
-            parent.window.JGConfig = funName || {};
-            parent.window.JGConfig[LFIDAndTabName] = JGConfig;
-            // 直接按配置请求
-            JGM.getInfo(JGConfig);
-            /**给查询绑定事件 */
-            TBF.getInfoInCase(searchJson);
-            if(hasFYP){
-                /**分页 */
-                let FYJson = {
-                    LFID,
-                    tabName,
-                    page:"0",
-                    url:urlGet,
-                }
-                CP.changePageJSPost(FYJson);
-            }
+            let mainData = {JGConfig,tabName, LFID, originAdd,originEnd,change_key,hasFYP,change_keyIdex, }
+            ADCS.SD(mainData);
     })();
 break;
 /******************************************************************************** */  
-
 case `spact_changeNew`:
     (function(){
         let LFID = "spact";
-        let tabName = "spact_changeNew";
-        let LFIDAndTabName_changeInfo = LFID + LFID;
-        let data = parent.window.changeInfo[LFIDAndTabName_changeInfo];
-        let field = data.field;
-        let fieldVal = data.fieldVal;
-        let fieldName = LFID + "Data";
-        let fData = {}
-        fData[field] = fieldVal;
-        let json = {
-            field:fieldName,
-            url:data.getUrl,
-            data:fData,
-        }
-        JGM.getInfo_insertInput(json);
-        let mainData = {
-            LFID,
-            originAdd,
-            originEnd,
-        }
+        let mainData = {LFID,originAdd,originEnd,}
         ADCS.change(mainData);
     })();
 break;
@@ -936,172 +831,113 @@ break;
 case "spact_addNew":
 (function(){
     let LFID = "spact";
-    let data = {
-        LFID,
-        originAdd,
-        originEnd,
-    };
+    let data = { LFID,originAdd, originEnd,};
     ADCS.add(data);
 })();
 break;
 /******************************************************************************** */  
 case "ssubpact":
     (function(){
+            /**大页 */
+            let LFID = "ssubpact";
+            /**小页 */
+            let tabName = "ssubpact";
+            /**是否有分页 */
+            let hasFYP = true;
+            /**修改时需要的关键词 */
+            let change_key = `fid`;
+            /**修改时需要的关键词所在的index */
+            let change_keyIdex = `0`;
+            let JGConfig = {};
+            JGConfig.fields = [
+                { name: "id",PreName:"fid", type: "number", readOnly: true, width:10,},
+                // { name: "日期",PreName:"fdate", type: "number", readOnly: true, width:30,  },
+                { name: "分包合同号",PreName:"fsubpactno", type: "text", width:50,  },
+                { name: "总包合同号",PreName:"fpactid", type: "text", width:50,  },
+                { name: "项目名称",PreName:"fpeojectname", type: "text", width:50,  },
+                { name: "制单人",PreName:"fcreater", type: "text", width:60,  },
+                // { name: "制单时间",PreName:"fcreatetime", type: "text", width:30,  },
+                // { name: "项客商ID",PreName:"fitemid", type: "text", width:50,  },
+                { name: "客商名称",PreName:"fitemname", type: "text", width:30,  },
+                { name: "合同额",PreName:"famount", type: "text", width:30,  },
+                { name: "税率",PreName:"ftax", type: "text", width:30,  },
+                { name: "客商负责人",PreName:"fmanager", type: "text", width:30,  },
+                { name: "负责人电话",PreName:"fphone", type: "text", width:30,  },
+                { name: "状态",PreName:"fstate", type: "text", width:30,  },
+                { name: "附件",PreName:"ffile", type: "text", width:30,  },
+                {type: "control",width:50,}
+            ];
+            let mainData = {JGConfig,tabName, LFID, originAdd,originEnd,change_key,hasFYP,change_keyIdex, }
+            ADCS.SD(mainData);
+    })();
+break;
+/******************************************************************************** */  
+case "ssubpact_changeNew":
+    (function(){
         let LFID = "ssubpact";
-        let tabName = "ssubpact";
-        let LFIDAndTabName = LFID + tabName;
-        var urlGet =   `${originAdd}/stockWeb/ssubpactList${originEnd}`;
-         var urlDelete = `${originAdd}/stockWeb/ssubpactDelete${originEnd}`;
-        /**search事件 */
-        let searchJson = {
-            add:".bodyFrame1-main .search",
-            button:".toSearch",
-            LFID,
-            tabName,
-        };
-        /**添加新页 */
-        let data = {
-            add :".showAddNewCon",
-            tabName :"ssubpact_addNew",
-            url :"./ssubpact_addNew.html",
-            tabName_CN :"添加",
-        }
-        /**添加新页签事件 */
-        TBF.bindAddNewTab(data);
-        // let data1 = {
-        //     add :".showAddNewCon2",
-        //     tabName :"addNewContract2",
-        //     url :"./addNewContract.html",
-        //     tabName_CN :"添加新合同2",
-        // }
-        // TBF.bindAddNewTab(data1);
-        let JGConfig = {};
-        JGConfig.data = {page:1};
-        JGConfig.LFID = LFID;
-        JGConfig.tabName = tabName;
-        JGConfig.url = urlGet ;
-        /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
-        JGConfig.fields = [
-            { name: "id",PreName:"fid", type: "number", readOnly: true, width:10,},
-            { name: "日期",PreName:"fdate", type: "number", readOnly: true, width:70,  },
-            { name: "分包合同号",PreName:"fsubpactno", type: "text", width:100,  },
-            { name: "总包合同号",PreName:"fpactid", type: "text", width:100,  },
-            { name: "项目名称",PreName:"fpeojectname", type: "text", width:100,  },
-            { name: "制单人",PreName:"fcreater", type: "text", width:60,  },
-            { name: "制单时间",PreName:"fcreatetime", type: "text", width:30,  },
-            { name: "项客商ID",PreName:"fitemid", type: "text", width:50,  },
-            { name: "客商名称",PreName:"fitemname", type: "text", width:30,  },
-            { name: "合同额",PreName:"famount", type: "text", width:30,  },
-            { name: "税率",PreName:"ftax", type: "text", width:30,  },
-            { name: "客商负责人",PreName:"fmanager", type: "text", width:30,  },
-            { name: "负责人电话",PreName:"fphone", type: "text", width:30,  },
-            { name: "状态",PreName:"fstate", type: "text", width:30,  },
-            { name: "附件",PreName:"ffile", type: "text", width:30,  },
-            {type: "control",width:70,}
-        ];
-
-        // let funName = parent.window.JGConfigFuns;
-        // parent.window.JGConfigFuns = funName || {};
-        //将方法存入window对象中
-        JGConfig.funs = function (){
-            $(".jsgrid-insert-button").off("click");
-            // 删
-            $(".jsgrid-delete-button").off("click");
-            $(".jsgrid-delete-button").click(function(){
-                var Id = $(this).parents("tr").find("td").eq(0).text();
-                console.log(Id)
-                let dele = {}
-                dele.data= {fid:Id};
-                dele.url = urlDelete;
-                let isDelete = confirm("确定删除？");
-                if(isDelete){
-                    JGM.deleteInfo(dele);
-                    window.location.reload();
-                }
-            });
-            // 改
-            $(".jsgrid-edit-button").click(function(){
-                // //获取id
-                var a =  $(this).parents("tr").find("td").eq(0).text();
-                // window.location.href = ctx +"/managerSave.jsp?managerId="+a;
-                // managerSave.html
-            });
-            $(".jsgrid-insert-mode-button").off("click");
-            $(".jsgrid-insert-mode-button").on("click",function(){
-                // window.location.href = ctx +"/managerSave.jsp";
-            });
-            if ( $("#jsGrid").html() != null ){
-                //调分页的高度
-                var zhi1 = $("#jsGrid").offset().top;
-                var zhi2 = $("#jsGrid").height();
-                var zhi3 = zhi1 + zhi2 - 60;
-                // console.log(zhi3);
-                $("#changePage").css("top",zhi3);
-            }
-            let data = {
-                add :".jsgrid-insert-mode-button",
-                tabName :"ssubpact_addNew",
-                url :"./ssubpact_addNew.html",
-                tabName_CN :"添加",
-            }
-            /**添加新页签事件 */
-            TBF.bindAddNewTab(data);
-        }
-
-        /**将当前表配置信息存入sessionStorage */
-        let funName = parent.window.JGConfig;
-        parent.window.JGConfig = funName || {};
-        parent.window.JGConfig[LFIDAndTabName] = JGConfig;
-
-        // 直接按配置请求
-        JGM.getInfo(JGConfig);
-        // let seesionInfoName = LFIDAndTabName + "JGConfig";
-        // sessionStorage.removeItem(seesionInfoName);
-        // sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
-        // setTimeout(function(){
-        //     let data = {
-        //         page:"1",
-        //         count:"6",
-        //         urlGet,
-        //     }
-        //     CP.show(data);
-        // },5000);
-        /**给查询绑定事件 */
-        TBF.getInfoInCase(searchJson);
+        let mainData = {LFID,originAdd,originEnd,}
+        ADCS.change(mainData);
     })();
 break;
 /******************************************************************************** */  
 case "ssubpact_addNew":
     (function(){
-        $(".closeTabs").click(function(){
-            /**刷新父下另一个框架iframe */
-                    /**存 */
-            let JGConfig = {};
-            JGConfig.url = `${originAdd}/stockWeb/ssubpactAdd${originEnd}`;
-            // 去判断是否留空，留空则提醒，否则提交
-                // 获得数据
-                let LFID = "ssubpact";
-                let data3 = {add:".bodyFrame1-main"}
-                let json = TBF.getCase(data3);
-                let dd = PKG.judge.pickNull(json);
-                data3.body = dd;
-                if(TBF.searchTips(data3)){
-                    // JGM.addInfo(JGConfig);
-                    JGConfig.data= json;
-                    console.log(json)
-                    JGM.addInfo(JGConfig);
-                    $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${LFID}"]`,parent.document)[0].contentWindow.location.reload();
-                    TBF.closeTab();
-                }else{
-                    alert("有未填字段！");
-                };
-            // JGM.addInfo(JGConfig);
-            /**关闭当前页签 */
-            // TBF.closeTab();
-        });
+        let LFID = "ssubpact";
+        let mainData = {LFID,originAdd,originEnd,}
+        ADCS.add(mainData);
     })();
 break;
 /******************************************************************************** */  
+
+case "sbudget":
+    (function(){
+            /**大页 */
+            let LFID = "sbudget";
+            /**小页 */
+            let tabName = "sbudget";
+            /**是否有分页 */
+            let hasFYP = true;
+            /**修改时需要的关键词 */
+            let change_key = `fid`;
+            /**修改时需要的关键词所在的index */
+            let change_keyIdex = `0`;
+            let JGConfig = {};
+            JGConfig.fields = [
+                { name: "id",PreName:"fid", type: "number", readOnly: true, width:10,},
+                { name: "合同编号",PreName:"fno", type: "number", readOnly: true, width:70,  },
+                { name: "项目名称",PreName:"fpeojectname", type: "text", width:100,  },
+                { name: "项目地址",PreName:"faddress", type: "text", width:100,  },
+                { name: "甲方名称",PreName:"funitname", type: "text", width:100,  },
+                { name: "合同额",PreName:"fmoney", type: "text", width:60,  },
+                { name: "税率",PreName:"ftax", type: "text", width:30,  },
+                { name: "项目负责人",PreName:"fmanager", type: "text", width:50,  },
+                { name: "状态",PreName:"fstate", type: "text", width:30,  },
+                {type: "control",width:70,}
+            ];
+            let mainData = {JGConfig,tabName, LFID, originAdd,originEnd,change_key,hasFYP,change_keyIdex, }
+            ADCS.SD(mainData);
+    })();
+break;
+/******************************************************************************** */  
+case "sbudget_changeNew":
+    (function(){
+        let LFID = "sbudget";
+        let mainData = {LFID,originAdd,originEnd,}
+        ADCS.change(mainData);
+    })();
+break;
+/******************************************************************************** */  
+case "sbudget_addNew":
+    (function(){
+        let LFID = "sbudget";
+        let mainData = {LFID,originAdd,originEnd,}
+        ADCS.add(mainData);
+    })();
+break;
+/******************************************************************************** */  
+
+
+
 case "sincome":
     (function(){
         let LFID = "sincome";

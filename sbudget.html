@@ -17,17 +17,17 @@
     <!-- ie9及以下可见 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <!-- IE=edge表示强制使用IE最新内核，chrome=1表示如果安装了针对IE6/7/8等版本的浏览器插件Google Chrome Frame（可以让用户的浏览器外观依然是IE的菜单和界面，但用户在浏览网页时，实际上使用的是Chrome浏览器内核），那么就用Chrome内核来渲染。 -->
-    <title>交通设计院-项目预算单</title>
+    <title>项目预算单</title>
     <link rel="stylesheet" href="./static/scripts/css/default.css">
     <!-- <link rel="stylesheet" href="./static/scripts/work/host/index/V/Final.css"> -->
     <link rel="shortcut icon " type="images/x-icon" href="./favicon.ico">
-    <link rel="stylesheet/less" type="text/css" href="./static/scripts/work/host/index/V/main.less" />
+    <link rel="stylesheet/less" type="text/css" href="./static/scripts/work/host/spact/V/main.less" />
     <script src="./static/scripts/lib/less/dist/less.min.js" ></script>
-    <script>less.watch();</script>
     <script src="./static/scripts/app/iconfont.js" ></script>
-      <style>
-        /* body *{box-sizing: border-box;border:1px solid blue} */
-        </style>
+        <script>
+            var ctx = "";
+            var TPN = "sbudget";
+        </script>
 </head>
 <body>
 <!-- bodyFrame -->
@@ -35,7 +35,7 @@
     <div class="bodyFrame1-main flex1 ">
         <div class="title">
             <div>项目预算单</div>    
-        </div>l
+        </div>
         <div class="space10px"></div>
         <div class="search">
             <!-- 此处存放众搜索选项 -->
@@ -43,24 +43,22 @@
             <div class="case">
                 <!-- 每一个筛选条件组件 -->
                 <div class="contractN0">
-                    <div class="case-name">预算单号:</div>
+                    <div class="case-name">合同编号:</div>
                     <div class="case-input">
-                        <input type="text"  field="fno">
+                        <input type="number" field="fno">
                     </div>
                     <div class="case-icon">
-                        <svg class="icon" aria-hidden="true" status="1">
-                            <use xlink:href="#icon-more"></use>
+                        <svg class="icon" aria-hidden="true" status="0">
+                            <use xlink:href="#icon-clear"></use>
                         </svg>
                     </div>
                     <span class="clear"></span>
                 </div>
-
                 <!-- 每一个筛选条件组件 -->
-                
-                <div class="">
-                        <div class="case-name">总包合同号:</div>
+                <div class="test33">
+                        <div class="case-name">项目名称:</div>
                         <div class="case-input">
-                            <input type="text"  field="fpactid">
+                            <input type="text" field="fpeojectname">
                         </div>
                         <div class="case-icon">
                             <svg class="icon" aria-hidden="true" status="0">
@@ -70,28 +68,12 @@
                         <span class="clear"></span>
                     </div>
 
-          <!-- 每一个筛选条件组件 -->
-                
-          <div class="itemName">
-                <div class="case-name">制单人:</div>
-                <div class="case-input">
-                    <input type="text" field="fcreater">
-                </div>
-                <div class="case-icon">
-                    <svg class="icon" aria-hidden="true" status="1">
-                        <use xlink:href="#icon-more"></use>
-                    </svg>
-                </div>
-                <span class="clear"></span>
-            </div>   
-            
-          
-                    
+
             </div>
             <!-- 此处为搜索选项 -->
             <div class="button">
-                <div class="showAddNewCon">添加预算单</div>
-                <div class="toSearch">按条件查询</div>
+                <div class="showAddNewCon">添加</div>
+                <div class="showAddNewCon2">搜索</div>
             </div>
             <div class="clearBoth"></div>
         </div>
@@ -104,29 +86,29 @@
 			<div class="charts">
                 <!-- 分页开始 注：分页内容，要和此div，main.css中相关样式，main.js相关js配合使用 20181029-->
                 <div id="changePage" class="displayFlex">
-                        <div class="flex1"></div>
-                        <div class="title1" pages="1" allPage="1">
-                            共有 <b style="color: #A60427">10</b> 个记录  0/0页
-                        </div>
-                        <div class="turn Left cursoPoin thisMainBG thisMainBGColor">
-                            上一页</div>
-                        <div class="pages">
-                            <!-- checkedStau 为选中样式，点击时先取消所有此css，再给所点击的li加上此样式 -->
-                            <!-- <li pages="1" class="floatLeft checkedStau">1</li> -->
-                        </div>
-                        <div
-                            class="turn Right clearBoth cursoPoin thisMainBG thisMainBGColor">
-                            下一页</div>
-                        <div class="space10px"></div>
-                        <div class="input cursoPoin">
-                            <input type="text">
-                        </div>
-                        <div class="space10px"></div>
-                        <!-- 跳转按钮 -->
-                        <div class="jumpToPage button cursoPoin thisMainBG thisMainBGColor">跳转</div>
-                        <div class="space40px"></div>
+                    <div class="flex1"></div>
+                    <div class="title1" pages="1" allPage="1">
+                        共有 <b style="color: #A60427">10</b> 个记录， 0/0页
                     </div>
-                    <!-- 分页结束 -->
+                    <div class="turn Left cursoPoin thisMainBG thisMainBGColor">
+                        上一页</div>
+                    <div class="pages">
+                        <!-- checkedStau 为选中样式，点击时先取消所有此css，再给所点击的li加上此样式 -->
+                        <!-- <li pages="1" class="floatLeft checkedStau">1</li> -->
+                    </div>
+                    <div
+                        class="turn Right clearBoth cursoPoin thisMainBG thisMainBGColor">
+                        下一页</div>
+                    <div class="space10px"></div>
+                    <!-- <div class="input cursoPoin">
+                        <input type="text">
+                    </div>
+                    <div class="space10px"></div> -->
+                    <!-- 跳转按钮 -->
+                    <!-- <div class="jumpToPage button cursoPoin thisMainBG thisMainBGColor">跳转</div> -->
+                    <div class="space40px"></div>
+                </div>
+                <!-- 分页结束 -->
                     <!-- 图表容器 -->
                     <!-- <div class="space40px"></div> -->
                     <div id="jsGrid" class="pcCenter"></div>
@@ -137,13 +119,14 @@
     </div>
 </div>
 
-
 </body>
 <!-- <script>var ctx = "${ctx}";</script> -->
 <script data-main="./static/scripts/main" src="./static/scripts/require.js"></script>
 <!-- <script src="./static/scripts/config/app/index.js"></script>  -->
 <script type="text/javascript">
 //当前页面程序入口
-require(['work/host/sbudget/C/main'],function(a){});
+require(['work/host/testSelectAll/C/main'],function(a){});
+</script>
+<script>
 </script>
 </html>

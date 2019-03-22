@@ -46,20 +46,7 @@
                 <!-- 此处存放众搜索选项 -->
                 <div class="space40px"></div>
                 <div class="case">
-                    <!-- 每一个筛选条件组件 -->
-                    
-                    <div class="">
-                            <div class="case-name">id:</div>
-                            <div class="case-input">
-                                <input type="text" field="fid">
-                            </div>
-                            <div class="case-icon">
-                                <svg class="icon" aria-hidden="true" status="0">
-                                    <use xlink:href="#icon-clear"></use>
-                                </svg>
-                            </div>
-                            <span class="clear"></span>
-                        </div>
+    
      <!-- 每一个筛选条件组件 -->
                     
      <div class="">
@@ -103,7 +90,7 @@
                     <span class="clear"></span>
                 </div>
                              <!-- 每一个筛选条件组件 -->
-                    
+                             <!-- 这里是登录人 -->
      <div class="">
         <div class="case-name">制单人:</div>
         <div class="case-input">
@@ -116,24 +103,12 @@
         </div>
         <span class="clear"></span>
     </div>
-                 <!-- 每一个筛选条件组件 -->
-                    
-                 <div class="">
-                    <div class="case-name">制单时间:</div>
-                    <div class="case-input">
-                        <input type="text" field="fcreatetime">
-                    </div>
-                    <div class="case-icon">
-                        <svg class="icon" aria-hidden="true" status="0">
-                            <use xlink:href="#icon-clear"></use>
-                        </svg>
-                    </div>
-                    <span class="clear"></span>
-                </div>
+           
                              <!-- 每一个筛选条件组件 -->
+                             <!-- 这里是客商id需要自己获取 -->
                     
      <div class="">
-        <div class="case-name">项客商ID:</div>
+        <div class="case-name">客商ID:</div>
         <div class="case-input">
             <input type="text" field="fitemid">
         </div>
@@ -145,7 +120,7 @@
         <span class="clear"></span>
     </div>
                  <!-- 每一个筛选条件组件 -->
-                    
+                     <!-- 这里是客商需要自己获取 -->
                  <div class="">
                     <div class="case-name">客商名称:</div>
                     <div class="case-input">
@@ -158,6 +133,7 @@
                     </div>
                     <span class="clear"></span>
                 </div>
+
                              <!-- 每一个筛选条件组件 -->
                     
      <div class="">
@@ -178,10 +154,16 @@
                     <div class="">
                         <div class="case-name">税率:</div>
                         <div class="case-input">
-                            <input type="text"  field="ftax">
+                            <select name="" id=""  field="ftax">
+                                <option value="0.03">3%</option>
+                                <option value="0.06">6%</option>
+                                <option value="0.1">10%</option>
+                                <option value="0.13">13%</option>
+                                <option value="0.16">16%</option>
+                            </select>
                         </div>
                         <div class="case-icon">
-                            <svg class="icon" aria-hidden="true" status="0">
+                            <svg class="icon" aria-hidden="true" status="2">
                                 <use xlink:href="#icon-clear"></use>
                             </svg>
                         </div>
@@ -242,7 +224,7 @@
                  <div class="">
                     <div class="case-name">附件:</div>
                     <div class="case-input">
-                        <input type="text" field="ffile">
+                        <input type="text" field="ffile" >
                     </div>
                     <div class="case-icon">
                         <svg class="icon" aria-hidden="true" status="0">
