@@ -1,94 +1,70 @@
 define([
     'require',
     "jquery",
-    "app/jsGridMethods",
 ], function(
         require,
         $,
-        JGM,
     ) {
     'use strict';
+    
    let fun = {
-            // /**fun_1 */
-            // getInfo:function(data){
-            //     let LFID = data.LFID;
-            //     let tabName = data.tabName;
-            //     let LFIDAndTabName = LFID + tabName;
-            //     let page = data.page;
-            //     // 1.获取当前页名
-            //     let str = LFIDAndTabName+"JGConfig";
-
-            //     let body = JSON.parse(sessionStorage.getItem(str));
-            //     body.data.page = page;
-            //     let jgg = require("app/jsGridMethods");
-            //     jgg.getInfo(body);
-            // },
-            // /** 输入 page 、 count       根据page请求 更新相应界面，同时控制动画效果。 */
-            // show:function(data){
-            //     let page = Number(data.page);
-            //     let count = Number(data.count);
-            //     let urlGet = data.urlGet;
-            //     $("#changePage .title1").html(`
-            //         共有 <b style="color: #A60427" class="showTotalPage">${count}</b> 页记录 每页显示5条 ${page}/${count}页
-            //     `);
-            //     let liList = $(`#changePage .pages li`).length; 
-            //     if(liList == 0){
-            //         /**如果liList直接子元素为0 */
-            //         //否  罗列
-            //         var str = "";
-            //         //li 里的 pages ：为当前页。最高值为 pgs 。
-            //         for(var i = 0;i <= count-1;i++){
-            //             str += `<li pages="${i+1}" class="floatLeft" isFocus="no" isHide="no">${i+1}</li>`;
-            //         }
-            //         // 填充进入dom
-            //         $("#changePage .pages").html(str);
-            //         $(`#changePage .pages li[pages="1"]`).attr("isFocus","yes");
-            //         /**点击事件 */
-            //         $("#changePage .pages li").click(function(e){
-            //             /**重新focus */
-            //             $(`#changePage .pages li`).attr("isFocus","no");
-            //             $(this).attr("isFocus","yes");
-            //             let thisPage = $(this).attr("pages");
-            //             if(count >5){
-            //                 /**总页数大于5才有动画 */
-            //                 if(thisPage > 2 && thisPage < (count - 1)){
-            //                     $(`#changePage .pages li[pages="${thisPage - 2}"]`).attr("isHide","yes");
-            //                 }
-            //             }
-                        
-            //             // fun.showTabClick(e);
-            //         });
-            //     }else{
-            //         /**如果liList直接子元素不为0 */
-            //         console.log(22222);
-            //     }
-            // },
-            // showAnimai:function(){
-
-            // },
-            // showTabClick:function(data){
-            //     // console.log(data)
-                
-            // },
+          
         changePageJSPost:function (data){
-            // 如何处理请求？  参数：1、页数，2、数据类型
+                // 如何处理请求？  参数：1、页数，2、数据类型
                 // 1.处理默认数据
-                // 2.根据参数请求特定数据
+                // 2.根据参数请求特定数据、
+                console.log("CP_changePageJSPost is ");
+                console.log(data);
                 let LFID = data.LFID;
                 let tabName = data.tabName;
                 let LTIndex = LFID + tabName;
                 let JGConfig = parent.window.JGConfig[LTIndex];
-                let url = JGConfig.url;
+                let fields = JGConfig.fields;
+                let getUrl = JGConfig.url;
                 let page = data.page;
 
-                /**获得当前搜索条件状态 */
 
+                let TBF = require("app/tabsFunctions");
+                /**获得当前搜索条件状态 */
                 let searchJson = {
                     add:".bodyFrame1-main",
                 };
-                TBF.getCase(searchJson); 
+                // TBF.getCase(searchJson); 
+
+                let searchRes = TBF.getCase(searchJson);
+                console.log("searchRes is ")
+                console.log(searchRes); 
+                /**此处获得的是搜索条件，下面开始判断，如果是非0，则带搜索条件继续搜索 */
+
+                if(page != "0"){
+                    /**代表分页事件请求 */
+                    let json = {
+                        LFID,
+                        tabName,
+                        url:getUrl,
+                        page,
+                        fields,
+
+                    };
+                    let JGM = require("app/jsGridMethods");
+                    JGM.getInfo(json);
+                    // 先按照提交进来的分页请求数据
+                    /**getInfo后从window对象中捕获数据 */
+                    // let totalCount = parent.window.JGData[LTIndex].totalCount;
+                    // let totalPage = parent.window.JGData[LTIndex].totalPage;
+                    // let dataList = parent.window.JGData[LTIndex].dataList;
+
+
+                }else{
+                    /**代表默认请求 */
+
+                    /**此处应为请求数据添加 */
+
+                }
+
+
                 
-                // let searchRes = TBF.getCase(searchJson); 
+                
                 // searchRes.page = page;
 
 
@@ -97,8 +73,6 @@ define([
                 //     data:searchRes
                 // }
                 // JGM.getInfo(getInfoJson);
-
-
 
 
                 // $.ajax({
@@ -135,7 +109,6 @@ define([
                 //     obj[a5] = n.a5,
                 //     obj[a6] = n.a6;
 
-            
                 var exam = {
                     "count":"10",
                     "page":"1",
@@ -149,8 +122,11 @@ define([
                         "a5":"张三",
                         "a6":"竣工"
                     }]
-                } ;
-                fun.useTable_addInfo(exam);
+                };
+
+                
+
+                // fun.useTable_addInfo(exam);
         },
         changePageJS:function(){
             // (先解绑,因为此函数会被多次调用)
@@ -360,5 +336,8 @@ define([
 
            
    }
+
+  
+
    return fun;
 });

@@ -38,6 +38,9 @@ define([
             fun.useTable_addInfo(data);
         },
         getInfo:function(json){
+            let LFID = json.LFID;
+            let tabName = json.tabName;
+            let LFIDAndTabName = LFID+tabName;
             $.ajax({
                 type: 'post',
                 url: json.url,
@@ -47,11 +50,17 @@ define([
                 success: function(data){
                     if(data.resultFlag){
                         json.dataList = data.dataList 
-                        json.count = data.totalPage;
+                        // json.count = data.totalPage;
                         // json.count = "6";
-                        json.page = data.page;
+                        // json.page = data.page;
+
+                        /**每次请求成功后就更新windows对象 */
+                        let funName = parent.window.JGData;
+                        parent.window.JGData = funName || {};
+                        parent.window.JGData[LFIDAndTabName] = data;
+
+
                         fun.changeForm2(json);
-                        
                         // 待更新分页
                         // let CP = require("app/changePage");
                         // let pagesInfo = {

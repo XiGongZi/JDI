@@ -25,7 +25,7 @@ define([
     //     window.location.reload();
     // });
 
-    var originAdd = `http://192.168.1.100:80`;
+    var originAdd = `http://192.168.1.100:8080`;
     var originEnd = `.do`;
     // 获得页面名称
     switch (TPN) {
@@ -818,7 +818,6 @@ case "spact":
             //     tabName_CN :"添加新合同2",
             // }
             // TBF.bindAddNewTab(data1);
-            
             let JGConfig = {};
             JGConfig.data = {page:1};
             JGConfig.LFID = LFID;
@@ -884,11 +883,7 @@ case "spact":
                 }
                 /**添加新页签事件 */
                 TBF.bindAddNewTab(data);
-
-                
                 /* 获得点击的所在的关键词 */
-               
-
                 // let data4 = {
                 //     add :`.jsgrid-edit-button`,
                 //     tabName :`${tabName}_addNew`,
@@ -904,28 +899,51 @@ case "spact":
                     url :`./${tabName}_changeNew.html`,
                     field:`fid`,
                 }
-
                 /**添加新页签事件 */
                 let changeInfoList = parent.window.changeInfo;
                 parent.window.changeInfo = changeInfoList || {};
-
                 parent.window.changeInfo[LFIDAndTabName] = data1;
 
+
+
                 // 将方法存入window对象中
-
-
                 TBF.bindAddNewTabChange(data1);
-
-
             }
             /**将当前表配置信息存入sessionStorage */
             let funName = parent.window.JGConfig;
             parent.window.JGConfig = funName || {};
             parent.window.JGConfig[LFIDAndTabName] = JGConfig;
+
+            
             // 直接按配置请求
             JGM.getInfo(JGConfig);
             /**给查询绑定事件 */
             TBF.getInfoInCase(searchJson);
+
+
+
+            /**分页 */
+            let FYJson = {
+                LFID,
+                tabName,
+                page:"0",
+                url:urlGet,
+            }
+            CP.changePageJSPost(FYJson);
+
+
+            setTimeout(function(){
+                console.log("开始请求第二页");
+                let FYJson2 = {
+                    LFID,
+                    tabName,
+                    page:"2",
+                    url:urlGet,
+                }
+                CP.changePageJSPost(FYJson2);
+            },3000);
+            
+
     })();
 break;
 /******************************************************************************** */  
