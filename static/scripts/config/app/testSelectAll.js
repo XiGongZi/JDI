@@ -702,6 +702,71 @@ define('app/tabsFunctions',[
             });
 
         },
+        bindAddNewTabChange:function(data){
+            let add = data.add;
+            let tabName = data.tabName;
+            let url = data.url;
+            let LFID = data.LFID;
+            let tabName_CN = data.tabName_CN;
+            let isParentDoc = data.isParentDoc;
+            let getUrl = data.getUrl;
+            let postUrl = data.postUrl;
+            let field = data.field;
+            let LFIDAndTabNames = LFID + LFID;
+            let getDataName = LFID + "Data";
+            $(add).click(function(){
+                /**此处获取第1位的关键词 */
+                var keyValue =  $(this).parents("tr").find("td").eq(0).text();
+                /**获取当前左导航状态 */
+                let json1 = fun.getLeftBarStatus();
+                let LFDep_CN = json1.LFDep_CN;
+                let LFID_CN = json1.LFID_CN;
+                let LFID = json1.LFID;
+                /**判断T2是否存在此tabName */
+                let thisTabNum = $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`,parent.document).length;
+                if(thisTabNum == 0){
+                    let data = {
+                        LFID,
+                        tabName,
+                        tabName_CN,
+                        isParentDoc,
+                        url,
+                    }
+                    fun.insertT2B2(data);
+                    fun.bindTabsFun(data);
+                };
+                let data = {
+                    LFID,
+                    tabName,
+                    isParentDoc,
+                };
+                fun.showT2B2(data);
+                let data1 = {
+                    LFDep_CN,
+                    LFID_CN,
+                    tabName_CN,
+                    isParentDoc,
+                };
+                fun.changePosition(data1);
+
+                /**请求数据并填写到页面上 */
+                let JGM = require("app/jsGridMethods");
+                let data2 = {
+                    url:getUrl,
+                    data:{},
+                    field:getDataName
+                }
+                data2.data[field] = keyValue;
+                console.log("this is data");``
+                console.log(data2);
+                console.log("this is getThisPageTabStatus");
+                console.log(fun.getThisPageTabStatus());
+           
+                parent.window.changeInfo[LFIDAndTabNames].fieldVal = keyValue;
+                
+            });
+
+        },
         getLeftBarStatus:function(){
             /**获取当前左导航状态 */
             let LFDep_CN = $(`iframe[name="leftBar1"]`,parent.document).contents().find(".leftBarFrame a[hover1='1']").parent().parent().find(".LFDep_CN").text();
@@ -711,6 +776,16 @@ define('app/tabsFunctions',[
             let json = {
                 LFDep_CN,
                 LFID_CN,
+                LFID
+            }
+            return json;
+        },
+        getThisPageTabStatus:function(){
+            /**获取当前页签状态 */
+            let LFID = $(`.tabs>div[isshow="yes"]`,parent.document).attr("LFID");
+            let tabName = $(`.tabs>div[isshow="yes"]>div[isFocus="yes"]`,parent.document).attr("tabName");
+            let json = {
+                tabName,
                 LFID
             }
             return json;
@@ -726,19 +801,27 @@ define('app/tabsFunctions',[
             });
             $(data.add+" select[field]").each(function(){
                 let field = $(this).attr("field");
-                let val = $(this).find("option:selected").text();
+                let val = $(this).find("option:selected").val();
                 json[field] = val;
             });
+            $(data.add+" textarea[field]").each(function(){
+                let field = $(this).attr("field");
+                let val = $(this).val();
+                console.log(val)
+                json[field] = val;
+            });
+            console.log(json)
             return json;
         },
         getInfoInCase:function(data){
             let JGM = require("app/jsGridMethods");
-            let da = fun.getCase(data);
             let LFID = data.LFID;
             let tabName = data.tabName;
             let to = LFID + tabName;
             let JSGridConfig = parent.window.JGConfig[to];
             $(data.button).click(function(){
+                let da = fun.getCase(data);
+                console.log(da)
                 JSGridConfig.data = da;
                 JSGridConfig.data.page = 1;
                 JGM.getInfo(JSGridConfig);
@@ -746,9 +829,11 @@ define('app/tabsFunctions',[
         },
         searchTips:function(data){
             $(data.add).find(`input[field]`).attr("null","false");
+            $(data.add).find(`textarea[field]`).attr("null","false");
             $.each(data.body,function(i,e){
-                $(data.add).find(`input[field="${e}"]`).attr("null","true");
+                $(data.add).find(`*[field="${e}"]`).attr("null","true");
             });
+            console.log(data.body);
             if(data.body.length > 0){
                 return false;
             }else{
@@ -3364,158 +3449,91 @@ define('lib/jsgrid/jsgrid',[
 define('app/changePage',[
     'require',
     "jquery",
-    "app/jsGridMethods",
 ], function(
         require,
         $,
-        JGM,
     ) {
     'use strict';
+    
    let fun = {
-            // /**fun_1 */
-            // getInfo:function(data){
-            //     let LFID = data.LFID;
-            //     let tabName = data.tabName;
-            //     let LFIDAndTabName = LFID + tabName;
-            //     let page = data.page;
-            //     // 1.获取当前页名
-            //     let str = LFIDAndTabName+"JGConfig";
-
-            //     let body = JSON.parse(sessionStorage.getItem(str));
-            //     body.data.page = page;
-            //     let jgg = require("app/jsGridMethods");
-            //     jgg.getInfo(body);
-            // },
-            // /** 输入 page 、 count       根据page请求 更新相应界面，同时控制动画效果。 */
-            // show:function(data){
-            //     let page = Number(data.page);
-            //     let count = Number(data.count);
-            //     let urlGet = data.urlGet;
-            //     $("#changePage .title1").html(`
-            //         共有 <b style="color: #A60427" class="showTotalPage">${count}</b> 页记录 每页显示5条 ${page}/${count}页
-            //     `);
-            //     let liList = $(`#changePage .pages li`).length; 
-            //     if(liList == 0){
-            //         /**如果liList直接子元素为0 */
-            //         //否  罗列
-            //         var str = "";
-            //         //li 里的 pages ：为当前页。最高值为 pgs 。
-            //         for(var i = 0;i <= count-1;i++){
-            //             str += `<li pages="${i+1}" class="floatLeft" isFocus="no" isHide="no">${i+1}</li>`;
-            //         }
-            //         // 填充进入dom
-            //         $("#changePage .pages").html(str);
-            //         $(`#changePage .pages li[pages="1"]`).attr("isFocus","yes");
-            //         /**点击事件 */
-            //         $("#changePage .pages li").click(function(e){
-            //             /**重新focus */
-            //             $(`#changePage .pages li`).attr("isFocus","no");
-            //             $(this).attr("isFocus","yes");
-            //             let thisPage = $(this).attr("pages");
-            //             if(count >5){
-            //                 /**总页数大于5才有动画 */
-            //                 if(thisPage > 2 && thisPage < (count - 1)){
-            //                     $(`#changePage .pages li[pages="${thisPage - 2}"]`).attr("isHide","yes");
-            //                 }
-            //             }
-                        
-            //             // fun.showTabClick(e);
-            //         });
-            //     }else{
-            //         /**如果liList直接子元素不为0 */
-            //         console.log(22222);
-            //     }
-            // },
-            // showAnimai:function(){
-
-            // },
-            // showTabClick:function(data){
-            //     // console.log(data)
-                
-            // },
         changePageJSPost:function (data){
-            // 如何处理请求？  参数：1、页数，2、数据类型
+                // 如何处理请求？  参数：1、页数，2、数据类型
                 // 1.处理默认数据
-                // 2.根据参数请求特定数据
+                // 2.根据参数请求特定数据、
+                console.log("CP_changePageJSPost is ");
+                console.log(data);
                 let LFID = data.LFID;
                 let tabName = data.tabName;
                 let LTIndex = LFID + tabName;
                 let JGConfig = parent.window.JGConfig[LTIndex];
-                let url = JGConfig.url;
+                let fields = JGConfig.fields;
+                let getUrl = JGConfig.url;
                 let page = data.page;
 
+                let TBF = require("app/tabsFunctions");
                 /**获得当前搜索条件状态 */
-
                 let searchJson = {
                     add:".bodyFrame1-main",
                 };
-                TBF.getCase(searchJson); 
+                // TBF.getCase(searchJson); 
+
+                let searchRes = TBF.getCase(searchJson);
+                console.log("searchRes is ")
+                console.log(searchRes); 
+                /**此处获得的是搜索条件，下面开始判断，如果是非0，则带搜索条件继续搜索 */
+
+                if(page != "0"){
+                    /**代表分页事件请求 */
+                    let data = {
+                        page,
+                    };
+                    data = $.extend(data, searchRes);
+                    let json = {
+                        LFID,
+                        tabName,
+                        url:getUrl,
+                        page,
+                        data,
+                        fields,
+                    };
+                    console.log("this is CP_ pageValue");
+                    console.log(page);
+                    let JGM = require("app/jsGridMethods");
+                    JGM.getInfo(json);
+
+                }else{
+                    /**代表默认请求 */
+                    /**此处应为请求数据添加 */
+                }
                 
-                // let searchRes = TBF.getCase(searchJson); 
-                // searchRes.page = page;
+                /**此处代码块作用，用来临时赋值。默认 容器为undefined，请求到数据时为其赋值（其他模块），生命周期开始时，此代码块在此不断询问目标对象书否为undefined，是则等待一会继续询问，直到不为undefined（别的模块已赋值），此时取出数据，使用完后再设置undefined，生命周期结束。 */
+                let IPCB = setInterval(function(){//每隔Nms去判断  是否被申明，是则取消循环，输出
+                    try {
+                        if(parent.window.JGData[LTIndex] != undefined){
+                            clearInterval(IPCB);
+                            let JGData = parent.window.JGData[LTIndex];
+                            let totalCount = JGData.totalCount;
+                            let totalPage = JGData.totalPage;
+                            let currentPage = JGData.currentPage;
+                            // let dataList = JGData.dataList;
+                            var pagesInfo = {
+                                "count":totalCount,
+                                "page":totalPage,
+                                "thisPage":currentPage,
+                                LFID,
+                                tabName,
+                            }
+                            fun.addChangePageMore(pagesInfo);
+                            parent.window.JGData[LTIndex] = undefined;
+                        }
+                    } catch (error) {console.log("Error! window.JGData")}
+                }, 80);
 
-
-                // let getInfoJson = {
-                //     url,
-                //     data:searchRes
-                // }
-                // JGM.getInfo(getInfoJson);
-
-
-
-
-                // $.ajax({
-                //     type: 'POST',
-                //     url: ctx + '/managerList.html',
-                //     data: {'page':page},
-                //     cache: false,
-                //     success: function(data){
-                //         // 获取最大页
-                //         maxPage = data.maxPage;
-                //         // alert(maxPage);
-                //         // 遍历样品数据
-                    
-                //         // useTable_addInfo(JSON.parse(data));
-                //     }
-                // });
-                // var arr = [];
-                // var a = "合同编号",
-                //     b = "项目名称",
-                //     a1 = "项目地址",
-                //     a2 = "甲方名称",
-                //     a3 = "合同额",
-                //     a4 = "税率",
-                //     a5 = "项目负责人",
-                //     a6 = "状态",;
-                // $.each(json,function(i,n){
-                //     var obj ={};
-                //     obj[a] = n.proNum;
-                //     obj[b] = n.proName;
-                //     obj[a1] = n.proAdd;
-                //     obj[a2] = n.AName,
-                //     obj[a3] = n.a3,
-                //     obj[a4] = n.a4,
-                //     obj[a5] = n.a5,
-                //     obj[a6] = n.a6;
-
-            
-                var exam = {
-                    "count":"10",
-                    "page":"1",
-                    "managerList":[{
-                        "proNum":"x1223312",
-                        "proName":"xx桥梁建设总合同",
-                        "proAdd":"沈阳市三好街",
-                        "AName":"沈阳市交通设计院",
-                        "a3":"10.000.000",
-                        "a4":"10%",
-                        "a5":"张三",
-                        "a6":"竣工"
-                    }]
-                } ;
-                fun.useTable_addInfo(exam);
         },
-        changePageJS:function(){
+        changePageJS:function(data){
+            let LFID = data.LFID;
+            let tabName = data.tabName;
+
             // (先解绑,因为此函数会被多次调用)
             // 直接点击 页面数字的 事件
             $("#changePage .pages li").off("click");
@@ -3523,7 +3541,12 @@ define('app/changePage',[
                 // var a = $(this).text();
                 //所点击的li pages属性（所点击的是第几页）
                 var b = $(this).attr("pages");
-                fun.changePageJSPost(b);
+                let json = {
+                    LFID,
+                    tabName,
+                    page:b,
+                }
+                fun.changePageJSPost(json);
                 //测试结束  点击页数按钮时改变
             });
             // 点击 跳转到第几页 事件
@@ -3533,13 +3556,14 @@ define('app/changePage',[
                 // 1.检测input内容是否合法
                     //1.检测是否为数字
                 var zhi = parseInt($("#changePage .input input").val());
-                                //2.检测是否有这页    (先从有多少条记录中取余出来，后可直接传值)
-                            var zhi1 = parseInt($("#changePage .title1").attr("pages")) ;
-                            // 总共多少条记录
-                            var all = parseInt($("#changePage .title1").attr("allPage"));
-                            // console.log(zhi1);
-                            // console.log("/////////");
-                            if (zhi != NaN && zhi <= zhi1 && zhi > 0){
+                    //2.检测是否有这页    (先从有多少条记录中取余出来，后可直接传值)
+                var zhi1 = parseInt($("#changePage .title1").attr("pages")) ;
+                // 总共多少条记录
+                var all = parseInt($("#changePage .title1").attr("allPage"));
+                // console.log(zhi1);
+                // console.log("/////////");
+                if (zhi != NaN && zhi <= zhi1 && zhi > 0){
+                    
                 }else if(zhi == 0){
                     //如果为0
                 }
@@ -3560,12 +3584,22 @@ define('app/changePage',[
                     // console.log("pageUp");
                     let b = 1;
                     thisPage > 1 ? b = thisPage -1:b = pages;
-                    fun.changePageJSPost(b);
+                    let json = {
+                        LFID,
+                        tabName,
+                        page:b,
+                    }
+                    fun.changePageJSPost(json);
                 }else{
                     // console.log("pageDown");
                     let b = 1;
                     thisPage < pages ? b = thisPage +1:b = 1;
-                    fun.changePageJSPost(b);
+                    let json = {
+                        LFID,
+                        tabName,
+                        page:b,
+                    }
+                    fun.changePageJSPost(json);
                 }
             });
         },
@@ -3609,21 +3643,27 @@ define('app/changePage',[
             `);
         },
          addChangePageMore:function(a){
+             let LFID = a.LFID;
+             let tabName = a.tabName;
+             let page = a.page;
+             console.log("this is CP_addChangePageMore!")
+             console.log(a);
             //共多少记录
             var allPages = a.count;
             allPages == undefined ? allPages = 1: allPages = allPages;
             //十位向上取整计算需要显示多少页
-            var pgs = Math.ceil(allPages/10);
+            var pgs = a.page;
             //当前是第几页
-            var thisPage = parseInt(a.page);
+            var thisPage = parseInt(a.thisPage);
+            /**验证thisPage不为NaN */
             thisPage != thisPage ? thisPage =1 : thisPage = thisPage;
             //本页应为多少条
                 //1.检测当前是第几页。2.最后一页则取个位，否则取整
             var b = "";
-            thisPage < pgs ? b = "1-10": b = "1-"+ (allPages - (thisPage -1)*10 );
+            thisPage < pgs ? b = "1-5": b = "1-"+ (allPages - (thisPage -1)*5 );
             $("#changePage .title1").attr("pages",pgs).attr("allPage",allPages);
             $("#changePage .title1").html(`
-            共有 <b style="color:#A60427">${allPages}</b> 个记录  每页显示10条，本页${b}条 ${thisPage}/${pgs}页
+            共有 <b style="color:#A60427">${allPages}</b> 个记录 , 本页${b}条 ${thisPage}/${pgs}页
             `);
             //填充页数小方块
                 //1.判断总页数是否大于5
@@ -3710,7 +3750,11 @@ define('app/changePage',[
             $("#changePage .pages li").removeClass("checkedStau");
             $("#changePage .pages li[pages='"+thisPage+"']").addClass("checkedStau");
             //changePagesJS 绑定事件(先解绑,因为此函数会被多次调用)
-            fun.changePageJS();
+            let data = {
+                LFID,
+                tabName,
+            }
+            fun.changePageJS(data);
         },
          useTable_addInfo:function(json){
             // 填入页数信息   json.pagesInfo 为页数信息
@@ -3723,6 +3767,9 @@ define('app/changePage',[
 
            
    }
+
+  
+
    return fun;
 });
 
@@ -3766,6 +3813,9 @@ define('app/jsGridMethods',[
             fun.useTable_addInfo(data);
         },
         getInfo:function(json){
+            let LFID = json.LFID;
+            let tabName = json.tabName;
+            let LFIDAndTabName = LFID+tabName;
             $.ajax({
                 type: 'post',
                 url: json.url,
@@ -3775,11 +3825,17 @@ define('app/jsGridMethods',[
                 success: function(data){
                     if(data.resultFlag){
                         json.dataList = data.dataList 
-                        json.count = data.totalPage;
+                        // json.count = data.totalPage;
                         // json.count = "6";
-                        json.page = data.page;
+                        // json.page = data.page;
+
+                        /**每次请求成功后就更新windows对象 */
+                        let funName = parent.window.JGData;
+                        parent.window.JGData = funName || {};
+                        parent.window.JGData[LFIDAndTabName] = data;
+
+
                         fun.changeForm2(json);
-                        
                         // 待更新分页
                         // let CP = require("app/changePage");
                         // let pagesInfo = {
@@ -3793,6 +3849,43 @@ define('app/jsGridMethods',[
                         // }
                         // CP.changePageJSPost(dataJson);
                         // CP.addChangePageMore(pagesInfo);
+                    }else{
+                    }
+                    // useTable_addInfo(JSON.parse(data));
+                },
+                error:function(){
+                    try {
+                    }catch(e){
+                    }
+                }
+            });
+        },
+        getInfo_insertInput:function(json){
+            $.ajax({
+                type: 'post',
+                url: json.url,
+                data: json.data,
+                cache: false,
+                dataType: "json",
+                success: function(data){
+                    if(data.resultFlag){
+                        console.log(json.field)
+                         let dates = data[json.field];
+                        console.log("this is change page");
+                        console.log(dates);
+
+                        $.each(dates,function(i,e){
+                            $(`input[field="${i}"]`).attr("value",e)
+                        });
+                        $.each(dates,function(i,e){
+                            $(`textarea[field="${i}"]`).val(e)
+                        });
+                        $.each(dates,function(i,e){
+                            $(`select[field="${i}"]`).find(`option[value="${e}"]`).attr("selected",true);
+                        });
+
+                        
+
                     }else{
                     }
                     // useTable_addInfo(JSON.parse(data));
@@ -3852,6 +3945,28 @@ define('app/jsGridMethods',[
             });
         },
         addInfo:function(json){
+            $.ajax({
+                type: 'post',
+                url: json.url,
+                data: json.data,
+                cache: false,
+                dataType: "json",
+                success: function(data){
+                    if(data.resultFlag){
+                        console.table(data);
+                    }else{
+                        console.log("0.0");
+                    }
+                },
+                error:function(){
+                    try {
+                        console.log("请求失败");
+                    }catch(e){
+                    }
+                }
+            });
+        },
+        updateInfo:function(json){
             $.ajax({
                 type: 'post',
                 url: json.url,
@@ -3947,8 +4062,7 @@ define('work/host/testSelectAll/C/main',[
     // $(".bodyFrame1-main>.title").click(function(){
     //     window.location.reload();
     // });
-
-    var originAdd = `http://192.168.1.100:8080`;
+    var originAdd = `http://192.168.1.100:80`;
     var originEnd = `.do`;
     // 获得页面名称
     switch (TPN) {
@@ -3971,7 +4085,7 @@ define('work/host/testSelectAll/C/main',[
                 };
                 */
                $("#imgCode").attr("src",`${originAdd}/stockWeb/getLoginCode${originEnd}`);
-                $(".submit").click(function(){
+               $(".submit").click(function(){
                     let data3 = {add:".loginBox"}
                     let json = TBF.getCase(data3);
                     let dd = PKG.judge.pickNull(json);
@@ -4114,6 +4228,8 @@ define('work/host/testSelectAll/C/main',[
                                 tabName_CN :"添加",
                             }
                             TBF.bindAddNewTab(data);
+
+
 
                             }
             
@@ -4696,7 +4812,6 @@ case "T_item_addNew":
             if(TBF.searchTips(data3)){
                 // JGM.addInfo(JGConfig);
                 JGConfig.data= json;
-                console.log(json)
                 JGM.addInfo(JGConfig);
                 $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${LFID}"]`,parent.document)[0].contentWindow.location.reload();
                 TBF.closeTab();
@@ -4725,12 +4840,11 @@ case "spact":
                 LFID,
                 tabName,
             };
-            
             let data = {
                 add :".showAddNewCon",
-                tabName :"spact_addContract",
-                url :"./spact_addContract.html",
-                tabName_CN :"添加新合同",
+                tabName :"spact_addNew",
+                url :"./spact_addNew.html",
+                tabName_CN :"添加",
             }
             /**添加新页签事件 */
             TBF.bindAddNewTab(data);
@@ -4741,7 +4855,6 @@ case "spact":
             //     tabName_CN :"添加新合同2",
             // }
             // TBF.bindAddNewTab(data1);
-            
             let JGConfig = {};
             JGConfig.data = {page:1};
             JGConfig.LFID = LFID;
@@ -4770,7 +4883,7 @@ case "spact":
                 $(".jsgrid-delete-button").off("click");
                 $(".jsgrid-delete-button").click(function(){
                     var Id = $(this).parents("tr").find("td").eq(0).text();
-                    console.log(Id)
+                    console.log(Id);
                     let dele = {}
                     dele.data= {fid:Id};
                     dele.url = urlDelete;
@@ -4797,48 +4910,435 @@ case "spact":
                     var zhi2 = $("#jsGrid").height();
                     var zhi3 = zhi1 + zhi2 - 60;
                     // console.log(zhi3);
-                    $("#changePage").css("top",zhi3);
+                    $(`#changePage`).css(`top`,zhi3);
                 }
+                let data = {
+                    add :`.jsgrid-insert-mode-button`,
+                    tabName :`${tabName}_addNew`,
+                    url :`./${tabName}_addNew.html`,
+                    tabName_CN :`添加`,
+                }
+                /**添加新页签事件 */
+                TBF.bindAddNewTab(data);
+                /* 获得点击的所在的关键词 */
+                // let data4 = {
+                //     add :`.jsgrid-edit-button`,
+                //     tabName :`${tabName}_addNew`,
+                //     url :`./${tabName}_addNew.html`,
+                //     tabName_CN :`添加`,
+                // }
+                let data1 = {
+                    add :`.jsgrid-edit-button`,
+                    tabName :`${tabName}_changeNew`,
+                    LFID,
+                    getUrl :`${originAdd}/stockWeb/${tabName}${originEnd}`,
+                    tabName_CN :`修改`,
+                    url :`./${tabName}_changeNew.html`,
+                    field:`fid`,
+                }
+                /**添加新页签事件 */
+                let changeInfoList = parent.window.changeInfo;
+                parent.window.changeInfo = changeInfoList || {};
+                parent.window.changeInfo[LFIDAndTabName] = data1;
+
+
+
+                // 将方法存入window对象中
+                TBF.bindAddNewTabChange(data1);
             }
             /**将当前表配置信息存入sessionStorage */
             let funName = parent.window.JGConfig;
             parent.window.JGConfig = funName || {};
             parent.window.JGConfig[LFIDAndTabName] = JGConfig;
+
+            
             // 直接按配置请求
             JGM.getInfo(JGConfig);
-            // let seesionInfoName = LFIDAndTabName + "JGConfig";
-            // sessionStorage.removeItem(seesionInfoName);
-            // sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
-            // setTimeout(function(){
-            //     let data = {
-            //         page:"1",
-            //         count:"6",
-            //         urlGet,
-            //     }
-            //     CP.show(data);
-            // },5000);
             /**给查询绑定事件 */
             TBF.getInfoInCase(searchJson);
 
-            let dataJson = {
-                page:"1",
-                LFID:"spact",
-                tabName:"spact"
-            }
-            CP.changePageJSPost(dataJson);
 
+
+            /**分页 */
+            let FYJson = {
+                LFID,
+                tabName,
+                page:"0",
+                url:urlGet,
+            }
+            CP.changePageJSPost(FYJson);
+
+            /**这里是 测试——三秒后请求第二页 */
+            // setTimeout(function(){
+            //     console.log("开始请求第二页");
+            //     let FYJson2 = {
+            //         LFID,
+            //         tabName,
+            //         page:"2",
+            //         url:urlGet,
+            //     }
+            //     CP.changePageJSPost(FYJson2);
+            // },3000);
+            
 
     })();
 break;
 /******************************************************************************** */  
 
+case `spact_changeNew`:
+    (function(){
+        let LFID = "spact";
+        let tabName = "spact_changeNew";
+        let LFIDAndTabName_changeInfo = LFID + LFID;
+        let data = parent.window.changeInfo[LFIDAndTabName_changeInfo];
+        let field = data.field;
+        let fieldVal = data.fieldVal;
+        let fieldName = LFID + "Data";
+        console.log("this is spact_changeNew'data");
+        console.log(data);
+
+        let fData = {}
+        fData[field] = fieldVal;
+
+        let json = {
+            field:fieldName,
+            url:data.getUrl,
+            data:fData,
+        }
+        JGM.getInfo_insertInput(json);
+
+        $(".closeTabs").click(function(){
+            /**刷新父下另一个框架iframe */
+                    /**存 */
+            let JGConfig = {};
+            JGConfig.url = `${originAdd}/stockWeb/spactUpdate${originEnd}`;
+            // 去判断是否留空，留空则提醒，否则提交
+                // 获得数据
+                let LFID = "spact";
+                let data3 = {add:".bodyFrame1-main .addNew"}
+                
+
+                let json = TBF.getCase(data3);
+                console.log(json);
+                let dd = PKG.judge.pickNull(json);
+                data3.body = dd;
+                if(TBF.searchTips(data3)){
+                    // JGM.addInfo(JGConfig);
+                    json[field] = fieldVal;
+                    console.log("json is ")
+                    console.log(json)
+                    JGConfig.data= json;
+                    console.log("this is JGConfig")
+                    console.log(JGConfig.data);
+                    JGM.updateInfo(JGConfig);
+                    $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${LFID}"]`,parent.document)[0].contentWindow.location.reload();
+                    TBF.closeTab();
+                }else{
+                    alert("有未填字段！");
+                };
+            // JGM.addInfo(JGConfig);
+            /**关闭当前页签 */
+            // TBF.closeTab();
+        });
+
+    })();
+break;
+/******************************************************************************** */  
+case "spact_addNew":
+(function(){
+    $(".closeTabs").click(function(){
+        /**刷新父下另一个框架iframe */
+                /**存 */
+        let JGConfig = {};
+        JGConfig.url = `${originAdd}/stockWeb/spactAdd${originEnd}`;
+        // 去判断是否留空，留空则提醒，否则提交
+            // 获得数据
+            let LFID = "spact";
+            let data3 = {add:".bodyFrame1-main"}
+            let json = TBF.getCase(data3);
+            let dd = PKG.judge.pickNull(json);
+            data3.body = dd;
+            if(TBF.searchTips(data3)){
+                // JGM.addInfo(JGConfig);
+                JGConfig.data= json;
+                JGM.addInfo(JGConfig);
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${LFID}"]`,parent.document)[0].contentWindow.location.reload();
+                TBF.closeTab();
+            }else{
+                alert("有未填字段！");
+            };
+        // JGM.addInfo(JGConfig);
+        /**关闭当前页签 */
+        // TBF.closeTab();
+    });
+})();
+break;
+/******************************************************************************** */  
 case "ssubpact":
     (function(){
-        
+        let LFID = "ssubpact";
+        let tabName = "ssubpact";
+        let LFIDAndTabName = LFID + tabName;
+        var urlGet =   `${originAdd}/stockWeb/ssubpactList${originEnd}`;
+         var urlDelete = `${originAdd}/stockWeb/ssubpactDelete${originEnd}`;
+        /**search事件 */
+        let searchJson = {
+            add:".bodyFrame1-main .search",
+            button:".toSearch",
+            LFID,
+            tabName,
+        };
+        /**添加新页 */
+        let data = {
+            add :".showAddNewCon",
+            tabName :"ssubpact_addNew",
+            url :"./ssubpact_addNew.html",
+            tabName_CN :"添加",
+        }
+        /**添加新页签事件 */
+        TBF.bindAddNewTab(data);
+        // let data1 = {
+        //     add :".showAddNewCon2",
+        //     tabName :"addNewContract2",
+        //     url :"./addNewContract.html",
+        //     tabName_CN :"添加新合同2",
+        // }
+        // TBF.bindAddNewTab(data1);
+        let JGConfig = {};
+        JGConfig.data = {page:1};
+        JGConfig.LFID = LFID;
+        JGConfig.tabName = tabName;
+        JGConfig.url = urlGet ;
+        /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
+        JGConfig.fields = [
+            { name: "id",PreName:"fid", type: "number", readOnly: true, width:10,},
+            { name: "日期",PreName:"fdate", type: "number", readOnly: true, width:70,  },
+            { name: "分包合同号",PreName:"fsubpactno", type: "text", width:100,  },
+            { name: "总包合同号",PreName:"fpactid", type: "text", width:100,  },
+            { name: "项目名称",PreName:"fpeojectname", type: "text", width:100,  },
+            { name: "制单人",PreName:"fcreater", type: "text", width:60,  },
+            { name: "制单时间",PreName:"fcreatetime", type: "text", width:30,  },
+            { name: "项客商ID",PreName:"fitemid", type: "text", width:50,  },
+            { name: "客商名称",PreName:"fitemname", type: "text", width:30,  },
+            { name: "合同额",PreName:"famount", type: "text", width:30,  },
+            { name: "税率",PreName:"ftax", type: "text", width:30,  },
+            { name: "客商负责人",PreName:"fmanager", type: "text", width:30,  },
+            { name: "负责人电话",PreName:"fphone", type: "text", width:30,  },
+            { name: "状态",PreName:"fstate", type: "text", width:30,  },
+            { name: "附件",PreName:"ffile", type: "text", width:30,  },
+            {type: "control",width:70,}
+        ];
+
+        // let funName = parent.window.JGConfigFuns;
+        // parent.window.JGConfigFuns = funName || {};
+        //将方法存入window对象中
+        JGConfig.funs = function (){
+            $(".jsgrid-insert-button").off("click");
+            // 删
+            $(".jsgrid-delete-button").off("click");
+            $(".jsgrid-delete-button").click(function(){
+                var Id = $(this).parents("tr").find("td").eq(0).text();
+                console.log(Id)
+                let dele = {}
+                dele.data= {fid:Id};
+                dele.url = urlDelete;
+                let isDelete = confirm("确定删除？");
+                if(isDelete){
+                    JGM.deleteInfo(dele);
+                    window.location.reload();
+                }
+            });
+            // 改
+            $(".jsgrid-edit-button").click(function(){
+                // //获取id
+                var a =  $(this).parents("tr").find("td").eq(0).text();
+                // window.location.href = ctx +"/managerSave.jsp?managerId="+a;
+                // managerSave.html
+            });
+            $(".jsgrid-insert-mode-button").off("click");
+            $(".jsgrid-insert-mode-button").on("click",function(){
+                // window.location.href = ctx +"/managerSave.jsp";
+            });
+            if ( $("#jsGrid").html() != null ){
+                //调分页的高度
+                var zhi1 = $("#jsGrid").offset().top;
+                var zhi2 = $("#jsGrid").height();
+                var zhi3 = zhi1 + zhi2 - 60;
+                // console.log(zhi3);
+                $("#changePage").css("top",zhi3);
+            }
+            let data = {
+                add :".jsgrid-insert-mode-button",
+                tabName :"ssubpact_addNew",
+                url :"./ssubpact_addNew.html",
+                tabName_CN :"添加",
+            }
+            /**添加新页签事件 */
+            TBF.bindAddNewTab(data);
+        }
+
+        /**将当前表配置信息存入sessionStorage */
+        let funName = parent.window.JGConfig;
+        parent.window.JGConfig = funName || {};
+        parent.window.JGConfig[LFIDAndTabName] = JGConfig;
+
+        // 直接按配置请求
+        JGM.getInfo(JGConfig);
+        // let seesionInfoName = LFIDAndTabName + "JGConfig";
+        // sessionStorage.removeItem(seesionInfoName);
+        // sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
+        // setTimeout(function(){
+        //     let data = {
+        //         page:"1",
+        //         count:"6",
+        //         urlGet,
+        //     }
+        //     CP.show(data);
+        // },5000);
+        /**给查询绑定事件 */
+        TBF.getInfoInCase(searchJson);
     })();
 break;
 /******************************************************************************** */  
+case "ssubpact_addNew":
+    (function(){
+        $(".closeTabs").click(function(){
+            /**刷新父下另一个框架iframe */
+                    /**存 */
+            let JGConfig = {};
+            JGConfig.url = `${originAdd}/stockWeb/ssubpactAdd${originEnd}`;
+            // 去判断是否留空，留空则提醒，否则提交
+                // 获得数据
+                let LFID = "ssubpact";
+                let data3 = {add:".bodyFrame1-main"}
+                let json = TBF.getCase(data3);
+                let dd = PKG.judge.pickNull(json);
+                data3.body = dd;
+                if(TBF.searchTips(data3)){
+                    // JGM.addInfo(JGConfig);
+                    JGConfig.data= json;
+                    console.log(json)
+                    JGM.addInfo(JGConfig);
+                    $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${LFID}"]`,parent.document)[0].contentWindow.location.reload();
+                    TBF.closeTab();
+                }else{
+                    alert("有未填字段！");
+                };
+            // JGM.addInfo(JGConfig);
+            /**关闭当前页签 */
+            // TBF.closeTab();
+        });
+    })();
+break;
+/******************************************************************************** */  
+case "sincome":
+    (function(){
+        let LFID = "sincome";
+        let tabName = "sincome";
+        let LFIDAndTabName = LFID + tabName;
+        var urlGet =   `${originAdd}/stockWeb/sincomeList${originEnd}`;
+         var urlDelete = `${originAdd}/stockWeb/sincomeDelete${originEnd}`;
+        /**search事件 */
+        let searchJson = {
+            add:".bodyFrame1-main .search",
+            button:".toSearch",
+            LFID,
+            tabName,
+        };
+        /**添加新页 */
+        let data = {
+            add :".showAddNewCon",
+            tabName :"sincome_addNew",
+            url :"./sincome_addNew.html",
+            tabName_CN :"添加",
+        }
+        /**添加新页签事件 */
+        TBF.bindAddNewTab(data);
+        // let data1 = {
+        //     add :".showAddNewCon2",
+        //     tabName :"addNewContract2",
+        //     url :"./addNewContract.html",
+        //     tabName_CN :"添加新合同2",
+        // }
+        // TBF.bindAddNewTab(data1);
+        let JGConfig = {};
+        JGConfig.data = {page:1};
+        JGConfig.LFID = LFID;
+        JGConfig.tabName = tabName;
+        JGConfig.url = urlGet ;
+        /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
+        JGConfig.fields = [
+            { name: "计量单号",PreName:"fid", type: "number", readOnly: true, width:10,},
+            { name: "日期",PreName:"fdate", type: "number", readOnly: true, width:70,  },
+            { name: "总包合同号",PreName:"fpactid", type: "text", width:100,  },
+            { name: "项目名称",PreName:"fpeojectname", type: "text", width:100,  },
+            { name: "制单人",PreName:"fcreater", type: "text", width:60,  },
+            { name: "制单时间",PreName:"fcreatetime", type: "text", width:30,  },
+            { name: "金额",PreName:"famount", type: "text", width:30,  },
+            { name: "备注",PreName:"fnote", type: "text", width:30,  },
+            {type: "control",width:70,}
+        ];
 
+        // let funName = parent.window.JGConfigFuns;
+        // parent.window.JGConfigFuns = funName || {};
+        //将方法存入window对象中
+        JGConfig.funs = function (){
+            $(".jsgrid-insert-button").off("click");
+            // 删
+            $(".jsgrid-delete-button").off("click");
+            $(".jsgrid-delete-button").click(function(){
+                var Id = $(this).parents("tr").find("td").eq(0).text();
+                console.log(Id)
+                let dele = {}
+                dele.data= {fid:Id};
+                dele.url = urlDelete;
+                let isDelete = confirm("确定删除？");
+                if(isDelete){
+                    JGM.deleteInfo(dele);
+                    window.location.reload();
+                }
+            });
+            // 改
+            $(".jsgrid-edit-button").click(function(){
+                // //获取id
+                var a =  $(this).parents("tr").find("td").eq(0).text();
+                // window.location.href = ctx +"/managerSave.jsp?managerId="+a;
+                // managerSave.html
+            });
+            $(".jsgrid-insert-mode-button").off("click");
+            $(".jsgrid-insert-mode-button").on("click",function(){
+                // window.location.href = ctx +"/managerSave.jsp";
+            });
+            if ( $("#jsGrid").html() != null ){
+                //调分页的高度
+                var zhi1 = $("#jsGrid").offset().top;
+                var zhi2 = $("#jsGrid").height();
+                var zhi3 = zhi1 + zhi2 - 60;
+                // console.log(zhi3);
+                $("#changePage").css("top",zhi3);
+            }
+            let data = {
+                add :".jsgrid-insert-mode-button",
+                tabName :"sincome_addNew",
+                url :"./sincome_addNew.html",
+                tabName_CN :"添加",
+            }
+            /**添加新页签事件 */
+            TBF.bindAddNewTab(data);
+        }
+
+        /**将当前表配置信息存入sessionStorage */
+        let funName = parent.window.JGConfig;
+        parent.window.JGConfig = funName || {};
+        parent.window.JGConfig[LFIDAndTabName] = JGConfig;
+
+        // 直接按配置请求
+        JGM.getInfo(JGConfig);
+        /**给查询绑定事件 */
+        TBF.getInfoInCase(searchJson);
+    })();
+break;
+/******************************************************************************** */  
 case "":
     (function(){
 

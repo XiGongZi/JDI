@@ -1,7 +1,7 @@
     /* 分页CSS */
     #changePage{
         font-size: 16px;
-        width:900px;
+        min-width:960px;
         height:40px;
         line-height:35px;
         text-align:center;
@@ -41,7 +41,7 @@
             width:40px;
             height:40px;
             }
-        & .button:hover{color:#fff}
+        & .button:hover{color:#000;cursor: pointer;}
         & .pages{
             background:#fff;
             width:300px;
@@ -61,7 +61,10 @@
                 }
                 &[isHide="yes"]{display:none}
                 &[isHide="no"]{display:block}
-                
+            }
+            li.checkedStau{
+                background:#369762;
+                color:#fff;
             }
         }
 

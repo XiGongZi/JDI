@@ -8,7 +8,6 @@ define([
     'use strict';
     
    let fun = {
-          
         changePageJSPost:function (data){
                 // 如何处理请求？  参数：1、页数，2、数据类型
                 // 1.处理默认数据
@@ -22,7 +21,6 @@ define([
                 let fields = JGConfig.fields;
                 let getUrl = JGConfig.url;
                 let page = data.page;
-
 
                 let TBF = require("app/tabsFunctions");
                 /**获得当前搜索条件状态 */
@@ -38,97 +36,56 @@ define([
 
                 if(page != "0"){
                     /**代表分页事件请求 */
+                    let data = {
+                        page,
+                    };
+                    data = $.extend(data, searchRes);
                     let json = {
                         LFID,
                         tabName,
                         url:getUrl,
                         page,
+                        data,
                         fields,
-
                     };
+                    console.log("this is CP_ pageValue");
+                    console.log(page);
                     let JGM = require("app/jsGridMethods");
                     JGM.getInfo(json);
-                    // 先按照提交进来的分页请求数据
-                    /**getInfo后从window对象中捕获数据 */
-                    // let totalCount = parent.window.JGData[LTIndex].totalCount;
-                    // let totalPage = parent.window.JGData[LTIndex].totalPage;
-                    // let dataList = parent.window.JGData[LTIndex].dataList;
-
 
                 }else{
                     /**代表默认请求 */
-
                     /**此处应为请求数据添加 */
-
                 }
-
-
                 
-                
-                // searchRes.page = page;
+                /**此处代码块作用，用来临时赋值。默认 容器为undefined，请求到数据时为其赋值（其他模块），生命周期开始时，此代码块在此不断询问目标对象书否为undefined，是则等待一会继续询问，直到不为undefined（别的模块已赋值），此时取出数据，使用完后再设置undefined，生命周期结束。 */
+                let IPCB = setInterval(function(){//每隔Nms去判断  是否被申明，是则取消循环，输出
+                    try {
+                        if(parent.window.JGData[LTIndex] != undefined){
+                            clearInterval(IPCB);
+                            let JGData = parent.window.JGData[LTIndex];
+                            let totalCount = JGData.totalCount;
+                            let totalPage = JGData.totalPage;
+                            let currentPage = JGData.currentPage;
+                            // let dataList = JGData.dataList;
+                            var pagesInfo = {
+                                "count":totalCount,
+                                "page":totalPage,
+                                "thisPage":currentPage,
+                                LFID,
+                                tabName,
+                            }
+                            fun.addChangePageMore(pagesInfo);
+                            parent.window.JGData[LTIndex] = undefined;
+                        }
+                    } catch (error) {console.log("Error! window.JGData")}
+                }, 80);
 
-
-                // let getInfoJson = {
-                //     url,
-                //     data:searchRes
-                // }
-                // JGM.getInfo(getInfoJson);
-
-
-                // $.ajax({
-                //     type: 'POST',
-                //     url: ctx + '/managerList.html',
-                //     data: {'page':page},
-                //     cache: false,
-                //     success: function(data){
-                //         // 获取最大页
-                //         maxPage = data.maxPage;
-                //         // alert(maxPage);
-                //         // 遍历样品数据
-                    
-                //         // useTable_addInfo(JSON.parse(data));
-                //     }
-                // });
-                // var arr = [];
-                // var a = "合同编号",
-                //     b = "项目名称",
-                //     a1 = "项目地址",
-                //     a2 = "甲方名称",
-                //     a3 = "合同额",
-                //     a4 = "税率",
-                //     a5 = "项目负责人",
-                //     a6 = "状态",;
-                // $.each(json,function(i,n){
-                //     var obj ={};
-                //     obj[a] = n.proNum;
-                //     obj[b] = n.proName;
-                //     obj[a1] = n.proAdd;
-                //     obj[a2] = n.AName,
-                //     obj[a3] = n.a3,
-                //     obj[a4] = n.a4,
-                //     obj[a5] = n.a5,
-                //     obj[a6] = n.a6;
-
-                var exam = {
-                    "count":"10",
-                    "page":"1",
-                    "managerList":[{
-                        "proNum":"x1223312",
-                        "proName":"xx桥梁建设总合同",
-                        "proAdd":"沈阳市三好街",
-                        "AName":"沈阳市交通设计院",
-                        "a3":"10.000.000",
-                        "a4":"10%",
-                        "a5":"张三",
-                        "a6":"竣工"
-                    }]
-                };
-
-                
-
-                // fun.useTable_addInfo(exam);
         },
-        changePageJS:function(){
+        changePageJS:function(data){
+            let LFID = data.LFID;
+            let tabName = data.tabName;
+
             // (先解绑,因为此函数会被多次调用)
             // 直接点击 页面数字的 事件
             $("#changePage .pages li").off("click");
@@ -136,7 +93,12 @@ define([
                 // var a = $(this).text();
                 //所点击的li pages属性（所点击的是第几页）
                 var b = $(this).attr("pages");
-                fun.changePageJSPost(b);
+                let json = {
+                    LFID,
+                    tabName,
+                    page:b,
+                }
+                fun.changePageJSPost(json);
                 //测试结束  点击页数按钮时改变
             });
             // 点击 跳转到第几页 事件
@@ -146,13 +108,14 @@ define([
                 // 1.检测input内容是否合法
                     //1.检测是否为数字
                 var zhi = parseInt($("#changePage .input input").val());
-                                //2.检测是否有这页    (先从有多少条记录中取余出来，后可直接传值)
-                            var zhi1 = parseInt($("#changePage .title1").attr("pages")) ;
-                            // 总共多少条记录
-                            var all = parseInt($("#changePage .title1").attr("allPage"));
-                            // console.log(zhi1);
-                            // console.log("/////////");
-                            if (zhi != NaN && zhi <= zhi1 && zhi > 0){
+                    //2.检测是否有这页    (先从有多少条记录中取余出来，后可直接传值)
+                var zhi1 = parseInt($("#changePage .title1").attr("pages")) ;
+                // 总共多少条记录
+                var all = parseInt($("#changePage .title1").attr("allPage"));
+                // console.log(zhi1);
+                // console.log("/////////");
+                if (zhi != NaN && zhi <= zhi1 && zhi > 0){
+                    
                 }else if(zhi == 0){
                     //如果为0
                 }
@@ -173,12 +136,22 @@ define([
                     // console.log("pageUp");
                     let b = 1;
                     thisPage > 1 ? b = thisPage -1:b = pages;
-                    fun.changePageJSPost(b);
+                    let json = {
+                        LFID,
+                        tabName,
+                        page:b,
+                    }
+                    fun.changePageJSPost(json);
                 }else{
                     // console.log("pageDown");
                     let b = 1;
                     thisPage < pages ? b = thisPage +1:b = 1;
-                    fun.changePageJSPost(b);
+                    let json = {
+                        LFID,
+                        tabName,
+                        page:b,
+                    }
+                    fun.changePageJSPost(json);
                 }
             });
         },
@@ -222,22 +195,30 @@ define([
             `);
         },
          addChangePageMore:function(a){
+             let LFID = a.LFID;
+             let tabName = a.tabName;
+             let page = a.page;
+             console.log("this is CP_addChangePageMore!")
+             console.log(a);
             //共多少记录
             var allPages = a.count;
             allPages == undefined ? allPages = 1: allPages = allPages;
             //十位向上取整计算需要显示多少页
-            var pgs = Math.ceil(allPages/10);
+            var pgs = a.page;
             //当前是第几页
-            var thisPage = parseInt(a.page);
+            var thisPage = parseInt(a.thisPage);
+            /**验证thisPage不为NaN */
             thisPage != thisPage ? thisPage =1 : thisPage = thisPage;
+            console.log("thisPage is ")
+            console.log(thisPage)
             //本页应为多少条
                 //1.检测当前是第几页。2.最后一页则取个位，否则取整
             var b = "";
-            thisPage < pgs ? b = "1-10": b = "1-"+ (allPages - (thisPage -1)*10 );
-            $("#changePage .title1").attr("pages",pgs).attr("allPage",allPages);
-            $("#changePage .title1").html(`
-            共有 <b style="color:#A60427">${allPages}</b> 个记录  每页显示10条，本页${b}条 ${thisPage}/${pgs}页
-            `);
+            // thisPage < pgs ? b = "1-5": b = "1-"+ (allPages - (thisPage -1)*5 );
+                $("#changePage .title1").attr("pages",pgs).attr("allPage",allPages);
+                $("#changePage .title1").html(`
+                        共有 <b style="color:#A60427">${allPages}</b> 个记录 ,  ${thisPage}/${pgs}页
+                `);
             //填充页数小方块
                 //1.判断总页数是否大于5
                 if(pgs > 5){
@@ -323,7 +304,11 @@ define([
             $("#changePage .pages li").removeClass("checkedStau");
             $("#changePage .pages li[pages='"+thisPage+"']").addClass("checkedStau");
             //changePagesJS 绑定事件(先解绑,因为此函数会被多次调用)
-            fun.changePageJS();
+            let data = {
+                LFID,
+                tabName,
+            }
+            fun.changePageJS(data);
         },
          useTable_addInfo:function(json){
             // 填入页数信息   json.pagesInfo 为页数信息

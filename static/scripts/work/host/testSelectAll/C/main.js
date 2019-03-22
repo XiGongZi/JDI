@@ -24,7 +24,6 @@ define([
     // $(".bodyFrame1-main>.title").click(function(){
     //     window.location.reload();
     // });
-
     var originAdd = `http://192.168.1.100:8080`;
     var originEnd = `.do`;
     // 获得页面名称
@@ -791,11 +790,17 @@ break;
 /******************************************************************************** */  
 case "spact":
         (function(){
+            /**大页 */
             let LFID = "spact";
+            /**小页 */
             let tabName = "spact";
+            /**是否有分页 */
+            let hasFYP = true;
+            /**修改时需要的关键词 */
+            let change_key = `fid`;
             let LFIDAndTabName = LFID + tabName;
-            var urlGet = `${originAdd}/stockWeb/spactList${originEnd}`;
-            var urlDelete = `${originAdd}/stockWeb/spactDelete${originEnd}`;
+            var urlGet = `${originAdd}/stockWeb/${LFID}List${originEnd}`;
+            var urlDelete = `${originAdd}/stockWeb/${LFID}Delete${originEnd}`;
             /**search事件 */
             let searchJson = {
                 add:".bodyFrame1-main .search",
@@ -805,19 +810,12 @@ case "spact":
             };
             let data = {
                 add :".showAddNewCon",
-                tabName :"spact_addNew",
-                url :"./spact_addNew.html",
+                tabName :`${LFID}_addNew`,
+                url :`./${LFID}_addNew.html`,
                 tabName_CN :"添加",
             }
             /**添加新页签事件 */
             TBF.bindAddNewTab(data);
-            // let data1 = {
-            //     add :".showAddNewCon2",
-            //     tabName :"addNewContract2",
-            //     url :"./addNewContract.html",
-            //     tabName_CN :"添加新合同2",
-            // }
-            // TBF.bindAddNewTab(data1);
             let JGConfig = {};
             JGConfig.data = {page:1};
             JGConfig.LFID = LFID;
@@ -836,17 +834,13 @@ case "spact":
                 { name: "状态",PreName:"fstate", type: "text", width:30,  },
                 {type: "control",width:70,}
             ];
-
-            // let funName = parent.window.JGConfigFuns;
-            // parent.window.JGConfigFuns = funName || {};
-            //将方法存入window对象中
             JGConfig.funs = function (){
                 $(".jsgrid-insert-button").off("click");
                 // 删
                 $(".jsgrid-delete-button").off("click");
                 $(".jsgrid-delete-button").click(function(){
                     var Id = $(this).parents("tr").find("td").eq(0).text();
-                    console.log(Id)
+                    console.log(Id);
                     let dele = {}
                     dele.data= {fid:Id};
                     dele.url = urlDelete;
@@ -855,17 +849,6 @@ case "spact":
                         JGM.deleteInfo(dele);
                         window.location.reload();
                     }
-                });
-                // 改
-                $(".jsgrid-edit-button").click(function(){
-                    // //获取id
-                    var a =  $(this).parents("tr").find("td").eq(0).text();
-                    // window.location.href = ctx +"/managerSave.jsp?managerId="+a;
-                    // managerSave.html
-                });
-                $(".jsgrid-insert-mode-button").off("click");
-                $(".jsgrid-insert-mode-button").on("click",function(){
-                    // window.location.href = ctx +"/managerSave.jsp";
                 });
                 if ( $("#jsGrid").html() != null ){
                     //调分页的高度
@@ -877,35 +860,25 @@ case "spact":
                 }
                 let data = {
                     add :`.jsgrid-insert-mode-button`,
-                    tabName :`${tabName}_addNew`,
-                    url :`./${tabName}_addNew.html`,
+                    tabName :`${LFID}_addNew`,
+                    url :`./${LFID}_addNew.html`,
                     tabName_CN :`添加`,
                 }
                 /**添加新页签事件 */
                 TBF.bindAddNewTab(data);
-                /* 获得点击的所在的关键词 */
-                // let data4 = {
-                //     add :`.jsgrid-edit-button`,
-                //     tabName :`${tabName}_addNew`,
-                //     url :`./${tabName}_addNew.html`,
-                //     tabName_CN :`添加`,
-                // }
                 let data1 = {
                     add :`.jsgrid-edit-button`,
-                    tabName :`${tabName}_changeNew`,
+                    tabName :`${LFID}_changeNew`,
                     LFID,
-                    getUrl :`${originAdd}/stockWeb/${tabName}${originEnd}`,
+                    getUrl :`${originAdd}/stockWeb/${LFID}${originEnd}`,
                     tabName_CN :`修改`,
-                    url :`./${tabName}_changeNew.html`,
-                    field:`fid`,
+                    url :`./${LFID}_changeNew.html`,
+                    field:change_key,
                 }
                 /**添加新页签事件 */
                 let changeInfoList = parent.window.changeInfo;
                 parent.window.changeInfo = changeInfoList || {};
                 parent.window.changeInfo[LFIDAndTabName] = data1;
-
-
-
                 // 将方法存入window对象中
                 TBF.bindAddNewTabChange(data1);
             }
@@ -913,37 +886,20 @@ case "spact":
             let funName = parent.window.JGConfig;
             parent.window.JGConfig = funName || {};
             parent.window.JGConfig[LFIDAndTabName] = JGConfig;
-
-            
             // 直接按配置请求
             JGM.getInfo(JGConfig);
             /**给查询绑定事件 */
             TBF.getInfoInCase(searchJson);
-
-
-
-            /**分页 */
-            let FYJson = {
-                LFID,
-                tabName,
-                page:"0",
-                url:urlGet,
-            }
-            CP.changePageJSPost(FYJson);
-
-
-            setTimeout(function(){
-                console.log("开始请求第二页");
-                let FYJson2 = {
+            if(hasFYP){
+                /**分页 */
+                let FYJson = {
                     LFID,
                     tabName,
-                    page:"2",
+                    page:"0",
                     url:urlGet,
                 }
-                CP.changePageJSPost(FYJson2);
-            },3000);
-            
-
+                CP.changePageJSPost(FYJson);
+            }
     })();
 break;
 /******************************************************************************** */  
@@ -957,30 +913,23 @@ case `spact_changeNew`:
         let field = data.field;
         let fieldVal = data.fieldVal;
         let fieldName = LFID + "Data";
-        console.log("this is spact_changeNew'data");
-        console.log(data);
-
         let fData = {}
         fData[field] = fieldVal;
-
         let json = {
             field:fieldName,
             url:data.getUrl,
             data:fData,
         }
         JGM.getInfo_insertInput(json);
-
         $(".closeTabs").click(function(){
             /**刷新父下另一个框架iframe */
                     /**存 */
             let JGConfig = {};
-            JGConfig.url = `${originAdd}/stockWeb/spactUpdate${originEnd}`;
+            JGConfig.url = `${originAdd}/stockWeb/${LFID}Update${originEnd}`;
             // 去判断是否留空，留空则提醒，否则提交
                 // 获得数据
-                let LFID = "spact";
+                // let LFID = "spact";
                 let data3 = {add:".bodyFrame1-main .addNew"}
-                
-
                 let json = TBF.getCase(data3);
                 console.log(json);
                 let dd = PKG.judge.pickNull(json);
