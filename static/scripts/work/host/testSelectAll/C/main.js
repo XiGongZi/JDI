@@ -7,7 +7,8 @@ define([
     "app/tabsFunctions",
     "work/public/alert/c/main",
     "app/jsGridMethods",
-    "app/changePage"
+    "app/changePage",
+    "app/ADCS",
 ], function( 
         require,
         PKG,
@@ -18,6 +19,7 @@ define([
         login,
         JGM,
         CP,
+        ADCS,
     ){
     'use strict';
     // $(".bodyFrame1-main>.title").css("cursor","pointer");
@@ -840,9 +842,10 @@ case "spact":
                 $(".jsgrid-delete-button").off("click");
                 $(".jsgrid-delete-button").click(function(){
                     var Id = $(this).parents("tr").find("td").eq(0).text();
-                    console.log(Id);
                     let dele = {}
-                    dele.data= {fid:Id};
+                    //**!!!!!!!!!!!!         这里很重要，需要修改删除的时候传的值 位数,如fid为0         !!!!!!!!!!!!!!!! */
+                    dele.data= {};
+                    dele.data[change_key] = Id;
                     dele.url = urlDelete;
                     let isDelete = confirm("确定删除？");
                     if(isDelete){
@@ -921,68 +924,24 @@ case `spact_changeNew`:
             data:fData,
         }
         JGM.getInfo_insertInput(json);
-        $(".closeTabs").click(function(){
-            /**刷新父下另一个框架iframe */
-                    /**存 */
-            let JGConfig = {};
-            JGConfig.url = `${originAdd}/stockWeb/${LFID}Update${originEnd}`;
-            // 去判断是否留空，留空则提醒，否则提交
-                // 获得数据
-                // let LFID = "spact";
-                let data3 = {add:".bodyFrame1-main .addNew"}
-                let json = TBF.getCase(data3);
-                console.log(json);
-                let dd = PKG.judge.pickNull(json);
-                data3.body = dd;
-                if(TBF.searchTips(data3)){
-                    // JGM.addInfo(JGConfig);
-                    json[field] = fieldVal;
-                    console.log("json is ")
-                    console.log(json)
-                    JGConfig.data= json;
-                    console.log("this is JGConfig")
-                    console.log(JGConfig.data);
-                    JGM.updateInfo(JGConfig);
-                    $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${LFID}"]`,parent.document)[0].contentWindow.location.reload();
-                    TBF.closeTab();
-                }else{
-                    alert("有未填字段！");
-                };
-            // JGM.addInfo(JGConfig);
-            /**关闭当前页签 */
-            // TBF.closeTab();
-        });
-
+        let mainData = {
+            LFID,
+            originAdd,
+            originEnd,
+        }
+        ADCS.change(mainData);
     })();
 break;
 /******************************************************************************** */  
 case "spact_addNew":
 (function(){
-    $(".closeTabs").click(function(){
-        /**刷新父下另一个框架iframe */
-                /**存 */
-        let JGConfig = {};
-        JGConfig.url = `${originAdd}/stockWeb/spactAdd${originEnd}`;
-        // 去判断是否留空，留空则提醒，否则提交
-            // 获得数据
-            let LFID = "spact";
-            let data3 = {add:".bodyFrame1-main"}
-            let json = TBF.getCase(data3);
-            let dd = PKG.judge.pickNull(json);
-            data3.body = dd;
-            if(TBF.searchTips(data3)){
-                // JGM.addInfo(JGConfig);
-                JGConfig.data= json;
-                JGM.addInfo(JGConfig);
-                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${LFID}"]`,parent.document)[0].contentWindow.location.reload();
-                TBF.closeTab();
-            }else{
-                alert("有未填字段！");
-            };
-        // JGM.addInfo(JGConfig);
-        /**关闭当前页签 */
-        // TBF.closeTab();
-    });
+    let LFID = "spact";
+    let data = {
+        LFID,
+        originAdd,
+        originEnd,
+    };
+    ADCS.add(data);
 })();
 break;
 /******************************************************************************** */  
