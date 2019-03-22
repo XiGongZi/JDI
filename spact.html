@@ -26,6 +26,7 @@
     <script src="./static/scripts/app/iconfont.js" ></script>
         <script>
             var ctx = "";
+            var TPN = "spact";
         </script>
 </head>
 <body>
@@ -47,19 +48,17 @@
                         <input type="number" field="fno">
                     </div>
                     <div class="case-icon">
-                        <svg class="icon" aria-hidden="true" status="1">
-                            <use xlink:href="#icon-more"></use>
+                        <svg class="icon" aria-hidden="true" status="0">
+                            <use xlink:href="#icon-clear"></use>
                         </svg>
                     </div>
                     <span class="clear"></span>
                 </div>
-
                 <!-- 每一个筛选条件组件 -->
-                
                 <div class="test33">
-                        <div class="case-name">甲方名称:</div>
+                        <div class="case-name">项目名称:</div>
                         <div class="case-input">
-                            <input type="text" field="funitname">
+                            <input type="text" field="fpeojectname">
                         </div>
                         <div class="case-icon">
                             <svg class="icon" aria-hidden="true" status="0">
@@ -73,8 +72,8 @@
             </div>
             <!-- 此处为搜索选项 -->
             <div class="button">
-                <div class="showAddNewCon">添加新合同</div>
-                <div class="showAddNewCon2">按条件查询</div>
+                <div class="showAddNewCon">添加</div>
+                <div class="showAddNewCon2">搜索</div>
             </div>
             <div class="clearBoth"></div>
         </div>
@@ -86,8 +85,30 @@
             <!-- 图表集合 开始-->
 			<div class="charts">
                 <!-- 分页开始 注：分页内容，要和此div，main.css中相关样式，main.js相关js配合使用 20181029-->
-                
-                    <!-- 分页结束 -->
+                <div id="changePage" class="displayFlex">
+                    <div class="flex1"></div>
+                    <div class="title1" pages="1" allPage="1">
+                        共有 <b style="color: #A60427">10</b> 个记录 每页显示10条，本页0条 0/0页
+                    </div>
+                    <div class="turn Left cursoPoin thisMainBG thisMainBGColor">
+                        上一页</div>
+                    <div class="pages">
+                        <!-- checkedStau 为选中样式，点击时先取消所有此css，再给所点击的li加上此样式 -->
+                        <!-- <li pages="1" class="floatLeft checkedStau">1</li> -->
+                    </div>
+                    <div
+                        class="turn Right clearBoth cursoPoin thisMainBG thisMainBGColor">
+                        下一页</div>
+                    <div class="space10px"></div>
+                    <div class="input cursoPoin">
+                        <input type="text">
+                    </div>
+                    <div class="space10px"></div>
+                    <!-- 跳转按钮 -->
+                    <div class="jumpToPage button cursoPoin thisMainBG thisMainBGColor">跳转</div>
+                    <div class="space40px"></div>
+                </div>
+                <!-- 分页结束 -->
                     <!-- 图表容器 -->
                     <!-- <div class="space40px"></div> -->
                     <div id="jsGrid" class="pcCenter"></div>
@@ -98,15 +119,13 @@
     </div>
 </div>
 
-
-
 </body>
 <!-- <script>var ctx = "${ctx}";</script> -->
 <script data-main="./static/scripts/main" src="./static/scripts/require.js"></script>
 <!-- <script src="./static/scripts/config/app/index.js"></script>  -->
 <script type="text/javascript">
 //当前页面程序入口
-require(['work/host/spact/C/main'],function(a){});
+require(['work/host/testSelectAll/C/main'],function(a){});
 </script>
 <script>
 </script>

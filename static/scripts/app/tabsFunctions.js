@@ -246,6 +246,71 @@ define([
             });
 
         },
+        bindAddNewTabChange:function(data){
+            let add = data.add;
+            let tabName = data.tabName;
+            let url = data.url;
+            let LFID = data.LFID;
+            let tabName_CN = data.tabName_CN;
+            let isParentDoc = data.isParentDoc;
+            let getUrl = data.getUrl;
+            let postUrl = data.postUrl;
+            let field = data.field;
+            let LFIDAndTabNames = LFID + LFID;
+            let getDataName = LFID + "Data";
+            $(add).click(function(){
+                /**此处获取第1位的关键词 */
+                var keyValue =  $(this).parents("tr").find("td").eq(0).text();
+                /**获取当前左导航状态 */
+                let json1 = fun.getLeftBarStatus();
+                let LFDep_CN = json1.LFDep_CN;
+                let LFID_CN = json1.LFID_CN;
+                let LFID = json1.LFID;
+                /**判断T2是否存在此tabName */
+                let thisTabNum = $(`#tabs .tabs>div[LFID="${LFID}"]>div[tabName="${tabName}"]`,parent.document).length;
+                if(thisTabNum == 0){
+                    let data = {
+                        LFID,
+                        tabName,
+                        tabName_CN,
+                        isParentDoc,
+                        url,
+                    }
+                    fun.insertT2B2(data);
+                    fun.bindTabsFun(data);
+                };
+                let data = {
+                    LFID,
+                    tabName,
+                    isParentDoc,
+                };
+                fun.showT2B2(data);
+                let data1 = {
+                    LFDep_CN,
+                    LFID_CN,
+                    tabName_CN,
+                    isParentDoc,
+                };
+                fun.changePosition(data1);
+
+                /**请求数据并填写到页面上 */
+                let JGM = require("app/jsGridMethods");
+                let data2 = {
+                    url:getUrl,
+                    data:{},
+                    field:getDataName
+                }
+                data2.data[field] = keyValue;
+                console.log("this is data");``
+                console.log(data2);
+                console.log("this is getThisPageTabStatus");
+                console.log(fun.getThisPageTabStatus());
+           
+                parent.window.changeInfo[LFIDAndTabNames].fieldVal = keyValue;
+                
+            });
+
+        },
         getLeftBarStatus:function(){
             /**获取当前左导航状态 */
             let LFDep_CN = $(`iframe[name="leftBar1"]`,parent.document).contents().find(".leftBarFrame a[hover1='1']").parent().parent().find(".LFDep_CN").text();
@@ -255,6 +320,16 @@ define([
             let json = {
                 LFDep_CN,
                 LFID_CN,
+                LFID
+            }
+            return json;
+        },
+        getThisPageTabStatus:function(){
+            /**获取当前页签状态 */
+            let LFID = $(`.tabs>div[isshow="yes"]`,parent.document).attr("LFID");
+            let tabName = $(`.tabs>div[isshow="yes"]>div[isFocus="yes"]`,parent.document).attr("tabName");
+            let json = {
+                tabName,
                 LFID
             }
             return json;
@@ -270,19 +345,27 @@ define([
             });
             $(data.add+" select[field]").each(function(){
                 let field = $(this).attr("field");
-                let val = $(this).find("option:selected").text();
+                let val = $(this).find("option:selected").val();
                 json[field] = val;
             });
+            $(data.add+" textarea[field]").each(function(){
+                let field = $(this).attr("field");
+                let val = $(this).val();
+                console.log(val)
+                json[field] = val;
+            });
+            console.log(json)
             return json;
         },
         getInfoInCase:function(data){
             let JGM = require("app/jsGridMethods");
-            let da = fun.getCase(data);
             let LFID = data.LFID;
             let tabName = data.tabName;
             let to = LFID + tabName;
             let JSGridConfig = parent.window.JGConfig[to];
             $(data.button).click(function(){
+                let da = fun.getCase(data);
+                console.log(da)
                 JSGridConfig.data = da;
                 JSGridConfig.data.page = 1;
                 JGM.getInfo(JSGridConfig);
@@ -290,9 +373,11 @@ define([
         },
         searchTips:function(data){
             $(data.add).find(`input[field]`).attr("null","false");
+            $(data.add).find(`textarea[field]`).attr("null","false");
             $.each(data.body,function(i,e){
-                $(data.add).find(`input[field="${e}"]`).attr("null","true");
+                $(data.add).find(`*[field="${e}"]`).attr("null","true");
             });
+            console.log(data.body);
             if(data.body.length > 0){
                 return false;
             }else{

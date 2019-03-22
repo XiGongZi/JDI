@@ -163,6 +163,20 @@ define('app/PKG_0.0.1',[
             val1 = val0[0];
             return val1;
         },
+        //生成从minNum到maxNum的随机数
+        randomNum:function(minNum,maxNum){ 
+            switch(arguments.length){ 
+                case 1: 
+                    return parseInt(Math.random()*minNum+1,10); 
+                break; 
+                case 2: 
+                    return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
+                break; 
+                    default: 
+                        return 0; 
+                    break; 
+            } 
+        } 
     }
     let ENV = {
         PEOS:function () {
@@ -236,6 +250,7 @@ define('app/PKG_0.0.1',[
                 return false;
             }
         },
+
     };
     let judge = {
         pickNull:function(data){
@@ -3418,213 +3433,298 @@ define('app/changePage',[
             //     // console.log(data)
                 
             // },
-            changePageJS:function (){
-                // (先解绑,因为此函数会被多次调用)
-                // 直接点击 页面数字的 事件
-                $("#changePage .pages li").off("click");
-                $("#changePage .pages li").click(function(e){
-    
-                    // var a = $(this).text();
-                    //所点击的li pages属性（所点击的是第几页）
-                    var b = $(this).attr("pages");
-                    let jgg = require("app/jsGridMethods");
-                    jgg.getInfo(b);
-                    //测试结束  点击页数按钮时改变
-                });
-                // 点击 跳转到第几页 事件
-                $("#changePage .jumpToPage").off("click");  
-                $("#changePage .jumpToPage").click(function(){
-                    //   分页JS  跳转按钮点击事件
-                    // 1.检测input内容是否合法
-                        //1.检测是否为数字
-                    var zhi = parseInt($("#changePage .input input").val());
-                                    //2.检测是否有这页    (先从有多少条记录中取余出来，后可直接传值)
-                                var zhi1 = parseInt($("#changePage .title1").attr("pages")) ;
-                                // 总共多少条记录
-                                var all = parseInt($("#changePage .title1").attr("allPage"));
-                                // console.log(zhi1);
-                                // console.log("/////////");
-                                if (zhi != NaN && zhi <= zhi1 && zhi > 0){
-                    }else if(zhi == 0){
-                        //如果为0
-                    }
-                });
-                //点击 上一页下一页 事件
-                $("#changePage .turn").off("click");
-                $("#changePage .turn").click(function(){
-                    // 判断点击的是上一页还是下一页
-                    var zhi = $(this).hasClass("Left");
-                    // 总共多少条记录
-                    var all = parseInt($("#changePage .title1").attr("allPage"));
-                    // 获取当前总页数
-                    var pages = parseInt($("#changePage .title1").attr("pages"));
-                    // 获取当前选中页数
-                    var thisPage = parseInt($("#changePage .pages .checkedStau").attr("pages"));
-                    // console.log(thisPage);
-                    if(zhi){
-                        // console.log("pageUp");
-                        let b = 1;
-                        thisPage > 1 ? b = thisPage -1:b = pages;
-                        let jgg = require("app/jsGridMethods");
-                        jgg.getInfo(b);
-                    }else{
-                        // console.log("pageDown");
-                        let b = 1;
-                        thisPage < pages ? b = thisPage +1:b = 1;
-                        let jgg = require("app/jsGridMethods");
-                        jgg.getInfo(b);
-                    }
-                });
-            },
-             addChangePageMoreClickTest:function(a){//  addChangePageMore(a) 函数测试开始 
-                // var example = {
-                //     "pagesInfo":{//页数信息
-                //         "count":"77",//总共多少条记录
-                //         "page":a,//当前第几页
-                //     }
+        changePageJSPost:function (data){
+            // 如何处理请求？  参数：1、页数，2、数据类型
+                // 1.处理默认数据
+                // 2.根据参数请求特定数据
+                let LFID = data.LFID;
+                let tabName = data.tabName;
+                let LTIndex = LFID + tabName;
+                let JGConfig = parent.window.JGConfig[LTIndex];
+                let url = JGConfig.url;
+                let page = data.page;
+
+                /**获得当前搜索条件状态 */
+
+                let searchJson = {
+                    add:".bodyFrame1-main",
+                };
+                TBF.getCase(searchJson); 
+                
+                // let searchRes = TBF.getCase(searchJson); 
+                // searchRes.page = page;
+
+
+                // let getInfoJson = {
+                //     url,
+                //     data:searchRes
                 // }
-                fun.addChangePageMore(example.pagesInfo);
-                //  addChangePageMore(a) 函数测试结束}
-            },
-            // addChangePageMoreClickTest(1);
-            //处理翻页显示(默认第一页)
-             addChangePageMore_001:function(thisPage){
-                $("#changePage .pages").html(`
-                    <li pages="1" class="floatLeft elipsis">...</li>
-                    <li pages="${thisPage - 1}" class="floatLeft">${thisPage - 1}</li>
-                    <li pages="${thisPage}" class="floatLeft">${thisPage}</li>
-                    <li pages="${thisPage+1}" class="floatLeft">${thisPage+1}</li>
-                    <li pages="0" class="floatLeft elipsis">...</li>
-                `);
-            },
-             addChangePageMore_002:function(pgs){
-                $("#changePage .pages").html(`
-                    <li pages="1" class="floatLeft ">1</li>
-                    <li pages="2" class="floatLeft ">2</li>
-                    <li pages="3" class="floatLeft">3</li>
-                    <li pages="0" class="floatLeft  elipsis">...</li>
-                    <li pages="${pgs}" class="floatLeft ">${pgs}</li>
-                `);
-            },
-             addChangePageMore_003:function(pgs){
-                $("#changePage .pages").html(`
-                    <li pages="1" class="floatLeft ">1</li>
-                    <li pages="0" class="floatLeft elipsis">...</li>
-                    <li pages="${pgs-2}" class="floatLeft ">${pgs-2}</li>
-                    <li pages="${pgs-1}" class="floatLeft ">${pgs-1}</li>
-                    <li pages="${pgs}" class="floatLeft ">${pgs}</li>
-                `);
-            },
-            addChangePageMore:function (a){
-                //共多少页
-                var allPages = a.count;
-                allPages == undefined ? allPages = 1: allPages = allPages;
-                //十位向上取整计算需要显示多少页
-                var pgs = allPages;
-                //当前是第几页
-                var thisPage = parseInt(a.page);
-                thisPage != thisPage ? thisPage =1 : thisPage = thisPage;
-                //本页应为多少条
-                    //1.检测当前是第几页。2.最后一页则取个位，否则取整
-                var b = "";
-                thisPage < pgs ? b = "1-10": b = "1-"+ (allPages - (thisPage -1)*10 );
-                $("#changePage .title1").attr("pages",pgs).attr("allPage",allPages);
-                $("#changePage .title1").html(`
-                共有 <b style="color:#A60427">${allPages}</b> 页  每页显示10条，本页${b}条 ${thisPage}/${pgs}页
-                `);
-                //填充页数小方块
-                    //1.判断总页数是否大于5
-                    if(pgs > 5){
-                        //是  中间用省略号
-                            //根据当前第几页，用算法算排布
-                            // 必要信息： 1.总页数 （6） 2.当前页数（3）
-                        // 思路：
-                            //
-                            /*
-                                1.判断省略号是否小于2，
-                                    是则 三种情况
-                                        1.空
-                                            置 1 2 3 ... n
-                                        2.显示  1 2 3 ... n
-                                            通过 当前页判断，2或3则进入状态2，n则 置 1 ... n-2 n-1 n
-                                        3.显示  1 ... n-2 n-1 n
-                                            通过 当前页判断，n-2 或 n-1则进入状态2，1则 置 1 2 3 ... n
-                                    否则 判断 当前页(所点击的页面)情况
-                                        判断 当前页
-                                            当前页 小于等于3，置  1 2 3 ... n
-                                            当前页 大于n-2置  1 ... n-2 n-1 n
-                                            都不满足  当前页取中间，置  ... n-1 n n+1 ...
-                                2.省略号大于1 ，说明 是  … 3 4 5 … 这种形式，则判断
-                            */
-                            // console.log(pgs);
-                        if($("#changePage .pages .elipsis").length > 1){
-                                if(thisPage < 4){
-                                    //形式  1 2 3 ... n
-                                    fun.addChangePageMore_002(pgs);
-                                }else if(thisPage >= (pgs-2)){
+                // JGM.getInfo(getInfoJson);
+
+
+
+
+                // $.ajax({
+                //     type: 'POST',
+                //     url: ctx + '/managerList.html',
+                //     data: {'page':page},
+                //     cache: false,
+                //     success: function(data){
+                //         // 获取最大页
+                //         maxPage = data.maxPage;
+                //         // alert(maxPage);
+                //         // 遍历样品数据
+                    
+                //         // useTable_addInfo(JSON.parse(data));
+                //     }
+                // });
+                // var arr = [];
+                // var a = "合同编号",
+                //     b = "项目名称",
+                //     a1 = "项目地址",
+                //     a2 = "甲方名称",
+                //     a3 = "合同额",
+                //     a4 = "税率",
+                //     a5 = "项目负责人",
+                //     a6 = "状态",;
+                // $.each(json,function(i,n){
+                //     var obj ={};
+                //     obj[a] = n.proNum;
+                //     obj[b] = n.proName;
+                //     obj[a1] = n.proAdd;
+                //     obj[a2] = n.AName,
+                //     obj[a3] = n.a3,
+                //     obj[a4] = n.a4,
+                //     obj[a5] = n.a5,
+                //     obj[a6] = n.a6;
+
+            
+                var exam = {
+                    "count":"10",
+                    "page":"1",
+                    "managerList":[{
+                        "proNum":"x1223312",
+                        "proName":"xx桥梁建设总合同",
+                        "proAdd":"沈阳市三好街",
+                        "AName":"沈阳市交通设计院",
+                        "a3":"10.000.000",
+                        "a4":"10%",
+                        "a5":"张三",
+                        "a6":"竣工"
+                    }]
+                } ;
+                fun.useTable_addInfo(exam);
+        },
+        changePageJS:function(){
+            // (先解绑,因为此函数会被多次调用)
+            // 直接点击 页面数字的 事件
+            $("#changePage .pages li").off("click");
+            $("#changePage .pages li").click(function(e){
+                // var a = $(this).text();
+                //所点击的li pages属性（所点击的是第几页）
+                var b = $(this).attr("pages");
+                fun.changePageJSPost(b);
+                //测试结束  点击页数按钮时改变
+            });
+            // 点击 跳转到第几页 事件
+            $("#changePage .jumpToPage").off("click");  
+            $("#changePage .jumpToPage").click(function(){
+                //   分页JS  跳转按钮点击事件
+                // 1.检测input内容是否合法
+                    //1.检测是否为数字
+                var zhi = parseInt($("#changePage .input input").val());
+                                //2.检测是否有这页    (先从有多少条记录中取余出来，后可直接传值)
+                            var zhi1 = parseInt($("#changePage .title1").attr("pages")) ;
+                            // 总共多少条记录
+                            var all = parseInt($("#changePage .title1").attr("allPage"));
+                            // console.log(zhi1);
+                            // console.log("/////////");
+                            if (zhi != NaN && zhi <= zhi1 && zhi > 0){
+                }else if(zhi == 0){
+                    //如果为0
+                }
+            });
+            //点击 上一页下一页 事件
+            $("#changePage .turn").off("click");
+            $("#changePage .turn").click(function(){
+                // 判断点击的是上一页还是下一页
+                var zhi = $(this).hasClass("Left");
+                // 总共多少条记录
+                var all = parseInt($("#changePage .title1").attr("allPage"));
+                // 获取当前总页数
+                var pages = parseInt($("#changePage .title1").attr("pages"));
+                // 获取当前选中页数
+                var thisPage = parseInt($("#changePage .pages .checkedStau").attr("pages"));
+                // console.log(thisPage);
+                if(zhi){
+                    // console.log("pageUp");
+                    let b = 1;
+                    thisPage > 1 ? b = thisPage -1:b = pages;
+                    fun.changePageJSPost(b);
+                }else{
+                    // console.log("pageDown");
+                    let b = 1;
+                    thisPage < pages ? b = thisPage +1:b = 1;
+                    fun.changePageJSPost(b);
+                }
+            });
+        },
+         addChangePageMoreClickTest:function(a){//  addChangePageMore(a) 函数测试开始 
+            var example = {
+                "pagesInfo":{//页数信息
+                    "count":"77",//总共多少条记录
+                    "page":a,//当前第几页
+                }
+            }
+            fun.addChangePageMore(example.pagesInfo);
+            //  addChangePageMore(a) 函数测试结束}
+        },
+        // addChangePageMoreClickTest(1);
+        //处理翻页显示(默认第一页)
+         addChangePageMore_001:function(thisPage){
+            $("#changePage .pages").html(`
+                <li pages="1" class="floatLeft elipsis">...</li>
+                <li pages="${thisPage - 1}" class="floatLeft">${thisPage - 1}</li>
+                <li pages="${thisPage}" class="floatLeft">${thisPage}</li>
+                <li pages="${thisPage+1}" class="floatLeft">${thisPage+1}</li>
+                <li pages="0" class="floatLeft elipsis">...</li>
+            `);
+        },
+         addChangePageMore_002:function(pgs){
+            $("#changePage .pages").html(`
+                <li pages="1" class="floatLeft ">1</li>
+                <li pages="2" class="floatLeft ">2</li>
+                <li pages="3" class="floatLeft">3</li>
+                <li pages="0" class="floatLeft  elipsis">...</li>
+                <li pages="${pgs}" class="floatLeft ">${pgs}</li>
+            `);
+        },
+         addChangePageMore_003:function(pgs){
+            $("#changePage .pages").html(`
+                <li pages="1" class="floatLeft ">1</li>
+                <li pages="0" class="floatLeft elipsis">...</li>
+                <li pages="${pgs-2}" class="floatLeft ">${pgs-2}</li>
+                <li pages="${pgs-1}" class="floatLeft ">${pgs-1}</li>
+                <li pages="${pgs}" class="floatLeft ">${pgs}</li>
+            `);
+        },
+         addChangePageMore:function(a){
+            //共多少记录
+            var allPages = a.count;
+            allPages == undefined ? allPages = 1: allPages = allPages;
+            //十位向上取整计算需要显示多少页
+            var pgs = Math.ceil(allPages/10);
+            //当前是第几页
+            var thisPage = parseInt(a.page);
+            thisPage != thisPage ? thisPage =1 : thisPage = thisPage;
+            //本页应为多少条
+                //1.检测当前是第几页。2.最后一页则取个位，否则取整
+            var b = "";
+            thisPage < pgs ? b = "1-10": b = "1-"+ (allPages - (thisPage -1)*10 );
+            $("#changePage .title1").attr("pages",pgs).attr("allPage",allPages);
+            $("#changePage .title1").html(`
+            共有 <b style="color:#A60427">${allPages}</b> 个记录  每页显示10条，本页${b}条 ${thisPage}/${pgs}页
+            `);
+            //填充页数小方块
+                //1.判断总页数是否大于5
+                if(pgs > 5){
+                    //是  中间用省略号
+                        //根据当前第几页，用算法算排布
+                        // 必要信息： 1.总页数 （6） 2.当前页数（3）
+                    // 思路：
+                        //
+                        /*
+                            1.判断省略号是否小于2，
+                                是则 三种情况
+                                    1.空
+                                        置 1 2 3 ... n
+                                    2.显示  1 2 3 ... n
+                                        通过 当前页判断，2或3则进入状态2，n则 置 1 ... n-2 n-1 n
+                                    3.显示  1 ... n-2 n-1 n
+                                        通过 当前页判断，n-2 或 n-1则进入状态2，1则 置 1 2 3 ... n
+                                否则 判断 当前页(所点击的页面)情况
+                                    判断 当前页
+                                        当前页 小于等于3，置  1 2 3 ... n
+                                        当前页 大于n-2置  1 ... n-2 n-1 n
+                                        都不满足  当前页取中间，置  ... n-1 n n+1 ...
+                            2.省略号大于1 ，说明 是  … 3 4 5 … 这种形式，则判断
+                        */
+                        // console.log(pgs);
+                    if($("#changePage .pages .elipsis").length > 1){
+                            if(thisPage < 4){
+                                //形式  1 2 3 ... n
+                                fun.addChangePageMore_002(pgs);
+                            }else if(thisPage >= (pgs-2)){
+                            //形式  1 ... n-2 n-1 n
+                            fun.addChangePageMore_003(pgs);
+                            }else{
+                                //形式  ... n-1 n n+1 ...
+                                fun.addChangePageMore_001(thisPage);
+                            }
+                    }else{
+                        //省略号小于2
+                        // zhi1 为index值位置，值为 1 3 -1
+                        var zhi1 =  $("#changePage .pages .elipsis").index();
+                        // console.log(zhi1);
+                        
+                        if (zhi1 == 3){
+                            if(thisPage == 3 || (thisPage > 3 && thisPage < pgs -1)){
+                                //形式  ... n-1 n n+1 ...
+                                fun.addChangePageMore_001(thisPage);
+                            }else if(thisPage == pgs || thisPage == pgs -1){
                                 //形式  1 ... n-2 n-1 n
                                 fun.addChangePageMore_003(pgs);
-                                }else{
-                                    //形式  ... n-1 n n+1 ...
-                                    fun.addChangePageMore_001(thisPage);
-                                }
-                        }else{
-                            //省略号小于2
-                            // zhi1 为index值位置，值为 1 3 -1
-                            var zhi1 =  $("#changePage .pages .elipsis").index();
-                            // console.log(zhi1);
-                            
-                            if (zhi1 == 3){
-                                if(thisPage == 3 || (thisPage > 3 && thisPage < pgs -1)){
-                                    //形式  ... n-1 n n+1 ...
-                                    fun.addChangePageMore_001(thisPage);
-                                }else if(thisPage == pgs || thisPage == pgs -1){
-                                    //形式  1 ... n-2 n-1 n
-                                    fun.addChangePageMore_003(pgs);
-                                }else {
-                                    //形式  1 2 3 ... n
-                                    fun.addChangePageMore_002(pgs);
-                                }
-                            }else if( zhi1 == 1){
-                                if(thisPage == pgs-2 || (thisPage > 3 && thisPage < pgs -1)){
-                                    //形式  ... n-1 n n+1 ...
-                                    fun.addChangePageMore_001(thisPage);
-                                }else if(thisPage == 1 || thisPage == 2){
-                                    //形式  1 2 3 ... n
-                                    fun.addChangePageMore_002(pgs);
-                                }else{
-                                    //形式  1 ... n-2 n-1 n
-                                    fun.addChangePageMore_003(pgs);
-                                }
-                            }else{
+                            }else {
                                 //形式  1 2 3 ... n
                                 fun.addChangePageMore_002(pgs);
                             }
+                        }else if( zhi1 == 1){
+                            if(thisPage == pgs-2 || (thisPage > 3 && thisPage < pgs -1)){
+                                //形式  ... n-1 n n+1 ...
+                                fun.addChangePageMore_001(thisPage);
+                            }else if(thisPage == 1 || thisPage == 2){
+                                //形式  1 2 3 ... n
+                                fun.addChangePageMore_002(pgs);
+                            }else{
+                                //形式  1 ... n-2 n-1 n
+                                fun.addChangePageMore_003(pgs);
+                            }
+                        }else{
+                            //形式  1 2 3 ... n
+                            fun.addChangePageMore_002(pgs);
                         }
-                    }else{
-                        // console.log(pgs);
-                        //否  罗列
-                        var str = "";
-                        //li 里的 pages ：为当前页。最高值为 pgs 。
-                        for(var i = 0;i <= pgs-1;i++){
-                            str += `<li pages="${i+1}" class="floatLeft">${i+1}</li>`;
-                        }
-                        // 填充进入dom
-                        $("#changePage .pages").html(str);
                     }
-                    //2.大于5，绑定点击事件
-                //给所点击的填充颜色
-                $("#changePage .pages li").attr("isFocus","no");
-                $("#changePage .pages li[pages='"+thisPage+"']").isFocus("isFocus","no");
-                //changePagesJS 绑定事件(先解绑,因为此函数会被多次调用)
-                fun.changePageJS();
+                }else{
+                    // console.log(pgs);
+                    //否  罗列
+                    var str = "";
+                    //li 里的 pages ：为当前页。最高值为 pgs 。
+                    for(var i = 0;i <= pgs-1;i++){
+                        str += `<li pages="${i+1}" class="floatLeft">${i+1}</li>`;
+                    }
+                    // 填充进入dom
+                    $("#changePage .pages").html(str);
+                }
+                //2.大于5，绑定点击事件
+            //给所点击的填充颜色
+            $("#changePage .pages li").removeClass("checkedStau");
+            $("#changePage .pages li[pages='"+thisPage+"']").addClass("checkedStau");
+            //changePagesJS 绑定事件(先解绑,因为此函数会被多次调用)
+            fun.changePageJS();
+        },
+         useTable_addInfo:function(json){
+            // 填入页数信息   json.pagesInfo 为页数信息
+            var pagesInfo = {
+                "count":json.count,
+                "page":json.page,
             }
+            fun.addChangePageMore(pagesInfo);
+        }
+
+           
    }
    return fun;
 });
-
-
-
 
 define('app/jsGridMethods',[
     'require',
@@ -3679,6 +3779,20 @@ define('app/jsGridMethods',[
                         // json.count = "6";
                         json.page = data.page;
                         fun.changeForm2(json);
+                        
+                        // 待更新分页
+                        // let CP = require("app/changePage");
+                        // let pagesInfo = {
+                        //     "count":json.count,
+                        //     "page":json.page,
+                        // }
+                        // let dataJson = {
+                        //     page:"1",
+                        //     LFID:"spact",
+                        //     tabName:"spact"
+                        // }
+                        // CP.changePageJSPost(dataJson);
+                        // CP.addChangePageMore(pagesInfo);
                     }else{
                     }
                     // useTable_addInfo(JSON.parse(data));
@@ -3827,18 +3941,99 @@ define('work/host/testSelectAll/C/main',[
         login,
         JGM,
         CP,
-    ) {
+    ){
     'use strict';
+    // $(".bodyFrame1-main>.title").css("cursor","pointer");
+    // $(".bodyFrame1-main>.title").click(function(){
+    //     window.location.reload();
+    // });
+
+    var originAdd = `http://192.168.1.100:8080`;
+    var originEnd = `.do`;
     // 获得页面名称
     switch (TPN) {
+        case "Login":
+            /** login */
+            (function(){
+                /*
+                var check = document.querySelector("#checkBox .check");
+                var check2 = document.querySelector("#checkBox .check_icon");
+                var status = document.querySelector("#checkBox .check_icon");
+                status.setAttribute("checked","false");
+
+                check.onclick = function(){
+                        var status = document.querySelector("#checkBox .check_icon");
+                        status.setAttribute("checked","true");
+                };
+                check2.onclick = function(){
+                        var status = document.querySelector("#checkBox .check_icon");
+                        status.setAttribute("checked","false");
+                };
+                */
+               $("#imgCode").attr("src",`${originAdd}/stockWeb/getLoginCode${originEnd}`);
+                $(".submit").click(function(){
+                    let data3 = {add:".loginBox"}
+                    let json = TBF.getCase(data3);
+                    let dd = PKG.judge.pickNull(json);
+                    data3.body = dd;
+                    if(TBF.searchTips(data3)){
+                        // JGM.addInfo(JGConfig);
+                        console.log(json)
+                        $.ajax({
+                            type : 'POST',
+                            url :  `${originAdd}/stockWeb/login${originEnd}`,
+                            data : json,
+                            dataType : 'json',
+                            success : function(result) {
+                                if(result.resultFlag){
+                                    alert("登录成功");
+                                    window.location.href="index.html";
+                                }else{
+                                    $("#errorMsg").text(result.errorMsg);
+                                }
+                            }
+                        });
+                        /**这里获得填好的用户名和密码 */
+
+                    }else{
+                        alert("请填写完信息！");
+                    };
+
+                });
+                 // 获取验证码
+                 $("#imgCode").click(function() {
+                    $("#imgCode").attr('src', changeUrl($("#imgCode").attr("src")));
+                });
+            })();
+            //为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳   
+            function changeUrl(url) {
+                var timestamp = PKG.get.randomNum(1,30) + PKG.get.randomNum(30,60) + PKG.get.randomNum(15,45);
+                // var timestamp = (new Date()).valueOf();
+                // alert(url);
+                var name = `getLoginCode${originEnd}`;
+                url = url.split(name);
+                console.log(url);
+                var kd = url[0]+name;
+                
+                
+                if ((url[1].indexOf("&") >= 0)) {
+                    kd = kd + "×tamp=" + timestamp;   
+                } else {
+                    kd = kd + "?timestamp=" + timestamp;   
+                }
+                console.log(kd)
+                return kd;
+            }
+            
+        break;
         case "T_pacttype":
         /**合同类型 */
                 (function(){
                     let LFID = "T_pacttype";
                     let tabName = "T_pacttype";
                     let LFIDAndTabName = LFID + tabName;
-                    let urlGet =   `http://192.168.1.100:8080/stockWeb/pacttypeList`;
-                    let urlDelete = "http://192.168.1.100:8080/stockWeb/pacttypeDelete";
+                    let urlGet =   `${originAdd}/stockWeb/pacttypeList${originEnd}`;
+                    let urlDelete = `${originAdd}/stockWeb/pacttypeDelete${originEnd}`;
                     /**search事件 */
                     let searchJson = {
                         add:".bodyFrame1-main .search",
@@ -3883,7 +4078,7 @@ define('work/host/testSelectAll/C/main',[
                             var Id = $(this).parents("tr").find("td").eq(0).text();
                             console.log(Id)
                             let dele = {}
-                            dele.data= {fid:Id};
+                            dele.data= {fnumber:Id};
                             dele.url = urlDelete;
                             let isDelete = confirm("确定删除？");
                             if(isDelete){
@@ -3910,8 +4105,19 @@ define('work/host/testSelectAll/C/main',[
                             // console.log(zhi3);
                             $("#changePage").css("top",zhi3);
                         }
-                    }
-    
+                    
+                                /**添加新页签事件 */
+                            let data = {
+                                add :".jsgrid-insert-mode-button",
+                                tabName :"T_pacttype_addNew",
+                                url :"./T_pacttype_addNew.html",
+                                tabName_CN :"添加",
+                            }
+                            TBF.bindAddNewTab(data);
+
+                            }
+            
+
                     /**将当前表配置信息存入 */
                     let funName = parent.window.JGConfig;
                     parent.window.JGConfig = funName || {};
@@ -3919,17 +4125,6 @@ define('work/host/testSelectAll/C/main',[
     
                     // 直接按配置请求
                     JGM.getInfo(JGConfig);
-                    // let seesionInfoName = LFIDAndTabName + "JGConfig";
-                    // sessionStorage.removeItem(seesionInfoName);
-                    // sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
-                    // setTimeout(function(){
-                    //     let data = {
-                    //         page:"1",
-                    //         count:"6",
-                    //         urlGet,
-                    //     }
-                    //     CP.show(data);
-                    // },5000);
                     /**给查询绑定事件 */
                     TBF.getInfoInCase(searchJson);
                 })();  
@@ -3942,7 +4137,7 @@ define('work/host/testSelectAll/C/main',[
                         /**刷新父下另一个框架iframe */
                                 /**存 */
                         let JGConfig = {};
-                        JGConfig.url = "http://192.168.1.100:8080/stockWeb/pacttypeAdd";
+                        JGConfig.url = `${originAdd}/stockWeb/pacttypeAdd${originEnd}`;
                         // 去判断是否留空，留空则提醒，否则提交
                             // 获得数据
                             let LFID = "T_pacttype";
@@ -3971,8 +4166,8 @@ define('work/host/testSelectAll/C/main',[
                     let LFID = "T_supplyer";
                     let tabName = "T_supplyer";
                     let LFIDAndTabName = LFID + tabName;
-                    let urlGet =   `http://192.168.1.100:8080/stockWeb/supplyerList`;
-                    let urlDelete = "http://192.168.1.100:8080/stockWeb/supplyerDelete";
+                    let urlGet =   `${originAdd}/stockWeb/supplyerList${originEnd}`;
+                    let urlDelete = `${originAdd}/stockWeb/supplyerDelete${originEnd}`;
                     /**search事件 */
                     let searchJson = {
                         add:".bodyFrame1-main .search",
@@ -3982,25 +4177,24 @@ define('work/host/testSelectAll/C/main',[
                     };
                     let data = {
                         add :".showAddNewCon",
-                        tabName :"T_pacttype_addNew",
-                        url :"./T_pacttype_addNew.html",
+                        tabName :"T_supplyer_addNew",
+                        url :"./T_supplyer_addNew.html",
                         tabName_CN :"添加",
                     }
                     TBF.bindAddNewTab(data);
-
                     let JGConfig = {};
-                    JGConfig.data = {page:1};
+                    JGConfig.data = {};
                     JGConfig.LFID = LFID;
                     JGConfig.tabName = tabName;
                     JGConfig.url = urlGet ;
                     /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
                     JGConfig.fields = [
                         { name: "内码",PreName:"fitemid", type: "number", readOnly: true, width:70,},
-                        { name: "编码",PreName:"Fnumber", type: "text", readOnly: true, width:70,  },
-                        { name: "类型",PreName:"ftype", type: "text", readOnly: true, width:70,  },
+                        { name: "编码",PreName:"fnumber", type: "text", readOnly: true, width:70,  },
+                        { name: "类型",PreName:"ftype", type: "select", readOnly: true, width:70,  },
                         { name: "名称",PreName:"fname", type: "text", readOnly: true, width:70,  },
                         { name: "联系人",PreName:"frelax", type: "text", readOnly: true, width:70,  },
-                        { name: "电话",PreName:"fphone", type: "text", readOnly: true, width:70,  },
+                        { name: "电话",PreName:"fphone", type: "number", readOnly: true, width:70,  },
                         { name: "备注",PreName:"fnote", type: "text", readOnly: true, width:70,  },
                         { name: "状态",PreName:"fstate", type: "select", readOnly: true, width:70,  },
                         {type: "control",width:70,}
@@ -4016,7 +4210,7 @@ define('work/host/testSelectAll/C/main',[
                             var Id = $(this).parents("tr").find("td").eq(0).text();
                             console.log(Id)
                             let dele = {}
-                            dele.data= {fid:Id};
+                            dele.data= {fitemid:Id};
                             dele.url = urlDelete;
                             let isDelete = confirm("确定删除？");
                             if(isDelete){
@@ -4043,14 +4237,25 @@ define('work/host/testSelectAll/C/main',[
                             // console.log(zhi3);
                             $("#changePage").css("top",zhi3);
                         }
-                    }
+                    
+                                /**添加新页签事件 */
+                            let data = {
+                                add :".jsgrid-insert-mode-button",
+                                tabName :"T_supplyer_addNew",
+                                url :"./T_supplyer_addNew.html",
+                                tabName_CN :"添加",
+                            }
+                            TBF.bindAddNewTab(data);
+
+                            }
+                            
                     let funName = parent.window.JGConfig;
                     parent.window.JGConfig = funName || {};
                     parent.window.JGConfig[LFIDAndTabName] = JGConfig;
                     // 直接按配置请求
                     JGM.getInfo(JGConfig);
                     /**给查询绑定事件 */
-                    // TBF.getInfoInCase(searchJson);
+                    TBF.getInfoInCase(searchJson);
                 })();
             break;
 /******************************************************************************** */
@@ -4059,8 +4264,8 @@ define('work/host/testSelectAll/C/main',[
                     let LFID = "T_department";
                     let tabName = "T_department";
                     let LFIDAndTabName = LFID + tabName;
-                    let urlGet =   `http://192.168.1.100:8080/stockWeb/departmentList`;
-                    let urlDelete = "http://192.168.1.100:8080/stockWeb/departmentDelete";
+                    let urlGet =   `${originAdd}/stockWeb/departmentList${originEnd}`;
+                    let urlDelete = `${originAdd}/stockWeb/departmentDelete${originEnd}`;
                     /**search事件 */
                     let searchJson = {
                         add:".bodyFrame1-main .search",
@@ -4138,7 +4343,18 @@ define('work/host/testSelectAll/C/main',[
                             // console.log(zhi3);
                             $("#changePage").css("top",zhi3);
                         }
-                    }
+                    
+                                /**添加新页签事件 */
+                            let data = {
+                                add :".jsgrid-insert-mode-button",
+                                tabName :"T_department_addDept",
+                                url :"./T_department_addDept.html",
+                                tabName_CN :"添加新部门",
+                            }
+                            TBF.bindAddNewTab(data);
+
+                            }
+
 
                     /**将当前表配置信息存入sessionStorage */
                     let funName = parent.window.JGConfig;
@@ -4158,7 +4374,7 @@ case "T_department_addDept":
                 /**刷新父下另一个框架iframe */
                         /**存 */
                 let JGConfig = {};
-                JGConfig.url = "http://192.168.1.100:8080/stockWeb/departmentAdd";
+                JGConfig.url = `${originAdd}/stockWeb/departmentAdd${originEnd}`;
                 // 去判断是否留空，留空则提醒，否则提交
                     // 获得数据
                     let LFID = "T_department";
@@ -4188,8 +4404,8 @@ case "T_item":
                 let LFID = "T_item";
                 let tabName = "T_item";
                 let LFIDAndTabName = LFID + tabName;
-                let urlGet =   `http://192.168.1.100:8080/stockWeb/itemList`;
-                let urlDelete = "http://192.168.1.100:8080/stockWeb/itemDelete";
+                let urlGet =   `${originAdd}/stockWeb/itemList${originEnd}`;
+                let urlDelete = `${originAdd}/stockWeb/itemDelete${originEnd}`;
                 /**search事件 */
                 let searchJson = {
                     add:".bodyFrame1-main .search",
@@ -4197,6 +4413,14 @@ case "T_item":
                     LFID,
                     tabName,
                 };
+                /**添加新页签事件 */
+                let data = {
+                    add :".showAddNewCon",
+                    tabName :"T_item_addNew",
+                    url :"./T_item_addNew.html",
+                    tabName_CN :"添加",
+                }
+                TBF.bindAddNewTab(data);
                 let JGConfig = {};
                 JGConfig.data = {page:1};
                 JGConfig.LFID = LFID;
@@ -4205,11 +4429,11 @@ case "T_item":
                 /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
                 JGConfig.fields = [
                     { name: "内码",PreName:"fitemid", type: "number", readOnly: true, width:70,},
-                    { name: "编码",PreName:"Fnumber", type: "text", readOnly: true, width:70,  },
+                    { name: "编码",PreName:"fnumber", type: "text", readOnly: true, width:70,  },
                     { name: "类型",PreName:"ftype", type: "text", readOnly: true, width:70,  },
                     { name: "名称",PreName:"fname", type: "text", readOnly: true, width:70,  },
-                    { name: "规格",PreName:"Fmodel", type: "text", readOnly: true, width:70,  },
-                    { name: "单位",PreName:"Funit", type: "text", readOnly: true, width:70,  },
+                    { name: "规格",PreName:"fmodel", type: "text", readOnly: true, width:70,  },
+                    { name: "单位",PreName:"funit", type: "text", readOnly: true, width:70,  },
                     { name: "备注",PreName:"fnote", type: "text", readOnly: true, width:70,  },
                     { name: "价格",PreName:"fprice", type: "number", readOnly: true, width:70,  },
                     {type: "control",width:70,}
@@ -4225,7 +4449,7 @@ case "T_item":
                         var Id = $(this).parents("tr").find("td").eq(0).text();
                         console.log(Id)
                         let dele = {}
-                        dele.data= {fid:Id};
+                        dele.data= {fitemid:Id};
                         dele.url = urlDelete;
                         let isDelete = confirm("确定删除？");
                         if(isDelete){
@@ -4252,6 +4476,18 @@ case "T_item":
                         // console.log(zhi3);
                         $("#changePage").css("top",zhi3);
                     }
+
+                                            /**添加新页签事件 */
+                        let data = {
+                            add :".jsgrid-insert-mode-button",
+                            tabName :"T_item_addNew",
+                            url :"./T_item_addNew.html",
+                            tabName_CN :"添加",
+                        }
+                        TBF.bindAddNewTab(data);
+
+
+                        
                 }
                 let funName = parent.window.JGConfig;
                 parent.window.JGConfig = funName || {};
@@ -4268,8 +4504,8 @@ case "T_projectteam":
                 let LFID = "T_projectteam";
                 let tabName = "T_projectteam";
                 let LFIDAndTabName = LFID + tabName;
-                let urlGet =   `http://192.168.1.100:8080/stockWeb/projectteamList`;
-                let urlDelete = "http://192.168.1.100:8080/stockWeb/projectteamDelete";
+                let urlGet =   `${originAdd}/stockWeb/projectteamList${originEnd}`;
+                let urlDelete = `${originAdd}/stockWeb/projectteamDelete${originEnd}`;
                 /**search事件 */
                 let searchJson = {
                     add:".bodyFrame1-main .search",
@@ -4318,7 +4554,7 @@ case "T_projectteam":
                         var Id = $(this).parents("tr").find("td").eq(0).text();
                         console.log(Id)
                         let dele = {}
-                        dele.data= {fid:Id};
+                        dele.data= {fnumber:Id};
                         dele.url = urlDelete;
                         let isDelete = confirm("确定删除？");
                         if(isDelete){
@@ -4345,6 +4581,15 @@ case "T_projectteam":
                         // console.log(zhi3);
                         $("#changePage").css("top",zhi3);
                     }
+
+                        /**添加新页签事件 */
+                        let data = {
+                            add :".jsgrid-insert-mode-button",
+                            tabName :"T_projectteam_addNew",
+                            url :"./T_projectteam_addNew.html",
+                            tabName_CN :"添加新部门",
+                        }
+                        TBF.bindAddNewTab(data);
                 }
         
                 /**将当前表配置信息存入sessionStorage */
@@ -4365,7 +4610,7 @@ case "T_projectteam_addNew":
             /**刷新父下另一个框架iframe */
                     /**存 */
             let JGConfig = {};
-            JGConfig.url = "http://192.168.1.100:8080/stockWeb/projectteamAdd";
+            JGConfig.url = `${originAdd}/stockWeb/projectteamAdd${originEnd}`;
             // 去判断是否留空，留空则提醒，否则提交
                 // 获得数据
                 let LFID = "T_projectteam";
@@ -4389,7 +4634,7 @@ case "T_projectteam_addNew":
         });
         /**请求部门 */
         let json31 = {
-            url:`http://192.168.1.100:8080/stockWeb/departmentList`,
+            url:`${originAdd}/stockWeb/departmentList${originEnd}`,
             fun:function(value){
                 let str = "";
                 $.each(value,function(i,n){
@@ -4408,7 +4653,7 @@ case "T_supplyer_addNew":
             /**刷新父下另一个框架iframe */
                     /**存 */
             let JGConfig = {};
-            JGConfig.url = "http://192.168.1.100:8080/stockWeb/supplyerAdd";
+            JGConfig.url = `${originAdd}/stockWeb/supplyerAdd${originEnd}`;
             // 去判断是否留空，留空则提醒，否则提交
                 // 获得数据
                 let LFID = "T_supplyer";
@@ -4434,13 +4679,172 @@ case "T_supplyer_addNew":
     })();
 break;
 /******************************************************************************** */  
+case "T_item_addNew":
+(function(){
+    $(".closeTabs").click(function(){
+        /**刷新父下另一个框架iframe */
+                /**存 */
+        let JGConfig = {};
+        JGConfig.url = `${originAdd}/stockWeb/itemAdd${originEnd}`;
+        // 去判断是否留空，留空则提醒，否则提交
+            // 获得数据
+            let LFID = "T_item";
+            let data3 = {add:".bodyFrame1-main"}
+            let json = TBF.getCase(data3);
+            let dd = PKG.judge.pickNull(json);
+            data3.body = dd;
+            if(TBF.searchTips(data3)){
+                // JGM.addInfo(JGConfig);
+                JGConfig.data= json;
+                console.log(json)
+                JGM.addInfo(JGConfig);
+                $(`#tabs .iframes>div[LFID="${LFID}"]>iframe[tabName="${LFID}"]`,parent.document)[0].contentWindow.location.reload();
+                TBF.closeTab();
+            }else{
+                alert("有未填字段！");
+            };
+        // JGM.addInfo(JGConfig);
+        /**关闭当前页签 */
+        // TBF.closeTab();
+    });
+    
+})();
+break;
+/******************************************************************************** */  
+case "spact":
+        (function(){
+            let LFID = "spact";
+            let tabName = "spact";
+            let LFIDAndTabName = LFID + tabName;
+            var urlGet = `${originAdd}/stockWeb/spactList${originEnd}`;
+            var urlDelete = `${originAdd}/stockWeb/spactDelete${originEnd}`;
+            /**search事件 */
+            let searchJson = {
+                add:".bodyFrame1-main .search",
+                button:".showAddNewCon2",
+                LFID,
+                tabName,
+            };
+            
+            let data = {
+                add :".showAddNewCon",
+                tabName :"spact_addContract",
+                url :"./spact_addContract.html",
+                tabName_CN :"添加新合同",
+            }
+            /**添加新页签事件 */
+            TBF.bindAddNewTab(data);
+            // let data1 = {
+            //     add :".showAddNewCon2",
+            //     tabName :"addNewContract2",
+            //     url :"./addNewContract.html",
+            //     tabName_CN :"添加新合同2",
+            // }
+            // TBF.bindAddNewTab(data1);
+            
+            let JGConfig = {};
+            JGConfig.data = {page:1};
+            JGConfig.LFID = LFID;
+            JGConfig.tabName = tabName;
+            JGConfig.url = urlGet ;
+            /** 表格头，必须设置PreName，值对应为后台传过来的数据属性名 此对象可设置的属性详情见 https://github.com/tabalinas/jsgrid */
+            JGConfig.fields = [
+                { name: "id",PreName:"fid", type: "number", readOnly: true, width:10,},
+                { name: "合同编号",PreName:"fno", type: "number", readOnly: true, width:70,  },
+                { name: "项目名称",PreName:"fpeojectname", type: "text", width:100,  },
+                { name: "项目地址",PreName:"faddress", type: "text", width:100,  },
+                { name: "甲方名称",PreName:"funitname", type: "text", width:100,  },
+                { name: "合同额",PreName:"fmoney", type: "text", width:60,  },
+                { name: "税率",PreName:"ftax", type: "text", width:30,  },
+                { name: "项目负责人",PreName:"fmanager", type: "text", width:50,  },
+                { name: "状态",PreName:"fstate", type: "text", width:30,  },
+                {type: "control",width:70,}
+            ];
+
+            // let funName = parent.window.JGConfigFuns;
+            // parent.window.JGConfigFuns = funName || {};
+            //将方法存入window对象中
+            JGConfig.funs = function (){
+                $(".jsgrid-insert-button").off("click");
+                // 删
+                $(".jsgrid-delete-button").off("click");
+                $(".jsgrid-delete-button").click(function(){
+                    var Id = $(this).parents("tr").find("td").eq(0).text();
+                    console.log(Id)
+                    let dele = {}
+                    dele.data= {fid:Id};
+                    dele.url = urlDelete;
+                    let isDelete = confirm("确定删除？");
+                    if(isDelete){
+                        JGM.deleteInfo(dele);
+                        window.location.reload();
+                    }
+                });
+                // 改
+                $(".jsgrid-edit-button").click(function(){
+                    // //获取id
+                    var a =  $(this).parents("tr").find("td").eq(0).text();
+                    // window.location.href = ctx +"/managerSave.jsp?managerId="+a;
+                    // managerSave.html
+                });
+                $(".jsgrid-insert-mode-button").off("click");
+                $(".jsgrid-insert-mode-button").on("click",function(){
+                    // window.location.href = ctx +"/managerSave.jsp";
+                });
+                if ( $("#jsGrid").html() != null ){
+                    //调分页的高度
+                    var zhi1 = $("#jsGrid").offset().top;
+                    var zhi2 = $("#jsGrid").height();
+                    var zhi3 = zhi1 + zhi2 - 60;
+                    // console.log(zhi3);
+                    $("#changePage").css("top",zhi3);
+                }
+            }
+            /**将当前表配置信息存入sessionStorage */
+            let funName = parent.window.JGConfig;
+            parent.window.JGConfig = funName || {};
+            parent.window.JGConfig[LFIDAndTabName] = JGConfig;
+            // 直接按配置请求
+            JGM.getInfo(JGConfig);
+            // let seesionInfoName = LFIDAndTabName + "JGConfig";
+            // sessionStorage.removeItem(seesionInfoName);
+            // sessionStorage.setItem(seesionInfoName,JSON.stringify(JGConfig));  
+            // setTimeout(function(){
+            //     let data = {
+            //         page:"1",
+            //         count:"6",
+            //         urlGet,
+            //     }
+            //     CP.show(data);
+            // },5000);
+            /**给查询绑定事件 */
+            TBF.getInfoInCase(searchJson);
+
+            let dataJson = {
+                page:"1",
+                LFID:"spact",
+                tabName:"spact"
+            }
+            CP.changePageJSPost(dataJson);
+
+
+    })();
+break;
+/******************************************************************************** */  
+
+case "ssubpact":
+    (function(){
+        
+    })();
+break;
+/******************************************************************************** */  
+
 case "":
     (function(){
 
     })();
 break;
 /******************************************************************************** */  
-
 
 default:
 break;

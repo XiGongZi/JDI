@@ -27,6 +27,10 @@
       <style>
         /* body *{box-sizing: border-box;border:1px solid blue} */
         </style>
+                <script>
+                    var ctx = "";
+                    var TPN = "ssubpact";
+                </script>
 </head>
 <body>
 <!-- bodyFrame -->
@@ -47,7 +51,7 @@
                         <input type="number" field="fno">
                     </div>
                     <div class="case-icon">
-                        <svg class="icon" aria-hidden="true" status="1">
+                        <svg class="icon" aria-hidden="true" status="0">
                             <use xlink:href="#icon-more"></use>
                         </svg>
                     </div>
@@ -74,8 +78,8 @@
             </div>
             <!-- 此处为搜索选项 -->
             <div class="button">
-                <div class="showAddNew">添加</div>
-                <div>按条件查询</div>
+                <div class="showAddNewCon">添加</div>
+                <div class="showAddNewCon2">按条件查询</div>
             </div>
             <div class="clearBoth"></div>
         </div>
@@ -131,6 +135,6 @@
 <!-- <script src="./static/scripts/config/app/index.js"></script>  -->
 <script type="text/javascript">
 //当前页面程序入口
-require(['work/host/ssubpact/C/main'],function(a){});
+require(['work/host/testSelectAll/C/main'],function(a){});
 </script>
 </html>

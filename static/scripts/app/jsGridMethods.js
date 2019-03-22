@@ -51,6 +51,57 @@ define([
                         // json.count = "6";
                         json.page = data.page;
                         fun.changeForm2(json);
+                        
+                        // 待更新分页
+                        // let CP = require("app/changePage");
+                        // let pagesInfo = {
+                        //     "count":json.count,
+                        //     "page":json.page,
+                        // }
+                        // let dataJson = {
+                        //     page:"1",
+                        //     LFID:"spact",
+                        //     tabName:"spact"
+                        // }
+                        // CP.changePageJSPost(dataJson);
+                        // CP.addChangePageMore(pagesInfo);
+                    }else{
+                    }
+                    // useTable_addInfo(JSON.parse(data));
+                },
+                error:function(){
+                    try {
+                    }catch(e){
+                    }
+                }
+            });
+        },
+        getInfo_insertInput:function(json){
+            $.ajax({
+                type: 'post',
+                url: json.url,
+                data: json.data,
+                cache: false,
+                dataType: "json",
+                success: function(data){
+                    if(data.resultFlag){
+                        console.log(json.field)
+                         let dates = data[json.field];
+                        console.log("this is change page");
+                        console.log(dates);
+
+                        $.each(dates,function(i,e){
+                            $(`input[field="${i}"]`).attr("value",e)
+                        });
+                        $.each(dates,function(i,e){
+                            $(`textarea[field="${i}"]`).val(e)
+                        });
+                        $.each(dates,function(i,e){
+                            $(`select[field="${i}"]`).find(`option[value="${e}"]`).attr("selected",true);
+                        });
+
+                        
+
                     }else{
                     }
                     // useTable_addInfo(JSON.parse(data));
@@ -110,6 +161,28 @@ define([
             });
         },
         addInfo:function(json){
+            $.ajax({
+                type: 'post',
+                url: json.url,
+                data: json.data,
+                cache: false,
+                dataType: "json",
+                success: function(data){
+                    if(data.resultFlag){
+                        console.table(data);
+                    }else{
+                        console.log("0.0");
+                    }
+                },
+                error:function(){
+                    try {
+                        console.log("请求失败");
+                    }catch(e){
+                    }
+                }
+            });
+        },
+        updateInfo:function(json){
             $.ajax({
                 type: 'post',
                 url: json.url,

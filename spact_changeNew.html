@@ -26,6 +26,10 @@
     <script src="./static/scripts/app/iconfont.js" ></script>
       <style>
         </style>
+                <script>
+                        var ctx = "";
+                        var TPN = "spact_changeNew";
+                    </script>
 </head>
 <body>
 <!-- bodyFrame -->
@@ -121,9 +125,11 @@
                     <div class="case-name">税率:</div>
                     <div class="case-input">
                         <select name="" id=""  field="ftax">
-                            <option value="">3%</option>
-                            <option value="">10%</option>
-                            <option value="">16%</option>
+                                <option value="0.03">3%</option>
+                                <option value="0.06">6%</option>
+                                <option value="0.1">10%</option>
+                                <option value="0.13">13%</option>
+                                <option value="0.16">16%</option>
                         </select>
                     </div>
                     <div class="case-icon">
@@ -153,7 +159,7 @@
                     <div class="">
                         <div class="case-name">负责人电话:</div>
                         <div class="case-input">
-                            <input type="text" field="Fphone">
+                            <input type="text" field="fphone">
                         </div>
                         <div class="case-icon">
                             <svg class="icon" aria-hidden="true" status="0">
@@ -161,14 +167,15 @@
                             </svg>
                         </div>
                         <span class="clearBoth"></span>
-                    </div>   
+                    </div>  
+  
                         <!-- 每一个筛选条件组件 -->
               <div class="">
                     <div class="case-name">状态:</div>
                     <div class="case-input">
                         <select name="" id="" field="fstate">
-                            <option value="">施工</option>
-                            <option value="">竣工</option>
+                            <option value="施工">施工</option>
+                            <option value="竣工">竣工</option>
                         </select>
                     </div>
                     <div class="case-icon">
@@ -178,7 +185,15 @@
                     </div>
                     <span class="clear"></span>
                 </div>   
-                
+                <!-- 每一个筛选条件组件 -->
+
+                <div class="">
+                    <div class="case-name">备注:</div>
+                    <div class="case-input">
+                        <textarea name="" id="" cols="30" field="fnote" rows="3"></textarea>
+                    </div>
+                    <span class="clearBoth"></span>
+                </div>  
 
                 </div>
 
@@ -201,6 +216,6 @@
 <!-- <script src="./static/scripts/config/app/index.js"></script>  -->
 <script type="text/javascript">
 //当前页面程序入口
-require(['work/host/spact_addContract/C/main'],function(a){});
+require(['work/host/testSelectAll/C/main'],function(a){});
 </script>
 </html>

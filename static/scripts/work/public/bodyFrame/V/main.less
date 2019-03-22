@@ -83,6 +83,7 @@
     }
 }
 /*各个iframe页*/
+// .bodyFrame1 * {box-sizing: border-box;border:1px solid blue}
 .bodyFrame1{
     width:100%;
     height:auto;
@@ -105,6 +106,10 @@
                 font-size:20px;
             }
         }
+        textarea{
+            // height:auto;
+            margin-bottom:100px;
+        }
         &>.search{
             &>div{
                 width:95%;
@@ -113,7 +118,8 @@
             }
             &>.case{
                 height:auto;
-                overflow: hidden;
+                // overflow: hidden;
+                z-index:100000000;
                 &>div{
                     float:left;
                     width:95% * 0.33;
