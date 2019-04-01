@@ -1,4 +1,43 @@
+
 置顶：
+
+
+
+
+
+
+
+
+
+
+
+
+190402 update
+
+更新所有表 在  .\static\scripts\work\host\testSelectAll\C\main.js
+
+中的引导。
+
+下一步： 更改html页面，在每页中添加全局变量 
+
+即
+var TPN = "页面在字典中的名称";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 tabSys 的一些 api  引用后使用模块内方法：
 
